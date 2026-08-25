@@ -28,19 +28,18 @@ async function render() {
   );
 }
 
-test("server-renders the complete Zero to Signal experience", async () => {
+test("server-renders the complete professional portfolio", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>ZERO TO SIGNAL/);
-  assert.match(html, /From 210 MW to 8B parameters/i);
-  assert.match(html, /A dramatized cinematic retelling/i);
-  assert.match(html, /The machine taught him to listen/i);
-  assert.match(html, /Control logic became production logic/i);
-  assert.match(html, /Make the model answer the way people speak/i);
-  assert.match(html, /Efficiency is not the whole score/i);
+  assert.match(html, /<title>Dheepak Karan — Software &amp; Machine Learning Engineer/);
+  assert.match(html, /Software Engineering · Machine Learning · Intelligent Systems/i);
+  assert.match(html, /Safety-critical control for a 210 MW generator/i);
+  assert.match(html, /Production systems designed for scale/i);
+  assert.match(html, /An 8B model adapted for how people actually speak/i);
+  assert.match(html, /Evaluating fairness under network congestion/i);
   assert.match(html, /3\.926/);
   assert.match(html, /4,415/);
   assert.match(html, /57\.05 to 12\.40/);
@@ -75,10 +74,9 @@ test("ships optimized assets, metadata and accessibility fallbacks", async () =>
   assert.match(layout, /x-forwarded-host/);
   assert.match(layout, /new URL\("\/og\.png", metadataBase\)/);
   assert.match(component, /useReducedMotion/);
-  assert.match(component, /visibilitychange/);
-  assert.match(component, /Enter silently/);
-  assert.match(component, /Enter with sound/);
-  assert.match(component, /aria-pressed=\{soundOn\}/);
+  assert.match(component, /Skip to selected projects/);
+  assert.match(component, /Download résumé/);
+  assert.doesNotMatch(component, /AudioContext|Enter silently|Enter with sound/);
   assert.match(component, /loading="lazy"/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(css, /:focus-visible/);

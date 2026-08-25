@@ -12,9 +12,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     metadataBase,
-    title: "ZERO TO SIGNAL — Dheepak Karan",
+    title: "Dheepak Karan — Software & Machine Learning Engineer",
     description:
-      "From a 210 MW generator to an 8-billion-parameter language model: the cinematic engineering portfolio of Dheepak Karan.",
+      "Dheepak Karan builds reliable software and machine-learning systems across backend engineering, intelligent systems and industrial automation.",
     authors: [{ name: "Dheepak Karan" }],
     keywords: [
       "Dheepak Karan",
@@ -30,21 +30,21 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     openGraph: {
       type: "website",
-      title: "ZERO TO SIGNAL",
-      description: "From 210 MW to 8B parameters — Dheepak Karan’s engineering journey.",
+      title: "Dheepak Karan — Engineering Portfolio",
+      description: "Software engineering, machine learning and intelligent systems—from 210 MW to 8B parameters.",
       images: [
         {
           url: new URL("/og.png", metadataBase).toString(),
           width: 1200,
           height: 630,
-          alt: "Zero to Signal — From 210 MW to 8B Parameters — Dheepak Karan",
+          alt: "Dheepak Karan — Software and Machine Learning Engineer",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "ZERO TO SIGNAL",
-      description: "From 210 MW to 8B parameters — Dheepak Karan’s engineering journey.",
+      title: "Dheepak Karan — Engineering Portfolio",
+      description: "Software engineering, machine learning and intelligent systems—from 210 MW to 8B parameters.",
       images: [new URL("/og.png", metadataBase).toString()],
     },
   };

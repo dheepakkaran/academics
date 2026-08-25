@@ -38,8 +38,8 @@ export const acts: Act[] = [
   {
     id: "spark",
     number: "01",
-    eyebrow: "Tamil Nadu · The spark",
-    title: "The machine taught him to listen.",
+    eyebrow: "NLC India · Industrial automation",
+    title: "Safety-critical control for a 210 MW generator.",
     year: "2022",
     image: "/scenes/neyveli-1920.webp",
     imageAvif: "/scenes/neyveli-1920.avif",
@@ -67,8 +67,8 @@ export const acts: Act[] = [
   {
     id: "scale",
     number: "02",
-    eyebrow: "Chennai · The scale",
-    title: "Control logic became production logic.",
+    eyebrow: "Guardian Life · Backend engineering",
+    title: "Production systems designed for scale.",
     year: "2022—23",
     image: "/scenes/chennai-1920.webp",
     imageAvif: "/scenes/chennai-1920.avif",
@@ -91,8 +91,8 @@ export const acts: Act[] = [
   {
     id: "crossing",
     number: "03",
-    eyebrow: "Boston · The crossing",
-    title: "A new country. The same current.",
+    eyebrow: "Northeastern University · Graduate study",
+    title: "Deepening the link between systems and intelligence.",
     year: "2026—28",
     image: "/scenes/boston-1920.webp",
     imageAvif: "/scenes/boston-1920.avif",
@@ -114,8 +114,8 @@ export const acts: Act[] = [
   {
     id: "language",
     number: "04",
-    eyebrow: "Tanglish · The language",
-    title: "Make the model answer the way people speak.",
+    eyebrow: "Multilingual AI · LLM fine-tuning",
+    title: "An 8B model adapted for how people actually speak.",
     year: "2026",
     image: "/scenes/language-1920.webp",
     imageAvif: "/scenes/language-1920.avif",
@@ -138,8 +138,8 @@ export const acts: Act[] = [
   {
     id: "fairness",
     number: "05",
-    eyebrow: "Networks · The fairness",
-    title: "Efficiency is not the whole score.",
+    eyebrow: "FairShare-WiFi · Network research",
+    title: "Evaluating fairness under network congestion.",
     year: "2026",
     quote:
       "When bandwidth becomes scarce, a scheduler reveals what it values.",
@@ -197,22 +197,22 @@ export const externalLinks: ExternalLink[] = [
   {
     label: "Email",
     href: "mailto:elumalaisanthakuma.d@northeastern.edu",
-    note: "Start a conversation",
+    note: "Get in touch",
   },
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/dheepakkaran/",
-    note: "Follow the journey",
+    note: "Professional profile",
   },
   {
     label: "GitHub",
     href: "https://github.com/dheepakkaran",
-    note: "Explore the code",
+    note: "Code and projects",
   },
   {
     label: "Credentials",
     href: "https://www.credly.com/users/dheepakkaran",
-    note: "View certifications",
+    note: "Verified credentials",
   },
 ];
 
