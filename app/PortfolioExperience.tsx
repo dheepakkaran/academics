@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { CursorTrails } from "./CursorTrails";
+import { SkillFlowField } from "./SkillFlowField";
 import {
   blogPosts,
   experiences,
@@ -12,23 +12,12 @@ import {
 } from "./portfolio-data";
 
 const navigation = [
-  { label: "Work", href: "#research" },
+  { label: "Profile", href: "#profile" },
+  { label: "Work", href: "#work" },
   { label: "Experience", href: "#experience" },
-  { label: "Writing", href: "#writing" },
-  { label: "Skills", href: "#skills" },
+  { label: "Notes", href: "/blog" },
   { label: "Résumé", href: "/resume.pdf" },
 ];
-
-const researchAreas = [
-  "Backend systems",
-  "Machine learning",
-  "Intelligent networks",
-  "Industrial automation",
-];
-
-function Arrow() {
-  return <span aria-hidden="true">↗</span>;
-}
 
 export function PortfolioExperience() {
   const [query, setQuery] = useState("");
@@ -49,55 +38,39 @@ export function PortfolioExperience() {
     );
   }, [normalizedQuery]);
 
-  const filteredPosts = useMemo(() => {
-    if (!normalizedQuery) return blogPosts;
-    return blogPosts.filter((post) =>
-      [post.category, post.title, post.summary, post.takeaway, ...post.body]
-        .join(" ")
-        .toLowerCase()
-        .includes(normalizedQuery),
-    );
-  }, [normalizedQuery]);
-
-  const resultCount = filteredProjects.length + filteredPosts.length;
-
   return (
-    <div className="research-site">
-      <CursorTrails />
-      <a className="skip-link" href="#research">Skip to research and engineering</a>
+    <div className="bw-site">
+      <SkillFlowField />
+      <a className="skip-link" href="#work">Skip to selected work</a>
 
-      <div className="research-shell">
-        <header className="research-topbar">
-          <a className="wordmark" href="#profile" aria-label="Dheepak Karan — profile home">
-            <span>DK</span>
-            <span>
-              <strong>Dheepak Karan</strong>
-              <small>Research &amp; Engineering</small>
-            </span>
-          </a>
-          <nav aria-label="Primary navigation">
-            {navigation.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                {...(item.href.endsWith(".pdf") ? { download: true } : {})}
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
-        </header>
+      <header className="plain-header">
+        <a className="plain-wordmark" href="#profile">
+          <strong>Dheepak Karan</strong>
+          <span>Engineer / Researcher</span>
+        </a>
+        <nav aria-label="Primary navigation">
+          {navigation.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              {...(item.href.endsWith(".pdf") ? { download: true } : {})}
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+      </header>
 
-        <div className="profile-layout" id="profile">
-          <aside className="profile-column" aria-labelledby="profile-name">
-            <div className="profile-avatar" aria-hidden="true">DK</div>
-            <h1 id="profile-name">Dheepak Karan</h1>
-            <p className="profile-role">Software Engineer &amp; MS ECE Candidate</p>
-            <p className="profile-affiliation">
-              Northeastern University<br />Boston, Massachusetts
+      <main className="plain-main">
+        <section id="profile" className="plain-hero" aria-labelledby="profile-title">
+          <div className="hero-statement">
+            <p className="mono-label">Dheepak Karan · Boston, Massachusetts</p>
+            <h1 id="profile-title">Software systems.<br />Machine learning.<br />Engineering that moves.</h1>
+            <p className="hero-summary">
+              Software Engineer and MS ECE candidate at Northeastern University. I work across
+              backend infrastructure, resource-efficient AI, intelligent networks and industrial control.
             </p>
-
-            <div className="profile-links" aria-label="Profile links">
+            <div className="inline-links" aria-label="Profile links">
               {externalLinks.map((link) => (
                 <a
                   key={link.label}
@@ -106,194 +79,172 @@ export function PortfolioExperience() {
                     ? { target: "_blank", rel: "noreferrer" }
                     : {})}
                 >
-                  {link.label} <Arrow />
+                  {link.label}<span aria-hidden="true">↗</span>
                 </a>
               ))}
-              <a href="/resume.pdf" download>Download résumé <span aria-hidden="true">↓</span></a>
             </div>
+          </div>
 
-            <section className="profile-aside-section" aria-labelledby="interests-title">
-              <h2 id="interests-title">Areas of interest</h2>
-              <ul>
-                {researchAreas.map((area) => <li key={area}>{area}</li>)}
-              </ul>
-            </section>
+          <div className="field-guide" aria-label="Interactive background instructions">
+            <span>Interactive skill field</span>
+            <p>Move the cursor through the field. Skills compress, connect and follow its flow.</p>
+            <i aria-hidden="true">＋</i>
+          </div>
+        </section>
 
-            <section className="profile-aside-section availability" aria-labelledby="status-title">
-              <h2 id="status-title">Current status</h2>
-              <p><i aria-hidden="true" /> Graduate student · expected May 2028</p>
-            </section>
+        <section className="metric-strip" aria-label="Selected engineering metrics">
+          {profileMetrics.map((metric) => (
+            <div key={metric.label}>
+              <strong>{metric.value}</strong>
+              <span>{metric.label}</span>
+            </div>
+          ))}
+        </section>
+
+        <div className="document-layout">
+          <aside className="document-index">
+            <p>Index</p>
+            <nav aria-label="Document sections">
+              <a href="#work"><span>01</span> Selected work</a>
+              <a href="#experience"><span>02</span> Experience</a>
+              <a href="#writing"><span>03</span> Writing</a>
+              <a href="#skills"><span>04</span> Skills</a>
+              <a href="#contact"><span>05</span> Contact</a>
+            </nav>
+            <p className="document-status">MS ECE · 3.926 CGPA<br />Expected May 2028</p>
           </aside>
 
-          <main className="research-main">
-            <section className="profile-overview" aria-labelledby="overview-title">
-              <div className="overview-copy">
-                <p className="section-kicker">Profile overview</p>
-                <h2 id="overview-title">Engineering reliable systems across software, learning and physical infrastructure.</h2>
-                <p>
-                  My work spans production backend services, resource-efficient machine learning,
-                  network scheduling and industrial control. I am currently pursuing an MS in
-                  Electrical and Computer Engineering at Northeastern University.
-                </p>
-              </div>
-
-              <table className="metric-table">
-                <caption>Selected metrics</caption>
-                <tbody>
-                  {profileMetrics.map((metric) => (
-                    <tr key={metric.label}>
-                      <th scope="row">{metric.label}</th>
-                      <td>{metric.value}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </section>
-
-            <section id="research" className="record-section" aria-labelledby="research-title">
-              <div className="section-heading">
+          <div className="document-content">
+            <section id="work" className="plain-section" aria-labelledby="work-title">
+              <header className="plain-section-heading">
                 <div>
-                  <p className="section-kicker">Selected work</p>
-                  <h2 id="research-title">Research &amp; engineering</h2>
+                  <p className="mono-label">01 / Selected work</p>
+                  <h2 id="work-title">Research &amp; engineering</h2>
                 </div>
                 <span>{projects.length} records</span>
-              </div>
+              </header>
 
-              <label className="research-search">
-                <span aria-hidden="true">⌕</span>
-                <span className="sr-only">Search projects and notes</span>
+              <label className="line-search">
+                <span>Search</span>
                 <input
                   type="search"
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
-                  placeholder="Search projects and notes"
+                  placeholder="Projects, methods, technologies…"
+                  aria-label="Search projects"
                 />
-                {query && (
-                  <button type="button" onClick={() => setQuery("")} aria-label="Clear search">Clear</button>
-                )}
+                {query && <button type="button" onClick={() => setQuery("")}>Clear</button>}
               </label>
 
-              <p className="result-summary" aria-live="polite">
-                {normalizedQuery
-                  ? `${resultCount} matching ${resultCount === 1 ? "record" : "records"}`
-                  : "Showing all research, engineering and writing records"}
-              </p>
-
-              <div className="publication-list">
+              <div className="plain-records">
                 {filteredProjects.map((project, index) => (
-                  <article className="publication-row" key={project.title}>
-                    <div className="record-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</div>
-                    <div className="publication-copy">
+                  <article key={project.title} className="work-record">
+                    <span className="record-number">{String(index + 1).padStart(2, "0")}</span>
+                    <div className="record-copy">
+                      <p className="record-meta">{project.category} / {project.date}</p>
                       <h3>{project.title}</h3>
-                      <p className="publication-meta">{project.category} · {project.date}</p>
                       <p>{project.premise}</p>
                       <details>
-                        <summary>Method and outcome</summary>
-                        <div className="record-details">
-                          <p><strong>Method.</strong> {project.method}</p>
-                          <p><strong>Outcome.</strong> {project.outcome}</p>
-                          <ul aria-label={`${project.title} technologies`}>
-                            {project.stack.map((item) => <li key={item}>{item}</li>)}
-                          </ul>
+                        <summary>Read method and outcome <span aria-hidden="true">＋</span></summary>
+                        <div>
+                          <p><b>Method</b>{project.method}</p>
+                          <p><b>Outcome</b>{project.outcome}</p>
+                          <p><b>Stack</b>{project.stack.join(" · ")}</p>
                         </div>
                       </details>
                     </div>
-                    <div className="publication-signal">
-                      <span>Key result</span>
+                    <div className="record-result">
+                      <span>Result</span>
                       <strong>{project.metric}</strong>
                     </div>
                   </article>
                 ))}
                 {filteredProjects.length === 0 && (
-                  <p className="empty-state">No project records match this search.</p>
+                  <p className="no-results">No engineering records match “{query}”.</p>
                 )}
               </div>
             </section>
 
-            <section id="experience" className="record-section" aria-labelledby="experience-title">
-              <div className="section-heading">
+            <section id="experience" className="plain-section" aria-labelledby="experience-title">
+              <header className="plain-section-heading">
                 <div>
-                  <p className="section-kicker">Background</p>
+                  <p className="mono-label">02 / Background</p>
                   <h2 id="experience-title">Education &amp; experience</h2>
                 </div>
-              </div>
+              </header>
 
-              <div className="experience-records">
+              <div className="timeline-list">
                 {experiences.map((experience) => (
                   <article key={`${experience.organization}-${experience.role}`}>
                     <time>{experience.period}</time>
                     <div>
                       <h3>{experience.role}</h3>
-                      <p className="record-organization">{experience.organization} · {experience.location}</p>
+                      <p className="organization">{experience.organization} / {experience.location}</p>
                       <p>{experience.summary}</p>
-                      <ul>
-                        {experience.outcomes.map((outcome) => <li key={outcome}>{outcome}</li>)}
-                      </ul>
+                      <p className="outcomes">{experience.outcomes.join(" · ")}</p>
                     </div>
                   </article>
                 ))}
               </div>
             </section>
 
-            <section id="writing" className="record-section" aria-labelledby="writing-title">
-              <div className="section-heading">
+            <section id="writing" className="plain-section" aria-labelledby="writing-title">
+              <header className="plain-section-heading">
                 <div>
-                  <p className="section-kicker">Engineering notebook</p>
-                  <h2 id="writing-title">Notes &amp; observations</h2>
+                  <p className="mono-label">03 / Notebook</p>
+                  <h2 id="writing-title">Engineering notes</h2>
                 </div>
-                <a href="/blog">Read all notes <Arrow /></a>
-              </div>
+                <a href="/blog">Open notebook ↗</a>
+              </header>
 
-              <div className="note-records">
-                {filteredPosts.map((post, index) => (
-                  <article key={post.title}>
-                    <span className="note-number">{String(index + 1).padStart(2, "0")}</span>
+              <ol className="writing-list">
+                {blogPosts.map((post, index) => (
+                  <li key={post.title}>
+                    <span>{String(index + 1).padStart(2, "0")}</span>
                     <div>
-                      <p className="publication-meta">{post.category}</p>
+                      <p>{post.category}</p>
                       <h3><a href={`/blog#note-${index + 1}`}>{post.title}</a></h3>
                       <p>{post.summary}</p>
                     </div>
-                  </article>
+                    <a href={`/blog#note-${index + 1}`} aria-label={`Read ${post.title}`}>↗</a>
+                  </li>
                 ))}
-                {filteredPosts.length === 0 && (
-                  <p className="empty-state">No writing records match this search.</p>
-                )}
-              </div>
+              </ol>
             </section>
 
-            <section id="skills" className="record-section" aria-labelledby="skills-title">
-              <div className="section-heading">
+            <section id="skills" className="plain-section" aria-labelledby="skills-title">
+              <header className="plain-section-heading">
                 <div>
-                  <p className="section-kicker">Methods &amp; tools</p>
-                  <h2 id="skills-title">Technical index</h2>
+                  <p className="mono-label">04 / Technical index</p>
+                  <h2 id="skills-title">Methods &amp; tools</h2>
                 </div>
-              </div>
+              </header>
 
-              <dl className="skills-index">
+              <dl className="plain-skills">
                 {skillGroups.map((group) => (
                   <div key={group.label}>
                     <dt>{group.label}</dt>
-                    <dd>{group.values.join(" · ")}</dd>
+                    <dd>{group.values.join(" / ")}</dd>
                   </div>
                 ))}
               </dl>
             </section>
 
-            <section className="contact-record" aria-labelledby="contact-title">
-              <p className="section-kicker">Contact</p>
-              <h2 id="contact-title">Open to thoughtful engineering conversations.</h2>
+            <section id="contact" className="plain-contact" aria-labelledby="contact-title">
+              <p className="mono-label">05 / Contact</p>
+              <h2 id="contact-title">Let’s discuss a difficult engineering problem.</h2>
               <a href="mailto:elumalaisanthakuma.d@northeastern.edu">
-                elumalaisanthakuma.d@northeastern.edu <Arrow />
+                elumalaisanthakuma.d@northeastern.edu <span aria-hidden="true">↗</span>
               </a>
             </section>
-          </main>
+          </div>
         </div>
+      </main>
 
-        <footer className="research-footer">
-          <span>© 2026 Dheepak Karan</span>
-          <span>Last updated August 2026 · Boston, MA</span>
-        </footer>
-      </div>
+      <footer className="plain-footer">
+        <span>© 2026 Dheepak Karan</span>
+        <span>Boston, Massachusetts / Updated August 2026</span>
+      </footer>
     </div>
   );
 }
