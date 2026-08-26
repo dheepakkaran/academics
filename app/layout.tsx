@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
-import "@fontsource-variable/playfair-display";
 import "@fontsource-variable/space-grotesk";
 import "./globals.css";
 
@@ -12,9 +11,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     metadataBase,
-    title: "Dheepak Karan — Software & Machine Learning Engineer",
+    title: "Dheepak Karan — Software Engineer & Technical Notes",
     description:
-      "Dheepak Karan builds reliable software and machine-learning systems across backend engineering, intelligent systems and industrial automation.",
+      "The portfolio and engineering notes of Dheepak Karan—software engineering, applied machine learning and intelligent systems.",
     authors: [{ name: "Dheepak Karan" }],
     keywords: [
       "Dheepak Karan",
@@ -30,8 +29,8 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     openGraph: {
       type: "website",
-      title: "Dheepak Karan — Engineering Portfolio",
-      description: "Software engineering, machine learning and intelligent systems—from 210 MW to 8B parameters.",
+      title: "Dheepak Karan — Software Engineer",
+      description: "Selected work and technical notes across software, machine learning and intelligent systems.",
       images: [
         {
           url: new URL("/og.png", metadataBase).toString(),
@@ -43,8 +42,8 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      title: "Dheepak Karan — Engineering Portfolio",
-      description: "Software engineering, machine learning and intelligent systems—from 210 MW to 8B parameters.",
+      title: "Dheepak Karan — Software Engineer",
+      description: "Selected work and technical notes across software, machine learning and intelligent systems.",
       images: [new URL("/og.png", metadataBase).toString()],
     },
   };

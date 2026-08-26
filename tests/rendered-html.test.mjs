@@ -34,18 +34,19 @@ test("server-renders the complete professional portfolio", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Dheepak Karan — Software &amp; Machine Learning Engineer/);
-  assert.match(html, /Software Engineering · Machine Learning · Intelligent Systems/i);
-  assert.match(html, /Safety-critical control for a 210 MW generator/i);
-  assert.match(html, /Production systems designed for scale/i);
-  assert.match(html, /An 8B model adapted for how people actually speak/i);
-  assert.match(html, /Evaluating fairness under network congestion/i);
+  assert.match(html, /<title>Dheepak Karan — Software Engineer &amp; Technical Notes/);
+  assert.match(html, /I build software for systems that/i);
+  assert.match(html, /What do I bring to the table/i);
+  assert.match(html, /What have I built/i);
+  assert.match(html, /What am I thinking about/i);
+  assert.match(html, /Fine-tuning an 8B model when compute is the constraint/i);
   assert.match(html, /3\.926/);
   assert.match(html, /4,415/);
   assert.match(html, /57\.05 to 12\.40/);
   assert.match(html, /href="\/resume\.pdf"/);
   assert.match(html, /https:\/\/github\.com\/dheepakkaran/);
   assert.match(html, /https:\/\/www\.linkedin\.com\/in\/dheepakkaran/);
+  assert.doesNotMatch(html, /Zero to Signal|cinematic retelling/i);
   assert.doesNotMatch(html, /857[^<]{0,10}339[^<]{0,10}6410/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/);
 });
@@ -62,11 +63,6 @@ test("ships optimized assets, metadata and accessibility fallbacks", async () =>
     "../public/resume.pdf",
     "../public/og.png",
     "../public/icon.png",
-    "../public/scenes/neyveli-1280.avif",
-    "../public/scenes/neyveli-1920.webp",
-    "../public/scenes/chennai-1920.avif",
-    "../public/scenes/boston-1920.webp",
-    "../public/scenes/language-1920.avif",
   ]) {
     await access(new URL(asset, import.meta.url));
   }
@@ -74,10 +70,12 @@ test("ships optimized assets, metadata and accessibility fallbacks", async () =>
   assert.match(layout, /x-forwarded-host/);
   assert.match(layout, /new URL\("\/og\.png", metadataBase\)/);
   assert.match(component, /useReducedMotion/);
-  assert.match(component, /Skip to selected projects/);
+  assert.match(component, /Skip to selected work/);
   assert.match(component, /Download résumé/);
+  assert.match(component, /useMotionTemplate/);
+  assert.match(component, /pointermove/);
   assert.doesNotMatch(component, /AudioContext|Enter silently|Enter with sound/);
-  assert.match(component, /loading="lazy"/);
+  assert.doesNotMatch(component, /neyveli|chennai|cinematic/i);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(css, /:focus-visible/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
