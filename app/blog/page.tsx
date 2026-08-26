@@ -9,80 +9,54 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <div className="bw-site notebook-site">
-      <a className="skip-link" href="#notes">Skip to engineering notes</a>
+    <div className="text-document">
+      <a className="skip-link" href="#notes">Skip to notes</a>
 
-      <header className="plain-header">
-        <a className="plain-wordmark" href="/">
-          <strong>Dheepak Karan</strong>
-          <span>Engineering notebook</span>
-        </a>
+      <header>
+        <h1>Engineering Notes</h1>
+        <p><strong>Dheepak Karan</strong></p>
+        <p>Machine learning · Backend systems · Networks</p>
         <nav aria-label="Notebook navigation">
-          <a href="/">Profile</a>
-          <a href="/#work">Work</a>
-          <a href="/resume.pdf" download>Résumé</a>
+          <a href="/">Profile</a> · <a href="/#work">Work</a> · <a href="/resume.pdf" download>Résumé</a>
         </nav>
       </header>
 
-      <main id="notes" className="notebook-main">
-        <header className="notebook-title">
-          <p className="mono-label">Technical notebook / 2026</p>
-          <h1>Engineering notes</h1>
-          <p>
-            Working observations from building and measuring machine-learning,
-            backend and networked systems.
-          </p>
-          <dl>
-            <div><dt>Author</dt><dd>Dheepak Karan</dd></div>
-            <div><dt>Fields</dt><dd>ML / Backend / Networks</dd></div>
-            <div><dt>Entries</dt><dd>{String(blogPosts.length).padStart(2, "0")}</dd></div>
-          </dl>
-        </header>
-
-        <nav className="notebook-contents" aria-labelledby="contents-title">
-          <p id="contents-title">Contents</p>
+      <main id="notes">
+        <section aria-labelledby="contents-title">
+          <h2 id="contents-title">Contents</h2>
           <ol>
             {blogPosts.map((post, index) => (
-              <li key={post.title}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <a href={`#note-${index + 1}`}>{post.title}</a>
-                <small>{post.category}</small>
-              </li>
+              <li key={post.title}><a href={`#note-${index + 1}`}>{post.title}</a></li>
             ))}
           </ol>
-        </nav>
-
-        <section className="notebook-articles" aria-label="Technical articles">
-          {blogPosts.map((post, index) => (
-            <article id={`note-${index + 1}`} key={post.title}>
-              <header>
-                <p className="mono-label">Note {String(index + 1).padStart(2, "0")} / {post.category}</p>
-                <h2>{post.title}</h2>
-                <p className="abstract"><b>Abstract</b>{post.summary}</p>
-              </header>
-              <div className="notebook-copy">
-                {post.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-              </div>
-              <p className="principle"><b>Working principle</b>{post.takeaway}</p>
-              <a className="return-link" href="#contents-title">Return to contents ↑</a>
-            </article>
-          ))}
         </section>
 
-        <section className="notebook-correspondence" aria-labelledby="correspondence-title">
-          <p className="mono-label">Correspondence</p>
-          <h2 id="correspondence-title">Have a related idea or counterexample?</h2>
-          <a href="mailto:elumalaisanthakuma.d@northeastern.edu">Email Dheepak ↗</a>
+        {blogPosts.map((post, index) => (
+          <article id={`note-${index + 1}`} key={post.title}>
+            <h2>{post.title}</h2>
+            <p><strong>{post.category}</strong></p>
+            <p><strong>Summary:</strong> {post.summary}</p>
+            {post.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+            <p><strong>Working principle:</strong> {post.takeaway}</p>
+            <p><a href="#contents-title">Back to contents</a></p>
+          </article>
+        ))}
+
+        <section aria-labelledby="contact-title">
+          <h2 id="contact-title">Contact</h2>
+          <p><a href="mailto:elumalaisanthakuma.d@northeastern.edu">Email Dheepak</a></p>
         </section>
       </main>
 
-      <footer className="plain-footer">
-        <span>© 2026 Dheepak Karan</span>
-        <nav aria-label="External links">
-          {externalLinks.slice(1).map((link) => (
-            <a key={link.label} href={link.href} target="_blank" rel="noreferrer">{link.label}</a>
+      <footer>
+        <p>
+          © 2026 Dheepak Karan · {externalLinks.slice(1).map((link, index) => (
+            <span key={link.label}>
+              {index > 0 && " · "}
+              <a href={link.href} target="_blank" rel="noreferrer">{link.label}</a>
+            </span>
           ))}
-        </nav>
+        </p>
       </footer>
     </div>
   );

@@ -35,11 +35,10 @@ test("server-renders the complete academic engineering profile", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>Dheepak Karan — Research &amp; Engineering/);
-  assert.match(html, /Software Engineer \/ Graduate Researcher/i);
-  assert.match(html, /MS ECE Candidate at Northeastern University/i);
-  assert.match(html, /Research &amp; engineering/i);
-  assert.match(html, /Search projects/i);
-  assert.match(html, /Education &amp; experience/i);
+  assert.match(html, /Software Engineer \/ MS Electrical &amp; Computer Engineering Candidate/i);
+  assert.match(html, /Northeastern University/i);
+  assert.match(html, /Selected work/i);
+  assert.match(html, /Education and experience/i);
   assert.match(html, /Engineering notes/i);
   assert.match(html, /Fine-tuning an 8B model when compute is the constraint/i);
   assert.match(html, /3\.926/);
@@ -58,7 +57,7 @@ test("server-renders the dedicated engineering notes page", async () => {
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /<title>Engineering Notes — Dheepak Karan/);
-  assert.match(html, /Technical notebook/i);
+  assert.match(html, /Machine learning · Backend systems · Networks/i);
   assert.match(html, /Engineering notes/i);
   assert.match(html, /Contents/i);
   assert.match(html, /Working principle/i);
@@ -67,10 +66,10 @@ test("server-renders the dedicated engineering notes page", async () => {
   assert.match(html, /Fairness is a system property/i);
 });
 
-test("ships the static monochrome profile, metadata and accessibility fallbacks", async () => {
-  const [layout, component, blog, css, packageJson] = await Promise.all([
+test("ships the structured text profile, metadata and accessibility fallbacks", async () => {
+  const [layout, page, blog, css, packageJson] = await Promise.all([
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../app/PortfolioExperience.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/blog/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
@@ -86,16 +85,15 @@ test("ships the static monochrome profile, metadata and accessibility fallbacks"
 
   assert.match(layout, /x-forwarded-host/);
   assert.match(layout, /new URL\("\/og\.png", metadataBase\)/);
-  assert.match(component, /Skip to selected work/);
-  assert.match(component, /download: true/);
-  assert.match(component, /type="search"/);
-  assert.doesNotMatch(component, /SkillFlowField|CursorTrails|useMotionTemplate|pointermove|prompt-section|project-card|research-shell/);
+  assert.match(page, /Skip to work/);
+  assert.match(page, /download/);
+  assert.doesNotMatch(page, /"use client"|useState|type="search"|SkillFlowField|CursorTrails|useMotionTemplate|pointermove|prompt-section|project-card|research-shell/);
   assert.doesNotMatch(blog, /SkillFlowField|CursorTrails|pointermove/);
-  assert.doesNotMatch(component, /AudioContext|Enter silently|Enter with sound/);
-  assert.doesNotMatch(component, /neyveli|chennai|cinematic/i);
+  assert.doesNotMatch(page, /AudioContext|Enter silently|Enter with sound/);
+  assert.doesNotMatch(page, /neyveli|chennai|cinematic/i);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(css, /:focus-visible/);
-  assert.match(css, /--black:\s*#0a0a0a/);
-  assert.doesNotMatch(css, /skill-flow-field|--blue|violet|glow|box-shadow/i);
+  assert.match(css, /\.text-document/);
+  assert.doesNotMatch(css, /skill-flow-field|--blue|violet|glow|box-shadow|border-radius|display:\s*grid/i);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
 });
