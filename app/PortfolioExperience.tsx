@@ -21,7 +21,7 @@ import {
 const navigation = [
   { label: "About", href: "#about" },
   { label: "Work", href: "#work" },
-  { label: "Notes", href: "#notes" },
+  { label: "Blog", href: "/blog" },
   { label: "Skills", href: "#skills" },
   { label: "Résumé", href: "/resume.pdf" },
 ];
@@ -277,6 +277,9 @@ export function PortfolioExperience() {
                 </Reveal>
               ))}
             </div>
+            <Reveal className="notes-footer">
+              <a href="/blog">Open the full notes page <span aria-hidden="true">→</span></a>
+            </Reveal>
           </div>
         </section>
 

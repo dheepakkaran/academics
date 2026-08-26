@@ -2,13 +2,13 @@ import assert from "node:assert/strict";
 import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 
-async function render() {
+async function render(path = "/") {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
 
   return worker.fetch(
-    new Request("https://portfolio.example/", {
+    new Request(`https://portfolio.example${path}`, {
       headers: {
         accept: "text/html",
         host: "portfolio.example",
@@ -49,6 +49,17 @@ test("server-renders the complete professional portfolio", async () => {
   assert.doesNotMatch(html, /Zero to Signal|cinematic retelling/i);
   assert.doesNotMatch(html, /857[^<]{0,10}339[^<]{0,10}6410/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/);
+});
+
+test("server-renders the dedicated engineering notes page", async () => {
+  const response = await render("/blog");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /<title>Engineering Notes — Dheepak Karan/);
+  assert.match(html, /Notes from building, measuring and learning/i);
+  assert.match(html, /Fine-tuning an 8B model when compute is the constraint/i);
+  assert.match(html, /Performance work starts with the path a request actually takes/i);
+  assert.match(html, /Fairness is a system property/i);
 });
 
 test("ships optimized assets, metadata and accessibility fallbacks", async () => {
