@@ -28,17 +28,19 @@ async function render(path = "/") {
   );
 }
 
-test("server-renders the complete professional portfolio", async () => {
+test("server-renders the complete academic engineering profile", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Dheepak Karan — Software Engineer &amp; Technical Notes/);
-  assert.match(html, /I build software for systems that/i);
-  assert.match(html, /What do I bring to the table/i);
-  assert.match(html, /What have I built/i);
-  assert.match(html, /What am I thinking about/i);
+  assert.match(html, /<title>Dheepak Karan — Research &amp; Engineering/);
+  assert.match(html, /Research &amp; Engineering/i);
+  assert.match(html, /Selected metrics/i);
+  assert.match(html, /Research &amp; engineering/i);
+  assert.match(html, /Search projects and notes/i);
+  assert.match(html, /Education &amp; experience/i);
+  assert.match(html, /Notes &amp; observations/i);
   assert.match(html, /Fine-tuning an 8B model when compute is the constraint/i);
   assert.match(html, /3\.926/);
   assert.match(html, /4,415/);
@@ -46,7 +48,7 @@ test("server-renders the complete professional portfolio", async () => {
   assert.match(html, /href="\/resume\.pdf"/);
   assert.match(html, /https:\/\/github\.com\/dheepakkaran/);
   assert.match(html, /https:\/\/www\.linkedin\.com\/in\/dheepakkaran/);
-  assert.doesNotMatch(html, /Zero to Signal|cinematic retelling/i);
+  assert.doesNotMatch(html, /Zero to Signal|cinematic retelling|What have I built|What do I bring to the table/i);
   assert.doesNotMatch(html, /857[^<]{0,10}339[^<]{0,10}6410/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/);
 });
@@ -56,16 +58,20 @@ test("server-renders the dedicated engineering notes page", async () => {
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /<title>Engineering Notes — Dheepak Karan/);
-  assert.match(html, /Notes from building, measuring and learning/i);
+  assert.match(html, /Technical notebook/i);
+  assert.match(html, /Engineering notes/i);
+  assert.match(html, /Contents/i);
+  assert.match(html, /Working principle/i);
   assert.match(html, /Fine-tuning an 8B model when compute is the constraint/i);
   assert.match(html, /Performance work starts with the path a request actually takes/i);
   assert.match(html, /Fairness is a system property/i);
 });
 
-test("ships optimized assets, metadata and accessibility fallbacks", async () => {
-  const [layout, component, css, packageJson] = await Promise.all([
+test("ships cursor trails, metadata and accessibility fallbacks", async () => {
+  const [layout, component, cursorTrails, css, packageJson] = await Promise.all([
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/PortfolioExperience.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/CursorTrails.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
   ]);
@@ -80,11 +86,15 @@ test("ships optimized assets, metadata and accessibility fallbacks", async () =>
 
   assert.match(layout, /x-forwarded-host/);
   assert.match(layout, /new URL\("\/og\.png", metadataBase\)/);
-  assert.match(component, /useReducedMotion/);
-  assert.match(component, /Skip to selected work/);
+  assert.match(component, /CursorTrails/);
+  assert.match(component, /Skip to research and engineering/);
   assert.match(component, /Download résumé/);
-  assert.match(component, /useMotionTemplate/);
-  assert.match(component, /pointermove/);
+  assert.match(component, /type="search"/);
+  assert.doesNotMatch(component, /useMotionTemplate|prompt-section|project-card/);
+  assert.match(cursorTrails, /requestAnimationFrame/);
+  assert.match(cursorTrails, /pointermove/);
+  assert.match(cursorTrails, /visibilitychange/);
+  assert.match(cursorTrails, /prefers-reduced-motion/);
   assert.doesNotMatch(component, /AudioContext|Enter silently|Enter with sound/);
   assert.doesNotMatch(component, /neyveli|chennai|cinematic/i);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);

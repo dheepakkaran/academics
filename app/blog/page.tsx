@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CursorTrails } from "../CursorTrails";
 import { blogPosts, externalLinks } from "../portfolio-data";
 
 export const metadata: Metadata = {
@@ -9,55 +10,88 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <main className="blog-page">
-      <div className="blog-glow" aria-hidden="true" />
-      <header className="blog-header">
-        <a className="brand" href="/" aria-label="Back to Dheepak Karan portfolio">
-          <span>DK</span><strong>Dheepak Karan</strong>
-        </a>
-        <a className="back-link" href="/">Portfolio <span aria-hidden="true">↗</span></a>
-      </header>
+    <div className="research-site">
+      <CursorTrails />
+      <a className="skip-link" href="#notes">Skip to engineering notes</a>
 
-      <section className="blog-hero" aria-labelledby="blog-title">
-        <div className="prompt-label"><span>Journal</span><i aria-hidden="true">→</i>Engineering notes</div>
-        <h1 id="blog-title">Notes from building, measuring and learning.</h1>
-        <p>
-          Short essays about practical engineering decisions across machine learning, backend systems and networks.
-        </p>
-      </section>
+      <div className="research-shell blog-shell">
+        <header className="research-topbar">
+          <a className="wordmark" href="/" aria-label="Dheepak Karan — profile home">
+            <span>DK</span>
+            <span>
+              <strong>Dheepak Karan</strong>
+              <small>Engineering Notebook</small>
+            </span>
+          </a>
+          <nav aria-label="Notebook navigation">
+            <a href="/">Profile</a>
+            <a href="/#research">Work</a>
+            <a href="/resume.pdf" download>Résumé</a>
+          </nav>
+        </header>
 
-      <section className="blog-feed" aria-label="Technical articles">
-        {blogPosts.map((post, index) => (
-          <article id={`note-${index + 1}`} key={post.title}>
-            <div className="blog-article-meta">
-              <span>0{index + 1}</span>
-              <p>{post.category}</p>
-            </div>
-            <div className="blog-article-content">
-              <h2>{post.title}</h2>
-              <p className="blog-deck">{post.summary}</p>
-              <blockquote>{post.takeaway}</blockquote>
-              <div className="blog-copy">
-                {post.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-              </div>
-            </div>
-          </article>
-        ))}
-      </section>
+        <main className="notebook-main" id="notes">
+          <header className="notebook-header">
+            <p className="section-kicker">Technical notebook</p>
+            <h1>Engineering notes</h1>
+            <p>
+              Short, practical observations from building and measuring machine-learning,
+              backend and networked systems.
+            </p>
+            <dl>
+              <div><dt>Author</dt><dd>Dheepak Karan</dd></div>
+              <div><dt>Topics</dt><dd>ML · Backend · Networks</dd></div>
+              <div><dt>Entries</dt><dd>{blogPosts.length}</dd></div>
+            </dl>
+          </header>
 
-      <section className="blog-contact">
-        <p>Have a perspective to add?</p>
-        <a href="mailto:elumalaisanthakuma.d@northeastern.edu">Continue the conversation <span aria-hidden="true">↗</span></a>
-      </section>
+          <section className="notebook-index" aria-labelledby="index-title">
+            <h2 id="index-title">Contents</h2>
+            <ol>
+              {blogPosts.map((post, index) => (
+                <li key={post.title}>
+                  <a href={`#note-${index + 1}`}>{post.title}</a>
+                  <span>{post.category}</span>
+                </li>
+              ))}
+            </ol>
+          </section>
 
-      <footer className="blog-footer">
-        <span>© 2026 Dheepak Karan</span>
-        <nav aria-label="Social links">
-          {externalLinks.slice(1).map((link) => (
-            <a key={link.label} href={link.href} target="_blank" rel="noreferrer">{link.label}</a>
-          ))}
-        </nav>
-      </footer>
-    </main>
+          <section className="article-list" aria-label="Technical articles">
+            {blogPosts.map((post, index) => (
+              <article id={`note-${index + 1}`} key={post.title}>
+                <header>
+                  <p className="article-number">Note {String(index + 1).padStart(2, "0")} · {post.category}</p>
+                  <h2>{post.title}</h2>
+                  <p className="article-abstract"><strong>Abstract.</strong> {post.summary}</p>
+                </header>
+                <div className="article-body">
+                  {post.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                  <aside><strong>Working principle</strong>{post.takeaway}</aside>
+                </div>
+                <a className="back-to-index" href="#index-title">Back to contents ↑</a>
+              </article>
+            ))}
+          </section>
+
+          <section className="notebook-contact" aria-labelledby="notebook-contact-title">
+            <h2 id="notebook-contact-title">Discussion and correspondence</h2>
+            <p>If you have a related idea, implementation detail or counterexample, I would like to hear it.</p>
+            <a href="mailto:elumalaisanthakuma.d@northeastern.edu">
+              Email Dheepak <span aria-hidden="true">↗</span>
+            </a>
+          </section>
+        </main>
+
+        <footer className="research-footer">
+          <span>© 2026 Dheepak Karan</span>
+          <nav aria-label="External links">
+            {externalLinks.slice(1).map((link) => (
+              <a key={link.label} href={link.href} target="_blank" rel="noreferrer">{link.label}</a>
+            ))}
+          </nav>
+        </footer>
+      </div>
+    </div>
   );
 }
