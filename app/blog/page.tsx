@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { SkillFlowField } from "../SkillFlowField";
 import { blogPosts, externalLinks } from "../portfolio-data";
 
 export const metadata: Metadata = {
@@ -11,7 +10,6 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   return (
     <div className="bw-site notebook-site">
-      <SkillFlowField />
       <a className="skip-link" href="#notes">Skip to engineering notes</a>
 
       <header className="plain-header">

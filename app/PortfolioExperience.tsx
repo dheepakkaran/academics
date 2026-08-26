@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { SkillFlowField } from "./SkillFlowField";
 import {
   blogPosts,
   experiences,
@@ -40,7 +39,6 @@ export function PortfolioExperience() {
 
   return (
     <div className="bw-site">
-      <SkillFlowField />
       <a className="skip-link" href="#work">Skip to selected work</a>
 
       <header className="plain-header">
@@ -64,8 +62,9 @@ export function PortfolioExperience() {
       <main className="plain-main">
         <section id="profile" className="plain-hero" aria-labelledby="profile-title">
           <div className="hero-statement">
-            <p className="mono-label">Dheepak Karan · Boston, Massachusetts</p>
-            <h1 id="profile-title">Software systems.<br />Machine learning.<br />Engineering that moves.</h1>
+            <p className="mono-label">Software Engineer / Graduate Researcher</p>
+            <h1 id="profile-title">Dheepak Karan</h1>
+            <p className="hero-roleline">MS ECE Candidate at Northeastern University · Boston, Massachusetts</p>
             <p className="hero-summary">
               Software Engineer and MS ECE candidate at Northeastern University. I work across
               backend infrastructure, resource-efficient AI, intelligent networks and industrial control.
@@ -83,12 +82,6 @@ export function PortfolioExperience() {
                 </a>
               ))}
             </div>
-          </div>
-
-          <div className="field-guide" aria-label="Interactive background instructions">
-            <span>Interactive skill field</span>
-            <p>Move the cursor through the field. Skills compress, connect and follow its flow.</p>
-            <i aria-hidden="true">＋</i>
           </div>
         </section>
 
