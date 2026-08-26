@@ -35,11 +35,16 @@ test("server-renders the complete academic engineering profile", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>Dheepak Karan — Research &amp; Engineering/);
-  assert.match(html, /Software Engineer \/ MS Electrical &amp; Computer Engineering Candidate/i);
+  assert.match(html, /ENGINEERING DOSSIER \/ REV\. 2026\.08/i);
+  assert.match(html, /MS ECE candidate \/ Software engineer/i);
   assert.match(html, /Northeastern University/i);
-  assert.match(html, /Selected work/i);
-  assert.match(html, /Education and experience/i);
-  assert.match(html, /Engineering notes/i);
+  assert.match(html, /01_PROFILE/i);
+  assert.match(html, /02_SELECTED WORK/i);
+  assert.match(html, /03_EDUCATION &amp; EXPERIENCE/i);
+  assert.match(html, /04_ENGINEERING NOTES/i);
+  assert.match(html, /\[EVIDENCE 01\]/i);
+  assert.match(html, /PROJECT 01/i);
+  assert.match(html, /DOCUMENT END \/ DK-2026/i);
   assert.match(html, /Fine-tuning an 8B model when compute is the constraint/i);
   assert.match(html, /3\.926/);
   assert.match(html, /4,415/);
@@ -57,10 +62,12 @@ test("server-renders the dedicated engineering notes page", async () => {
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /<title>Engineering Notes — Dheepak Karan/);
-  assert.match(html, /Machine learning · Backend systems · Networks/i);
+  assert.match(html, /ENGINEERING NOTEBOOK \/ REV\. 2026\.08/i);
+  assert.match(html, /Machine learning \/ Backend systems \/ Networks/i);
   assert.match(html, /Engineering notes/i);
-  assert.match(html, /Contents/i);
-  assert.match(html, /Working principle/i);
+  assert.match(html, /00_CONTENTS/i);
+  assert.match(html, /DK-NOTE-01/i);
+  assert.match(html, /Principle/i);
   assert.match(html, /Fine-tuning an 8B model when compute is the constraint/i);
   assert.match(html, /Performance work starts with the path a request actually takes/i);
   assert.match(html, /Fairness is a system property/i);
