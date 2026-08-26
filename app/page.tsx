@@ -12,23 +12,17 @@ export default function Home() {
     <div className="text-document">
       <a className="skip-link" href="#work">Skip to work</a>
 
-      <header className="dossier-header">
-        <p className="document-id">DK / ENGINEERING DOSSIER / REV. 2026.08</p>
+      <header>
         <h1>Dheepak Karan</h1>
-        <dl className="document-meta">
-          <div><dt>Status</dt><dd>MS ECE candidate / Software engineer</dd></div>
-          <div><dt>Location</dt><dd>Boston, Massachusetts</dd></div>
-          <div><dt>Affiliation</dt><dd>Northeastern University</dd></div>
-          <div><dt>Focus</dt><dd>Backend / ML / Networks / Industrial control</dd></div>
-          <div><dt>Graduation</dt><dd>Expected May 2028</dd></div>
-        </dl>
+        <p><strong>Software Engineer / MS Electrical &amp; Computer Engineering Candidate</strong></p>
+        <p>Northeastern University · Boston, Massachusetts · Expected May 2028</p>
         <nav aria-label="Primary navigation">
-          <a href="#profile">01_Profile</a> · <a href="#work">02_Work</a> · <a href="#experience">03_Experience</a> · <a href="#writing">04_Notes</a> · <a href="#skills">05_Skills</a> · <a href="#contact">06_Contact</a>
+          <a href="#profile">Profile</a> · <a href="#work">Work</a> · <a href="#experience">Experience</a> · <a href="#skills">Skills</a> · <a href="/blog">Notes</a> · <a href="/resume.pdf" download>Résumé</a>
         </nav>
-        <p className="document-links">
+        <p>
           {externalLinks.map((link, index) => (
             <span key={link.label}>
-              {index > 0 && " / "}
+              {index > 0 && " · "}
               <a
                 href={link.href}
                 {...(!link.href.startsWith("mailto:")
@@ -39,100 +33,85 @@ export default function Home() {
               </a>
             </span>
           ))}
-          {" / "}<a href="/resume.pdf" download>Résumé PDF</a>
         </p>
       </header>
 
       <main>
         <section id="profile" aria-labelledby="profile-title">
-          <h2 id="profile-title">01_PROFILE</h2>
+          <h2 id="profile-title">Profile</h2>
           <p>
             Software engineer working across backend infrastructure, resource-efficient machine learning,
             intelligent networks and industrial control. Currently pursuing an MS in Electrical and
             Computer Engineering at Northeastern University.
           </p>
-          <h3>Verified signals</h3>
-          <ol className="evidence-list">
-            {profileMetrics.map((metric, index) => (
-              <li key={metric.label}>
-                <span>{`[EVIDENCE ${String(index + 1).padStart(2, "0")}]`}</span>{" "}
-                <strong>{metric.value}</strong> — {metric.label}
-              </li>
+          <h3>Selected results</h3>
+          <ul>
+            {profileMetrics.map((metric) => (
+              <li key={metric.label}><strong>{metric.value}</strong> — {metric.label}</li>
             ))}
-          </ol>
+          </ul>
         </section>
 
         <section id="work" aria-labelledby="work-title">
-          <h2 id="work-title">02_SELECTED WORK</h2>
-          {projects.map((project, index) => (
+          <h2 id="work-title">Selected work</h2>
+          {projects.map((project) => (
             <article key={project.title}>
-              <p className="record-id">{`PROJECT ${String(index + 1).padStart(2, "0")} / ${project.date}`}</p>
               <h3>{project.title}</h3>
-              <dl className="record-fields">
-                <div><dt>Field</dt><dd>{project.category}</dd></div>
-                <div><dt>Problem</dt><dd>{project.premise}</dd></div>
-                <div><dt>Method</dt><dd>{project.method}</dd></div>
-                <div><dt>Outcome</dt><dd>{project.outcome}</dd></div>
-                <div><dt>Result</dt><dd><strong>{project.metric}</strong></dd></div>
-                <div><dt>Tools</dt><dd>{project.stack.join(" / ")}</dd></div>
-              </dl>
+              <p><strong>{project.category}</strong> · {project.date}</p>
+              <p>{project.premise}</p>
+              <p><strong>Method:</strong> {project.method}</p>
+              <p><strong>Outcome:</strong> {project.outcome}</p>
+              <p><strong>Key result:</strong> {project.metric}</p>
+              <p><strong>Tools:</strong> {project.stack.join(", ")}</p>
             </article>
           ))}
-          <p className="reference-line">[SOURCE] <a href="https://github.com/dheepakkaran" target="_blank" rel="noreferrer">github.com/dheepakkaran</a></p>
+          <p><a href="https://github.com/dheepakkaran" target="_blank" rel="noreferrer">View GitHub profile</a></p>
         </section>
 
         <section id="experience" aria-labelledby="experience-title">
-          <h2 id="experience-title">03_EDUCATION &amp; EXPERIENCE</h2>
-          {experiences.map((experience, index) => (
+          <h2 id="experience-title">Education and experience</h2>
+          {experiences.map((experience) => (
             <article key={`${experience.organization}-${experience.role}`}>
-              <p className="record-id">{`RECORD ${String(index + 1).padStart(2, "0")} / ${experience.period}`}</p>
               <h3>{experience.role}</h3>
-              <dl className="record-fields">
-                <div><dt>Organization</dt><dd>{experience.organization}</dd></div>
-                <div><dt>Location</dt><dd>{experience.location}</dd></div>
-                <div><dt>Scope</dt><dd>{experience.summary}</dd></div>
-                <div><dt>Evidence</dt><dd>{experience.outcomes.join(" / ")}</dd></div>
-                <div><dt>Tools</dt><dd>{experience.stack.join(" / ")}</dd></div>
-              </dl>
+              <p><strong>{experience.organization}</strong> · {experience.location} · {experience.period}</p>
+              <p>{experience.summary}</p>
+              <ul>
+                {experience.outcomes.map((outcome) => <li key={outcome}>{outcome}</li>)}
+              </ul>
+              <p><strong>Tools and topics:</strong> {experience.stack.join(", ")}</p>
             </article>
           ))}
         </section>
 
         <section id="writing" aria-labelledby="writing-title">
-          <h2 id="writing-title">04_ENGINEERING NOTES</h2>
-          <ol className="document-list">
+          <h2 id="writing-title">Engineering notes</h2>
+          <ol>
             {blogPosts.map((post, index) => (
               <li key={post.title}>
-                <span>{`[NOTE ${String(index + 1).padStart(2, "0")}]`}</span>{" "}
                 <a href={`/blog#note-${index + 1}`}><strong>{post.title}</strong></a>
                 <br />
                 {post.summary}
               </li>
             ))}
           </ol>
-          <p className="reference-line"><a href="/blog">Open complete notebook →</a></p>
+          <p><a href="/blog">Read all notes</a></p>
         </section>
 
         <section id="skills" aria-labelledby="skills-title">
-          <h2 id="skills-title">05_TECHNICAL INDEX</h2>
-          <dl className="record-fields">
-            {skillGroups.map((group) => (
-              <div key={group.label}><dt>{group.label}</dt><dd>{group.values.join(" / ")}</dd></div>
-            ))}
-          </dl>
+          <h2 id="skills-title">Skills</h2>
+          {skillGroups.map((group) => (
+            <p key={group.label}><strong>{group.label}:</strong> {group.values.join(", ")}</p>
+          ))}
         </section>
 
         <section id="contact" aria-labelledby="contact-title">
-          <h2 id="contact-title">06_CONTACT</h2>
-          <dl className="record-fields">
-            <div><dt>Email</dt><dd><a href="mailto:elumalaisanthakuma.d@northeastern.edu">elumalaisanthakuma.d@northeastern.edu</a></dd></div>
-            <div><dt>Résumé</dt><dd><a href="/resume.pdf" download>Download original PDF</a></dd></div>
-          </dl>
+          <h2 id="contact-title">Contact</h2>
+          <p><a href="mailto:elumalaisanthakuma.d@northeastern.edu">elumalaisanthakuma.d@northeastern.edu</a></p>
         </section>
       </main>
 
       <footer>
-        <p>DOCUMENT END / DK-2026 / FACTS VERIFIED AGAINST RÉSUMÉ</p>
+        <p>© 2026 Dheepak Karan · Boston, Massachusetts</p>
       </footer>
     </div>
   );

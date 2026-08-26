@@ -33,7 +33,7 @@ a:hover { text-decoration-thickness: 2px; }
   outline-offset: 3px;
 }
 
-.text-document { width: min(960px, 100%); }
+.text-document { width: min(900px, 100%); }
 
 .skip-link {
   position: absolute;
@@ -49,59 +49,16 @@ a:hover { text-decoration-thickness: 2px; }
   color: #fff;
 }
 
-header { padding-bottom: 18px; }
+header { padding-bottom: 16px; }
 
 header h1 {
   margin: 0 0 8px;
-  font-size: 36px;
+  font-size: 32px;
   line-height: 1.15;
 }
 
 header p { margin: 4px 0; }
 header nav { margin: 12px 0; }
-
-.document-id,
-.record-id,
-.reference-line,
-footer {
-  font-family: "Courier New", Courier, monospace;
-  font-size: 12px;
-  letter-spacing: 0.02em;
-}
-
-.document-id {
-  margin: 0 0 14px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid #000;
-}
-
-.document-links { font-family: "Courier New", Courier, monospace; font-size: 12px; }
-
-.document-meta,
-.record-fields {
-  margin: 14px 0;
-  border-top: 1px solid #000;
-}
-
-.document-meta > div,
-.record-fields > div {
-  display: flex;
-  gap: 16px;
-  padding: 6px 0;
-  border-bottom: 1px solid #ccc;
-}
-
-.document-meta dt,
-.record-fields dt {
-  flex: 0 0 130px;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 11px;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.document-meta dd,
-.record-fields dd { margin: 0; }
 
 main { border-top: 1px solid #000; }
 
@@ -120,8 +77,7 @@ section article + article {
 
 h2 {
   margin: 0 0 12px;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 20px;
+  font-size: 22px;
   line-height: 1.25;
 }
 
@@ -129,11 +85,6 @@ h3 {
   margin: 0 0 6px;
   font-size: 16px;
   line-height: 1.35;
-}
-
-.record-id {
-  margin: 0 0 7px;
-  color: #444;
 }
 
 p { margin: 8px 0; }
@@ -146,30 +97,12 @@ ol {
 
 li + li { margin-top: 5px; }
 
-.evidence-list,
-.document-list {
-  padding-left: 0;
-  list-style: none;
-}
-
-.evidence-list span,
-.document-list span {
-  font-family: "Courier New", Courier, monospace;
-  font-size: 11px;
-}
-
-.document-list li + li { margin-top: 10px; }
-
 footer { padding-top: 12px; font-size: 12px; }
 
 @media (max-width: 520px) {
   body { padding: 12px; font-size: 13px; }
   header h1 { font-size: 27px; }
   h2 { font-size: 19px; }
-  .document-meta > div,
-  .record-fields > div { display: block; }
-  .document-meta dt,
-  .record-fields dt { margin-bottom: 2px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
