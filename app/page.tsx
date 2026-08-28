@@ -40,28 +40,24 @@ export default function Home() {
         </section>
 
         <section id="courses">
-          <h2>Graduate Courses</h2>
-          <div className="course-semesters">
+          <h2>Graduate Coursework</h2>
+          <div className="coursework-groups">
             {(["Spring 2026", "Fall 2026"] as const).map((semester) => (
-              <div className="course-semester" key={semester}>
+              <div className="coursework-term" key={semester}>
                 <h3>{semester}</h3>
-                <ul className="course-list">
+                <ul className="coursework-list">
                   {coursework.filter((course) => course.semester === semester).map((course) => (
                     <li key={course.code}>
-                      <span className="course-code">{course.code}</span>
-                      <div className="course-body">
-                        <strong className="course-title">{course.title}</strong>
-                        <div className="course-meta">
-                          <a className="course-professor" href={course.professorHref} target="_blank" rel="noreferrer">
-                            Prof. {course.professor} ↗
-                          </a>
-                          <p className="course-facts">
-                            {course.status === "Registered" ? <span className="course-status">Registered</span> : null}
-                            {course.percentage ? <span>{course.percentage}</span> : null}
-                            {course.grade ? <span>Grade {course.grade}</span> : null}
-                          </p>
-                        </div>
+                      <span className="coursework-code">{course.code}</span>
+                      <div className="coursework-entry">
+                        <strong>{course.title}</strong>
+                        <a href={course.professorHref} target="_blank" rel="noreferrer">
+                          {course.professor} ↗
+                        </a>
                       </div>
+                      <span className={`coursework-result${course.status === "Registered" ? " registered" : ""}`}>
+                        {course.percentage && course.grade ? `${course.percentage} · ${course.grade}` : course.status}
+                      </span>
                     </li>
                   ))}
                 </ul>
