@@ -223,6 +223,7 @@ p { margin: 8px 0; }
 .experience-list p { margin: 4px 0; }
 .entry-organization { font-size: 14px; font-weight: 600; }
 .entry-results { color: #c8102e; font-size: 13px; }
+.leadership-list > li:first-child { border-top-color: #999; }
 
 .note-list { border-top: 1px solid #999; }
 .note-list > li {

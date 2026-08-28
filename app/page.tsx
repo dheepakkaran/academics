@@ -2,6 +2,7 @@ import {
   blogPosts,
   experiences,
   externalLinks,
+  leadership,
   profileMetrics,
   projects,
   skillGroups,
@@ -65,7 +66,7 @@ export default function Home() {
         <section id="home" className="academic-summary">
           <p>
             I build reliable software and machine-learning systems under real compute, latency and safety constraints.
-            My work connects <strong>production backend engineering</strong>, <strong>resource-efficient AI</strong>, <strong>network scheduling</strong> and <strong>industrial automation</strong>.
+            My work connects <strong>production backend engineering</strong>, <strong>resource-efficient AI</strong>, <strong>network scheduling</strong>, <strong>industrial automation</strong> and <strong>electric mobility</strong>.
           </p>
 
           <dl className="highlight-strip" aria-label="Selected verified results">
@@ -87,7 +88,9 @@ export default function Home() {
                   <h3>{project.title}</h3>
                   <span>{project.date}</span>
                 </div>
-                <p className="project-field">{project.category}</p>
+                <p className="project-field">
+                  {project.category}{project.affiliation ? ` · ${project.affiliation}` : ""}
+                </p>
                 <p>{project.premise}</p>
                 <p><strong>Approach:</strong> {project.method}</p>
                 <p><strong>Outcome:</strong> {project.outcome}</p>
@@ -126,6 +129,25 @@ export default function Home() {
                   <p className="entry-organization">{experience.organization} · {experience.location}</p>
                   <p>{experience.summary}</p>
                   <p className="entry-results">{experience.outcomes.join(" · ")}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section id="leadership">
+          <h2>Leadership &amp; Honors</h2>
+          <ol className="experience-list leadership-list">
+            {leadership.map((item) => (
+              <li key={`${item.organization}-${item.role}`}>
+                <span className="entry-date">{item.period}</span>
+                <div>
+                  <h3>{item.role}</h3>
+                  <p className="entry-organization">
+                    {item.organization}{item.location ? ` · ${item.location}` : ""}
+                  </p>
+                  <p>{item.summary}</p>
+                  <p className="entry-results">{item.highlights.join(" · ")}</p>
                 </div>
               </li>
             ))}

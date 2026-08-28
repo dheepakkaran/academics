@@ -18,11 +18,21 @@ export type Project = {
   title: string;
   date: string;
   category: string;
+  affiliation?: string;
   premise: string;
   method: string;
   outcome: string;
   metric: string;
   stack: string[];
+};
+
+export type LeadershipItem = {
+  period: string;
+  role: string;
+  organization: string;
+  location?: string;
+  summary: string;
+  highlights: string[];
 };
 
 export type BlogPost = {
@@ -60,14 +70,14 @@ export const experiences: Experience[] = [
   },
   {
     kind: "experience",
-    period: "2022 — 2023",
-    role: "Backend Engineer",
+    period: "Apr 2022 — Jul 2023",
+    role: "Software Engineer",
     organization: "Guardian Life",
     location: "Chennai, India",
     summary:
       "Built production APIs, asynchronous workflows and secure machine-learning services for policy-processing systems.",
-    outcomes: ["30% API performance gain", "25% lower database latency", "20% faster response time"],
-    stack: ["Java", "Spring Boot", "Python", "FastAPI", "PostgreSQL", "Kafka", "AWS", "Docker"],
+    outcomes: ["30% API performance gain", "25% lower database latency", "20% faster response time", "85% recommendation accuracy gain"],
+    stack: ["Java", "Spring Boot", "Python", "FastAPI", "PostgreSQL", "Kafka", "AWS", "OAuth 2.0", "Docker"],
   },
   {
     kind: "education",
@@ -86,17 +96,6 @@ export const experiences: Experience[] = [
       "Power electronics",
       "Microprocessors & microcontrollers",
     ],
-  },
-  {
-    kind: "experience",
-    period: "2022",
-    role: "Industrial Automation Project",
-    organization: "NLC India Limited",
-    location: "Neyveli, India",
-    summary:
-      "Designed PLC ladder logic for the stator-water cooling system of a 210 MW generator.",
-    outcomes: ["3 live plant signals", "60-second safety window", "Automated pump changeover"],
-    stack: ["PLC ladder logic", "Sensors", "Relay logic", "Industrial control"],
   },
 ];
 
@@ -131,14 +130,57 @@ export const projects: Project[] = [
     title: "PLC Stator Water Cooling",
     date: "March 2022",
     category: "Industrial automation",
+    affiliation: "NLC India Limited · Neyveli, India",
     premise:
-      "Replace relay-and-timer blind spots with continuous monitoring for a generator cooling system.",
+      "Protect a 210 MW generator when stator-water flow, pressure or conductivity remains outside operating limits for more than 60 seconds.",
     method:
-      "Read flow, pressure and conductivity, automate duty/standby pump changeover and raise alarm and trip signals.",
+      "Designed PLC ladder logic for continuous instrumentation, alarm and trip interlocks, and automatic duty/standby pump changeover on drive faults.",
     outcome:
-      "Created a ladder-logic scheme verified against live operating limits observed during the on-site project.",
-    metric: "210 MW generator",
-    stack: ["PLC", "Ladder logic", "Sensors", "Relay logic", "Industrial control"],
+      "Verified the scheme against live operating limits during a two-month on-site project at an operating power station.",
+    metric: "60-second safety window",
+    stack: ["PLC ladder logic", "Motor control", "Flow / pressure / conductivity instrumentation", "Alarm & trip interlocks"],
+  },
+  {
+    title: "Petrol-to-Electric Vehicle Conversion",
+    date: "2021",
+    category: "EV systems & prototyping",
+    affiliation: "Anna University · Chennai, India",
+    premise:
+      "Convert an Ambassador sedan from petrol to battery-electric while retaining its transmission, steering and braking systems.",
+    method:
+      "Worked in a three-person team to strip the combustion hardware, model the converted layout in 3D CAD, size and series-wire the traction pack, and feed the 12 V accessory circuit through a DC/DC converter.",
+    outcome:
+      "Integrated the motor, controller, throttle and power-distribution layout while following high-voltage handling and battery-ventilation rules on a shared workshop floor.",
+    metric: "3-person retrofit team",
+    stack: ["3D CAD", "Battery pack wiring", "Motor control", "DC/DC conversion", "Mechanical assembly", "Workshop safety"],
+  },
+];
+
+export const leadership: LeadershipItem[] = [
+  {
+    period: "Initiative",
+    role: "Contributor, AI for India",
+    organization: "GUVI Guinness World Record Initiative",
+    summary:
+      "Collaborated with more than 100,000 aspirants to learn and build a face-recognition model at scale.",
+    highlights: ["Applied AI learning", "Large-scale collaboration"],
+  },
+  {
+    period: "2024 — 2025",
+    role: "Community School Volunteer",
+    organization: "Family-run school",
+    summary:
+      "Supported programming lab sessions, assisted students and helped maintain basic academic and financial records.",
+    highlights: ["Programming support", "Student assistance", "Academic operations"],
+  },
+  {
+    period: "Dec 2018 — Jan 2022",
+    role: "Departmental Sports Coordinator",
+    organization: "Anna University",
+    location: "Chennai, India",
+    summary:
+      "Coordinated practice and match schedules, managed shared equipment and served as the liaison between students, faculty and the college sports office.",
+    highlights: ["Sports operations", "Student-faculty coordination", "Equipment & safety oversight"],
   },
 ];
 
@@ -207,5 +249,5 @@ export const skillGroups = [
   { label: "Backend systems", values: ["Spring Boot", "FastAPI", "REST APIs", "Microservices", "Kafka"] },
   { label: "Data", values: ["Pandas", "NumPy", "Statistics", "Data cleaning", "Web scraping"] },
   { label: "Engineering", values: ["Docker", "CI/CD", "Testing", "Git/GitHub", "Linux"] },
-  { label: "Physical systems", values: ["Circuit analysis", "PLC programming", "Sensors", "Industrial control"] },
+  { label: "Physical systems", values: ["Circuit analysis", "3D CAD", "Battery systems", "Motor control", "PLC programming", "Instrumentation", "Industrial control"] },
 ];
