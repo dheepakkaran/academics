@@ -3,7 +3,7 @@ import { externalLinks, projects } from "../portfolio-data";
 import ProfileHeader from "../profile-header";
 
 export const metadata: Metadata = {
-  title: "Engineering Work — Dheepak Karan",
+  title: "Engineering Projects — Dheepak Karan",
   description:
     "Engineering projects by Dheepak Karan across machine learning, networked systems, industrial automation and electric mobility.",
 };
@@ -18,8 +18,8 @@ export default function WorkPage() {
 
       <main id="projects">
         <section>
-          <h2>Engineering Work</h2>
-          <p>Projects across applied AI, network scheduling, industrial control and electric mobility.</p>
+          <h2>Engineering Projects</h2>
+          <p>Selected projects across applied machine learning, network scheduling, industrial control and electric mobility.</p>
           <ol className="project-list">
             {projects.map((project, index) => (
               <li key={project.title}>
@@ -44,7 +44,7 @@ export default function WorkPage() {
       </main>
 
       <footer className="academic-footer">
-        <small>© 2026 Dheepak Karan · Engineering Work</small>
+        <small>© 2026 Dheepak Karan · Engineering Projects</small>
       </footer>
     </div>
   );

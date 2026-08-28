@@ -34,8 +34,10 @@ test("server-renders the complete academic personal homepage", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Dheepak Karan — Research &amp; Engineering/);
-  assert.match(html, /Software Engineer · Applied ML · Intelligent Systems/i);
+  assert.match(html, /<title>Dheepak Karan — Academic &amp; Engineering Profile/);
+  assert.match(html, /M\.S\. ECE Student · Software Engineer/i);
+  assert.match(html, />About</i);
+  assert.match(html, /Areas of interest:/i);
   assert.match(html, /src="\/dheepak-karan\.jpg"/i);
   assert.match(html, /alt="Dheepak Karan"/i);
   assert.match(html, /Northeastern University/i);
@@ -43,7 +45,7 @@ test("server-renders the complete academic personal homepage", async () => {
   assert.match(html, /Anna University/i);
   assert.match(html, /BE, Electrical &amp; Electronics Engineering/i);
   assert.match(html, /Jul 2022/i);
-  assert.match(html, /Professional Experience/i);
+  assert.match(html, /Industry Experience/i);
   assert.match(html, /Software Engineer/i);
   assert.match(html, /Apr 2022 — Jul 2023/i);
   assert.match(html, /Fortune 250 US insurance company/i);
@@ -60,12 +62,12 @@ test("server-renders the complete academic personal homepage", async () => {
   assert.match(html, /View all[\s\S]{0,40}4[\s\S]{0,40}projects/i);
   assert.match(html, /href="\/work"/i);
   assert.doesNotMatch(html, /Petrol-to-Electric Vehicle Conversion/i);
-  assert.match(html, /Leadership &amp; Honors/i);
+  assert.match(html, /Service &amp; Leadership/i);
   assert.match(html, /AI for India/i);
   assert.match(html, /100,000 aspirants/i);
   assert.match(html, /Community School Volunteer/i);
   assert.match(html, /Departmental Sports Coordinator/i);
-  assert.match(html, /Experience &amp; Education/i);
+  assert.match(html, /Education &amp; Experience/i);
   assert.match(html, /Concentration: Machine Learning, Computer Vision &amp; Algorithms/i);
   assert.match(html, /Graduate Coursework/i);
   assert.match(html, /EECE 5644/i);
@@ -84,10 +86,10 @@ test("server-renders the complete academic personal homepage", async () => {
   assert.match(html, /https:\/\/www\.linkedin\.com\/in\/weiyan-s-8b2a3b86/i);
   assert.match(html, /https:\/\/www\.linkedin\.com\/in\/ramin-madi/i);
   assert.ok(html.indexOf("Graduate Coursework") < html.indexOf("Selected Engineering Work"));
-  assert.ok(html.indexOf("Graduate Coursework") < html.indexOf("Experience &amp; Education"));
+  assert.ok(html.indexOf("Graduate Coursework") < html.indexOf("Education &amp; Experience"));
   assert.match(html, /class="coursework-groups"/i);
   assert.doesNotMatch(html, /class="course-semesters"/i);
-  assert.match(html, /Technical Skills/i);
+  assert.match(html, /Methods &amp; Tools/i);
   assert.match(html, /Fine-tuning an 8B model when compute is the constraint/i);
   assert.match(html, /3\.926/);
   assert.match(html, /4,415/);
@@ -96,6 +98,7 @@ test("server-renders the complete academic personal homepage", async () => {
   assert.match(html, /https:\/\/github\.com\/dheepakkaran/);
   assert.match(html, /https:\/\/www\.linkedin\.com\/in\/dheepakkaran/);
   assert.doesNotMatch(html, /Zero to Signal|cinematic retelling|What have I built|What do I bring to the table/i);
+  assert.doesNotMatch(html, /Publications|Research Papers/i);
   assert.doesNotMatch(html, /857[^<]{0,10}339[^<]{0,10}6410/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/);
 });
@@ -104,8 +107,8 @@ test("server-renders the complete engineering work page", async () => {
   const response = await render("/work");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /<title>Engineering Work — Dheepak Karan/);
-  assert.match(html, /Engineering Work/i);
+  assert.match(html, /<title>Engineering Projects — Dheepak Karan/);
+  assert.match(html, /Engineering Projects/i);
   assert.match(html, /Northeastern University/i);
   assert.match(html, /3\.926 CGPA/i);
   assert.match(html, /Multilingual LLM Fine-Tuning/i);
@@ -120,12 +123,12 @@ test("server-renders the dedicated engineering notes page", async () => {
   const response = await render("/blog");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /<title>Engineering Notes — Dheepak Karan/);
-  assert.match(html, /Engineering notes/i);
+  assert.match(html, /<title>Technical Notes — Dheepak Karan/);
+  assert.match(html, /Technical Notes/i);
   assert.match(html, /Northeastern University/i);
   assert.match(html, /Credly/i);
-  assert.match(html, /Short technical essays about practical decisions/i);
-  assert.match(html, /Working principle/i);
+  assert.match(html, /Short notes on practical decisions/i);
+  assert.match(html, /Takeaway/i);
   assert.match(html, /Fine-tuning an 8B model when compute is the constraint/i);
   assert.match(html, /Performance work starts with the path a request actually takes/i);
   assert.match(html, /Fairness is a system property/i);
@@ -144,7 +147,7 @@ test("ships the restrained academic layout, metadata and accessibility fallbacks
 
   for (const asset of [
     "../public/resume.pdf",
-    "../public/og.png",
+    "../public/og-academic.png",
     "../public/icon.png",
     "../public/dheepak-karan.jpg",
     "../public/northeastern-monogram.png",
@@ -153,7 +156,7 @@ test("ships the restrained academic layout, metadata and accessibility fallbacks
   }
 
   assert.match(layout, /x-forwarded-host/);
-  assert.match(layout, /new URL\("\/og\.png", metadataBase\)/);
+  assert.match(layout, /new URL\("\/og-academic\.png", metadataBase\)/);
   assert.match(page, /Skip to content/);
   assert.match(profileHeader, /download/);
   assert.match(profileHeader, /academic-intro/);
@@ -162,7 +165,9 @@ test("ships the restrained academic layout, metadata and accessibility fallbacks
   assert.match(page, /ProfileHeader active="home"/);
   assert.match(work, /ProfileHeader active="work"/);
   assert.match(blog, /ProfileHeader active="notes"/);
-  assert.match(page, /highlight-strip/);
+  assert.match(page, /interest-line/);
+  assert.match(page, /compact-projects/);
+  assert.doesNotMatch(page, /highlight-strip/);
   assert.match(page, /project-list/);
   assert.match(work, /projects\.map/);
   assert.match(page, /experience-list/);
@@ -174,6 +179,8 @@ test("ships the restrained academic layout, metadata and accessibility fallbacks
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(css, /:focus-visible/);
   assert.match(css, /\.academic-page/);
+  assert.match(css, /Arial, Helvetica, sans-serif/);
+  assert.doesNotMatch(css, /Trebuchet MS/);
   assert.match(css, /#c8102e/i);
   assert.doesNotMatch(css, /skill-flow-field|--blue|violet|glow|box-shadow/i);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);

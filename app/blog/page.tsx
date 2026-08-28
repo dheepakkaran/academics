@@ -3,7 +3,7 @@ import { blogPosts } from "../portfolio-data";
 import ProfileHeader from "../profile-header";
 
 export const metadata: Metadata = {
-  title: "Engineering Notes — Dheepak Karan",
+  title: "Technical Notes — Dheepak Karan",
   description:
     "Technical notes from Dheepak Karan on machine learning, backend performance and intelligent systems.",
 };
@@ -16,8 +16,8 @@ export default function BlogPage() {
 
       <main id="notes">
         <section>
-          <h2>Engineering Notes</h2>
-          <p>Short technical essays about practical decisions across machine learning, backend performance and networked systems.</p>
+          <h2>Technical Notes</h2>
+          <p>Short notes on practical decisions in machine learning, backend performance and networked systems.</p>
           <ul className="plain-list">
             {blogPosts.map((post, index) => (
               <li key={post.title}><a href={`#note-${index + 1}`}><strong>{post.title}</strong></a></li>
@@ -31,14 +31,14 @@ export default function BlogPage() {
             <p className="note-meta">{post.category}</p>
             <p><strong>Summary:</strong> {post.summary}</p>
             {post.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-            <p><strong>Working principle:</strong> {post.takeaway}</p>
+            <p><strong>Takeaway:</strong> {post.takeaway}</p>
             <p><a href="#notes">Back to top</a></p>
           </article>
         ))}
       </main>
 
       <footer className="academic-footer">
-        <small>© 2026 Dheepak Karan · Engineering Notes</small>
+        <small>© 2026 Dheepak Karan · Technical Notes</small>
       </footer>
     </div>
   );

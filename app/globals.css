@@ -2,7 +2,7 @@
 
 html {
   min-width: 320px;
-  background: #fafafa;
+  background: #fff;
   color: #222;
   scroll-behavior: smooth;
 }
@@ -10,11 +10,11 @@ html {
 body {
   min-width: 320px;
   margin: 0;
-  background: #fafafa;
+  background: #fff;
   color: #222;
-  font-family: "Trebuchet MS", Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -36,9 +36,9 @@ a:hover {
 }
 
 .academic-page {
-  width: min(900px, 100%);
+  width: min(860px, 100%);
   margin: 0 auto;
-  padding: 18px 10px 36px;
+  padding: 24px 20px 48px;
 }
 
 .skip-link {
@@ -58,108 +58,96 @@ a:hover {
 }
 
 .academic-intro {
-  display: flex;
+  display: grid;
+  grid-template-columns: 138px minmax(0, 1fr);
   align-items: center;
-  justify-content: space-around;
-  gap: 46px;
-  min-height: 200px;
-  margin-bottom: 22px;
+  gap: 30px;
+  padding: 12px 0 24px;
 }
 
 .academic-avatar {
   display: block;
-  width: 165px;
-  height: 165px;
-  flex: 0 0 165px;
+  width: 138px;
+  height: 138px;
   border-radius: 50%;
+  border: 1px solid #ddd;
   object-fit: cover;
   object-position: center;
 }
 
 .academic-bio {
-  min-width: 280px;
-  text-align: center;
+  min-width: 0;
+  text-align: left;
 }
 
 .academic-bio h1 {
-  margin: 0 0 5px;
-  font-size: 35px;
-  line-height: 1.2;
+  margin: 0 0 4px;
+  font-size: 32px;
+  line-height: 1.15;
 }
 
-.academic-bio p { margin: 0; }
+.academic-bio p { margin: 1px 0; }
+.academic-role { font-size: 16px; }
+.academic-focus,
+.academic-meta { color: #555; font-size: 14px; }
+.academic-contact,
+.academic-links { font-size: 14px; }
+.academic-contact a,
+.academic-links a { text-decoration: underline; text-decoration-color: #ccc; text-underline-offset: 2px; }
 
 .affiliation-line {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 9px;
+  justify-content: flex-start;
+  gap: 8px;
+  font-size: 14px;
 }
 
 .northeastern-mark {
   display: block;
-  width: 52px;
+  width: 36px;
   height: auto;
   flex: 0 0 auto;
 }
 
 .academic-menu {
   display: flex;
-  width: 100%;
-  margin-bottom: 30px;
+  align-items: center;
+  gap: 24px;
+  margin: 0 0 32px;
+  padding: 8px 0;
   border-top: 1px solid #999;
   border-bottom: 1px solid #999;
 }
 
 .academic-menu a {
-  flex: 1 1 20%;
-  padding: 6px 4px;
-  color: #333;
-  font-weight: 500;
-  text-align: center;
+  color: #555;
+  font-size: 14px;
 }
 
 .academic-menu a:hover {
-  background: #ddd;
   color: #c8102e;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .academic-menu a.active {
-  background: #eee;
   color: #c8102e;
+  font-weight: 700;
 }
 
 main section,
-.note-article { margin-bottom: 38px; scroll-margin-top: 15px; }
+.note-article { margin-bottom: 34px; scroll-margin-top: 15px; }
 
 h2 {
-  margin: 0 0 10px;
-  font-size: 24px;
-  line-height: 1.3;
+  margin: 0 0 9px;
+  font-size: 21px;
+  line-height: 1.35;
 }
 
 p { margin: 8px 0; }
 
-.academic-summary p { margin-top: 0; }
-
-.highlight-strip {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  margin: 20px 0 0;
-  border-top: 1px solid #999;
-  border-bottom: 1px solid #999;
-}
-
-.highlight-strip > div {
-  padding: 10px 12px;
-  border-right: 1px solid #ccc;
-  text-align: center;
-}
-
-.highlight-strip > div:last-child { border-right: 0; }
-.highlight-strip dt { font-size: 22px; font-weight: 700; }
-.highlight-strip dd { margin: 2px 0 0; color: #666; font-size: 12px; }
+.academic-summary p { max-width: 780px; margin: 6px 0; }
+.interest-line { color: #444; font-size: 14px; }
 
 .plain-list {
   margin: 0;
@@ -178,7 +166,7 @@ p { margin: 8px 0; }
 }
 
 .project-list > li {
-  padding: 16px 0;
+  padding: 14px 0;
   border-top: 1px solid #ccc;
 }
 
@@ -194,14 +182,16 @@ p { margin: 8px 0; }
 .project-heading h3,
 .experience-list h3 {
   margin: 0;
-  font-size: 17px;
+  font-size: 16px;
 }
 
 .project-heading > span { color: #777; font-size: 13px; white-space: nowrap; }
-.project-field { margin: 1px 0 7px; color: #c8102e; font-size: 13px; }
+.project-field { margin: 1px 0 6px; color: #666; font-size: 13px; }
 .project-list p { margin: 5px 0; }
 .project-links { color: #666; font-size: 13px; }
 .section-link { margin: 10px 0 0; font-size: 14px; text-align: right; }
+.compact-projects > li { padding: 12px 0; }
+.compact-projects p { margin: 4px 0; }
 
 .experience-list > li {
   display: grid;
@@ -223,7 +213,7 @@ p { margin: 8px 0; }
 .entry-date { color: #666; font-size: 13px; }
 .experience-list p { margin: 4px 0; }
 .entry-organization { font-size: 14px; font-weight: 600; }
-.entry-results { color: #c8102e; font-size: 13px; }
+.entry-results { color: #555; font-size: 13px; }
 .leadership-list > li:first-child { border-top-color: #999; }
 
 .coursework-groups {
@@ -282,7 +272,7 @@ p { margin: 8px 0; }
   white-space: nowrap;
 }
 
-.coursework-result.registered { color: #c8102e; }
+.coursework-result.registered { color: #555; font-style: italic; }
 
 .note-list { border-top: 1px solid #999; }
 .note-list > li {
@@ -307,7 +297,7 @@ p { margin: 8px 0; }
 .skills-list dd { margin: 2px 0 0; color: #555; font-size: 14px; }
 
 .result,
-.note-meta { color: #c8102e; }
+.note-meta { color: #555; }
 
 .note-article {
   padding-top: 22px;
@@ -323,20 +313,26 @@ p { margin: 8px 0; }
 }
 
 @media (max-width: 620px) {
-  body { font-size: 15px; }
-  .academic-page { padding-inline: 14px; }
-  .academic-intro { flex-direction: column; gap: 16px; padding: 22px 0 8px; }
-  .academic-avatar { width: 140px; height: 140px; flex-basis: 140px; }
-  .academic-bio { min-width: 0; }
-  .academic-bio h1 { font-size: 29px; }
+  .academic-page { padding: 14px 14px 36px; }
+  .academic-intro {
+    grid-template-columns: 92px minmax(0, 1fr);
+    align-items: start;
+    gap: 14px;
+    padding: 8px 0 18px;
+  }
+  .academic-avatar { width: 92px; height: 92px; }
+  .academic-bio h1 { font-size: 25px; }
+  .academic-role { font-size: 14px; }
+  .academic-focus,
+  .academic-meta,
+  .academic-contact,
+  .academic-links { font-size: 12px; }
   .affiliation-line { align-items: flex-start; }
-  .northeastern-mark { width: 52px; margin-top: 1px; }
-  .academic-menu { overflow-x: auto; }
-  .academic-menu a { min-width: 82px; font-size: 13px; }
-  h2 { font-size: 21px; }
-  .highlight-strip { grid-template-columns: 1fr 1fr; }
-  .highlight-strip > div:nth-child(2) { border-right: 0; }
-  .highlight-strip > div:nth-child(-n + 2) { border-bottom: 1px solid #ccc; }
+  .affiliation-line span { font-size: 12px; }
+  .northeastern-mark { width: 28px; margin-top: 1px; }
+  .academic-menu { flex-wrap: wrap; gap: 8px 16px; margin-bottom: 26px; }
+  .academic-menu a { font-size: 13px; }
+  h2 { font-size: 19px; }
   .experience-list > li { grid-template-columns: 1fr; gap: 4px; }
   .coursework-term { grid-template-columns: 1fr; }
   .coursework-term h3 { padding: 9px 0 5px; }
