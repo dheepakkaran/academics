@@ -67,18 +67,13 @@ a:hover {
 }
 
 .academic-avatar {
-  display: grid;
+  display: block;
   width: 165px;
   height: 165px;
   flex: 0 0 165px;
-  place-items: center;
   border-radius: 50%;
-  background: #e7e7e7;
-  color: #333;
-  font-family: Arial, sans-serif;
-  font-size: 38px;
-  font-weight: 700;
-  letter-spacing: 0.03em;
+  object-fit: cover;
+  object-position: center;
 }
 
 .academic-bio {
@@ -246,13 +241,13 @@ p { margin: 8px 0; }
 }
 
 .compact-intro { min-height: 190px; }
-.compact-intro .academic-avatar { width: 155px; height: 155px; flex-basis: 155px; font-size: 34px; }
+.compact-intro .academic-avatar { width: 155px; height: 155px; flex-basis: 155px; }
 
 @media (max-width: 620px) {
   body { font-size: 15px; }
   .academic-page { padding-inline: 14px; }
   .academic-intro { flex-direction: column; gap: 16px; padding: 22px 0 8px; }
-  .academic-avatar { width: 140px; height: 140px; flex-basis: 140px; font-size: 32px; }
+  .academic-avatar { width: 140px; height: 140px; flex-basis: 140px; }
   .academic-bio { min-width: 0; }
   .academic-bio h1 { font-size: 29px; }
   .academic-menu { overflow-x: auto; }

@@ -18,7 +18,14 @@ export default function Home() {
       <a className="skip-link" href="#main">Skip to content</a>
 
       <header className="academic-intro">
-        <div className="academic-avatar" aria-hidden="true">DK</div>
+        <img
+          className="academic-avatar"
+          src="/dheepak-karan.jpg"
+          alt="Dheepak Karan"
+          width="512"
+          height="512"
+          fetchPriority="high"
+        />
         <div className="academic-bio">
           <h1>Dheepak Karan</h1>
           <p><strong>Software Engineer · Applied ML · Intelligent Systems</strong></p>

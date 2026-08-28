@@ -36,6 +36,8 @@ test("server-renders the complete academic personal homepage", async () => {
   const html = await response.text();
   assert.match(html, /<title>Dheepak Karan — Research &amp; Engineering/);
   assert.match(html, /Software Engineer · Applied ML · Intelligent Systems/i);
+  assert.match(html, /src="\/dheepak-karan\.jpg"/i);
+  assert.match(html, /alt="Dheepak Karan"/i);
   assert.match(html, /Northeastern University/i);
   assert.match(html, /Selected Engineering Work/i);
   assert.match(html, /Experience &amp; Education/i);
@@ -78,6 +80,7 @@ test("ships the restrained academic layout, metadata and accessibility fallbacks
     "../public/resume.pdf",
     "../public/og.png",
     "../public/icon.png",
+    "../public/dheepak-karan.jpg",
   ]) {
     await access(new URL(asset, import.meta.url));
   }

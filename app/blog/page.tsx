@@ -16,7 +16,13 @@ export default function BlogPage() {
       <a className="skip-link" href="#notes">Skip to notes</a>
 
       <header className="academic-intro compact-intro">
-        <div className="academic-avatar" aria-hidden="true">DK</div>
+        <img
+          className="academic-avatar"
+          src="/dheepak-karan.jpg"
+          alt="Dheepak Karan"
+          width="512"
+          height="512"
+        />
         <div className="academic-bio">
           <h1>Dheepak Karan</h1>
           <p><a href="mailto:elumalaisanthakuma.d@northeastern.edu">elumalaisanthakuma.d@northeastern.edu</a></p>
