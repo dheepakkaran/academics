@@ -1,5 +1,6 @@
 import {
   blogPosts,
+  coursework,
   experiences,
   externalLinks,
   leadership,
@@ -79,6 +80,30 @@ export default function Home() {
               </li>
             ))}
           </ol>
+          <h3 className="subsection-title">Graduate Coursework</h3>
+          <div className="course-semesters">
+            {(["Spring 2026", "Fall 2026"] as const).map((semester) => (
+              <div className="course-semester" key={semester}>
+                <h4>{semester}</h4>
+                <ul className="course-list">
+                  {coursework.filter((course) => course.semester === semester).map((course) => (
+                    <li key={course.code}>
+                      <span className="course-code">{course.code}</span>
+                      <div>
+                        <strong>{course.title}</strong>
+                        <p>
+                          <a href={course.professorHref} target="_blank" rel="noreferrer">Prof. {course.professor} ↗</a>
+                          {" · "}<span className="course-status">{course.status}</span>
+                          {course.percentage ? <> {" · "}{course.percentage}</> : null}
+                          {course.grade ? <> {" · Grade "}{course.grade}</> : null}
+                        </p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
           <h3 className="subsection-title">Professional Experience</h3>
           <ol className="experience-list">
             {professionalExperience.map((experience) => (

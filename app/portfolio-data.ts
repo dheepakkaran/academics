@@ -35,6 +35,17 @@ export type LeadershipItem = {
   highlights: string[];
 };
 
+export type Course = {
+  semester: "Spring 2026" | "Fall 2026";
+  code: string;
+  title: string;
+  professor: string;
+  professorHref: string;
+  status: "Completed" | "Registered";
+  percentage?: string;
+  grade?: string;
+};
+
 export type BlogPost = {
   category: string;
   title: string;
@@ -64,7 +75,7 @@ export const experiences: Experience[] = [
     organization: "Northeastern University",
     location: "Boston, Massachusetts",
     summary:
-      "Graduate work connecting machine learning, computer vision, algorithms and computer systems.",
+      "Concentration: Machine Learning, Computer Vision & Algorithms.",
     outcomes: ["3.926 CGPA", "Expected May 2028"],
     stack: ["Machine learning", "Computer vision", "Algorithms", "Computer architecture"],
   },
@@ -96,6 +107,41 @@ export const experiences: Experience[] = [
       "Power electronics",
       "Microprocessors & microcontrollers",
     ],
+  },
+];
+
+export const coursework: Course[] = [
+  {
+    semester: "Spring 2026",
+    code: "EECE 5644",
+    title: "Introduction to Machine Learning and Pattern Recognition",
+    professor: "David Brady",
+    professorHref: "https://www.linkedin.com/in/david-brady-a7191315",
+    status: "Completed",
+  },
+  {
+    semester: "Spring 2026",
+    code: "EECE 7205",
+    title: "Fundamentals of Computer Engineering",
+    professor: "Naveen Sapavath",
+    professorHref: "https://coe.northeastern.edu/people/sapavath-naveen-naik/",
+    status: "Completed",
+  },
+  {
+    semester: "Fall 2026",
+    code: "EECE 5668",
+    title: "Large Language Models",
+    professor: "Weiyan Shi",
+    professorHref: "https://www.linkedin.com/in/weiyan-s-8b2a3b86",
+    status: "Registered",
+  },
+  {
+    semester: "Fall 2026",
+    code: "IE 7374",
+    title: "Machine Learning Operations",
+    professor: "Ramin Mohammadi",
+    professorHref: "https://www.linkedin.com/in/ramin-madi",
+    status: "Registered",
   },
 ];
 

@@ -226,6 +226,37 @@ p { margin: 8px 0; }
 .entry-results { color: #c8102e; font-size: 13px; }
 .leadership-list > li:first-child { border-top-color: #999; }
 
+.course-semesters {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.course-semester h4 {
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+
+.course-list {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #999;
+  list-style: none;
+}
+
+.course-list > li {
+  display: grid;
+  grid-template-columns: 82px 1fr;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.course-code { color: #666; font-size: 13px; }
+.course-list strong { font-size: 14px; }
+.course-list p { margin: 3px 0 0; font-size: 13px; }
+.course-status { color: #c8102e; }
+
 .note-list { border-top: 1px solid #999; }
 .note-list > li {
   display: grid;
@@ -280,6 +311,7 @@ p { margin: 8px 0; }
   .highlight-strip > div:nth-child(2) { border-right: 0; }
   .highlight-strip > div:nth-child(-n + 2) { border-bottom: 1px solid #ccc; }
   .experience-list > li { grid-template-columns: 1fr; gap: 4px; }
+  .course-semesters { grid-template-columns: 1fr; gap: 18px; }
   .skills-list { grid-template-columns: 1fr; }
   .project-heading { align-items: flex-start; flex-direction: column; gap: 2px; }
 }
