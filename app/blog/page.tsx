@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { blogPosts, externalLinks } from "../portfolio-data";
+import { blogPosts } from "../portfolio-data";
+import ProfileHeader from "../profile-header";
 
 export const metadata: Metadata = {
   title: "Engineering Notes — Dheepak Karan",
@@ -7,41 +8,11 @@ export const metadata: Metadata = {
     "Technical notes from Dheepak Karan on machine learning, backend performance and intelligent systems.",
 };
 
-const linkedIn = externalLinks.find((link) => link.label === "LinkedIn");
-const github = externalLinks.find((link) => link.label === "GitHub");
-
 export default function BlogPage() {
   return (
     <div className="academic-page">
       <a className="skip-link" href="#notes">Skip to notes</a>
-
-      <header className="academic-intro compact-intro">
-        <img
-          className="academic-avatar"
-          src="/dheepak-karan.jpg"
-          alt="Dheepak Karan"
-          width="512"
-          height="512"
-        />
-        <div className="academic-bio">
-          <h1>Dheepak Karan</h1>
-          <p><a href="mailto:elumalaisanthakuma.d@northeastern.edu">elumalaisanthakuma.d@northeastern.edu</a></p>
-          <p>Engineering Notes</p>
-          <p>
-            <a href={github?.href} target="_blank" rel="noreferrer">GitHub</a>{" · "}
-            <a href={linkedIn?.href} target="_blank" rel="noreferrer">LinkedIn</a>{" "}
-            <a href="/resume.pdf" download>[Résumé]</a>
-          </p>
-        </div>
-      </header>
-
-      <nav className="academic-menu" aria-label="Notebook navigation">
-        <a href="/">Home</a>
-        <a href="/work">Work</a>
-        <a href="/#experience">Experience</a>
-        <a className="active" href="#notes">Notes</a>
-        <a href="/resume.pdf" download>CV</a>
-      </nav>
+      <ProfileHeader active="notes" />
 
       <main id="notes">
         <section>

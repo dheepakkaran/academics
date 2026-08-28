@@ -7,11 +7,10 @@ import {
   projects,
   skillGroups,
 } from "./portfolio-data";
+import ProfileHeader from "./profile-header";
 
 const email = externalLinks.find((link) => link.label === "Email");
-const linkedIn = externalLinks.find((link) => link.label === "LinkedIn");
 const github = externalLinks.find((link) => link.label === "GitHub");
-const credly = externalLinks.find((link) => link.label === "Credly");
 const education = experiences.filter((entry) => entry.kind === "education");
 const professionalExperience = experiences.filter((entry) => entry.kind === "experience");
 const featuredProjects = projects.slice(0, 3);
@@ -20,48 +19,7 @@ export default function Home() {
   return (
     <div className="academic-page">
       <a className="skip-link" href="#main">Skip to content</a>
-
-      <header className="academic-intro">
-        <img
-          className="academic-avatar"
-          src="/dheepak-karan.jpg"
-          alt="Dheepak Karan"
-          width="512"
-          height="512"
-          fetchPriority="high"
-        />
-        <div className="academic-bio">
-          <h1>Dheepak Karan</h1>
-          <p><strong>Software Engineer · Applied ML · Intelligent Systems</strong></p>
-          <p className="affiliation-line">
-            <img
-              className="northeastern-mark"
-              src="/northeastern-monogram.png"
-              alt=""
-              width="2560"
-              height="1725"
-              aria-hidden="true"
-            />
-            <span>MS ECE, <a href="https://www.northeastern.edu/" target="_blank" rel="noreferrer">Northeastern University</a> · 3.926 CGPA</span>
-          </p>
-          <p>Boston, Massachusetts · Expected May 2028</p>
-          <p><a href={email?.href}>elumalaisanthakuma.d@northeastern.edu</a></p>
-          <p>
-            <a href={github?.href} target="_blank" rel="noreferrer">GitHub</a>{" · "}
-            <a href={linkedIn?.href} target="_blank" rel="noreferrer">LinkedIn</a>{" · "}
-            <a href={credly?.href} target="_blank" rel="noreferrer">Credly</a>{" "}
-            <a href="/resume.pdf" download>[Résumé]</a>
-          </p>
-        </div>
-      </header>
-
-      <nav className="academic-menu" aria-label="Primary navigation">
-        <a className="active" href="#home">Home</a>
-        <a href="/work">Work</a>
-        <a href="#experience">Experience</a>
-        <a href="/blog">Notes</a>
-        <a href="/resume.pdf" download>CV</a>
-      </nav>
+      <ProfileHeader active="home" />
 
       <main id="main">
         <section id="home" className="academic-summary">

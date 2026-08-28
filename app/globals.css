@@ -264,9 +264,6 @@ p { margin: 8px 0; }
   text-align: center;
 }
 
-.compact-intro { min-height: 190px; }
-.compact-intro .academic-avatar { width: 155px; height: 155px; flex-basis: 155px; }
-
 @media (max-width: 620px) {
   body { font-size: 15px; }
   .academic-page { padding-inline: 14px; }

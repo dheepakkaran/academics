@@ -77,6 +77,8 @@ test("server-renders the complete engineering work page", async () => {
   const html = await response.text();
   assert.match(html, /<title>Engineering Work — Dheepak Karan/);
   assert.match(html, /Engineering Work/i);
+  assert.match(html, /Northeastern University/i);
+  assert.match(html, /3\.926 CGPA/i);
   assert.match(html, /Multilingual LLM Fine-Tuning/i);
   assert.match(html, /FairShare-WiFi/i);
   assert.match(html, /PLC Stator Water Cooling/i);
@@ -91,6 +93,8 @@ test("server-renders the dedicated engineering notes page", async () => {
   const html = await response.text();
   assert.match(html, /<title>Engineering Notes — Dheepak Karan/);
   assert.match(html, /Engineering notes/i);
+  assert.match(html, /Northeastern University/i);
+  assert.match(html, /Credly/i);
   assert.match(html, /Short technical essays about practical decisions/i);
   assert.match(html, /Working principle/i);
   assert.match(html, /Fine-tuning an 8B model when compute is the constraint/i);
@@ -99,8 +103,9 @@ test("server-renders the dedicated engineering notes page", async () => {
 });
 
 test("ships the restrained academic layout, metadata and accessibility fallbacks", async () => {
-  const [layout, page, work, blog, css, packageJson] = await Promise.all([
+  const [layout, profileHeader, page, work, blog, css, packageJson] = await Promise.all([
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/profile-header.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/work/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/blog/page.tsx", import.meta.url), "utf8"),
@@ -121,10 +126,13 @@ test("ships the restrained academic layout, metadata and accessibility fallbacks
   assert.match(layout, /x-forwarded-host/);
   assert.match(layout, /new URL\("\/og\.png", metadataBase\)/);
   assert.match(page, /Skip to content/);
-  assert.match(page, /download/);
-  assert.match(page, /academic-intro/);
-  assert.match(page, /academic-avatar/);
-  assert.match(page, /academic-menu/);
+  assert.match(profileHeader, /download/);
+  assert.match(profileHeader, /academic-intro/);
+  assert.match(profileHeader, /academic-avatar/);
+  assert.match(profileHeader, /academic-menu/);
+  assert.match(page, /ProfileHeader active="home"/);
+  assert.match(work, /ProfileHeader active="work"/);
+  assert.match(blog, /ProfileHeader active="notes"/);
   assert.match(page, /highlight-strip/);
   assert.match(page, /project-list/);
   assert.match(work, /projects\.map/);
