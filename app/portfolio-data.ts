@@ -118,6 +118,8 @@ export const coursework: Course[] = [
     professor: "David Brady",
     professorHref: "https://www.linkedin.com/in/david-brady-a7191315",
     status: "Completed",
+    percentage: "97.14%",
+    grade: "A",
   },
   {
     semester: "Spring 2026",
@@ -126,6 +128,8 @@ export const coursework: Course[] = [
     professor: "Naveen Sapavath",
     professorHref: "https://coe.northeastern.edu/people/sapavath-naveen-naik/",
     status: "Completed",
+    percentage: "95.25%",
+    grade: "A",
   },
   {
     semester: "Fall 2026",
