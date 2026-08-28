@@ -8,10 +8,8 @@ export type Experience = {
   period: string;
   role: string;
   organization: string;
-  organizationNote?: string;
   location: string;
   summary: string;
-  details?: string[];
   outcomes: string[];
   stack: string[];
 };
@@ -85,17 +83,10 @@ export const experiences: Experience[] = [
     kind: "experience",
     period: "Apr 2022 — Jul 2023",
     role: "Software Engineer",
-    organization: "Guardian Life",
-    organizationNote: "Fortune 250 US insurance company",
+    organization: "Guardian Life (Fortune 250 US insurance company)",
     location: "Chennai, India",
     summary:
-      "Backend engineer in a nine-person team modernizing a 15-year-old monolith serving 2,000 agents.",
-    details: [
-      "Shipped three backend services in Java Spring Boot and Python FastAPI with more than 20 REST endpoints. Scoped ambiguous tickets with product and data teams, then owned delivery from design and code review through release feedback.",
-      "Reduced policy-lookup latency from 1.2 s p95 to 700 ms by tracing requests in Splunk and AWS CloudWatch, replacing an N+1 query pattern with one indexed join on a composite index—42% faster with no schema migration or downtime.",
-      "Moved document generation and notifications out of the request path using Apache Kafka and AWS SQS. Stored PDFs in Amazon S3, bounded retries and routed repeated failures to a dead-letter queue.",
-      "Secured every service with OAuth 2.0 and maintained an 80% line-coverage gate across more than 120 JUnit and pytest tests in CI. Productionized recommendation models behind Dockerized FastAPI endpoints, owning containers, serving and deployment.",
-    ],
+      "Shipped three backend services in Java Spring Boot and Python FastAPI with more than 20 REST endpoints in a nine-engineer team modernizing a 15-year-old monolith serving 2,000 agents. Scoped ambiguous tickets with product and data teams and owned delivery through release. Reduced policy-lookup latency from 1.2 s p95 to 700 ms by tracing requests in Splunk and AWS CloudWatch and replacing an N+1 query pattern with one indexed join, with no schema migration or downtime. Moved document generation and notifications onto Apache Kafka and AWS SQS, storing PDFs in Amazon S3 with bounded retries and a dead-letter queue. Secured services with OAuth 2.0, maintained an 80% line-coverage gate across more than 120 JUnit and pytest tests, and productionized recommendation models behind Dockerized FastAPI endpoints.",
     outcomes: ["3 backend services", "20+ REST endpoints", "42% lower p95 latency", "80% line coverage", "120+ automated tests"],
     stack: ["Java", "Spring Boot", "Python", "FastAPI", "Kafka", "AWS SQS", "Amazon S3", "Splunk", "AWS CloudWatch", "OAuth 2.0", "Docker", "JUnit", "pytest"],
   },
