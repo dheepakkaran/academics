@@ -14,6 +14,7 @@ const github = externalLinks.find((link) => link.label === "GitHub");
 const credly = externalLinks.find((link) => link.label === "Credly");
 const education = experiences.filter((entry) => entry.kind === "education");
 const professionalExperience = experiences.filter((entry) => entry.kind === "experience");
+const featuredProjects = projects.slice(0, 3);
 
 export default function Home() {
   return (
@@ -56,7 +57,7 @@ export default function Home() {
 
       <nav className="academic-menu" aria-label="Primary navigation">
         <a className="active" href="#home">Home</a>
-        <a href="#work">Work</a>
+        <a href="/work">Work</a>
         <a href="#experience">Experience</a>
         <a href="/blog">Notes</a>
         <a href="/resume.pdf" download>CV</a>
@@ -82,7 +83,7 @@ export default function Home() {
         <section id="work">
           <h2>Selected Engineering Work</h2>
           <ol className="project-list">
-            {projects.map((project, index) => (
+            {featuredProjects.map((project, index) => (
               <li key={project.title}>
                 <div className="project-heading">
                   <h3>{project.title}</h3>
@@ -101,6 +102,7 @@ export default function Home() {
               </li>
             ))}
           </ol>
+          <p className="section-link"><a href="/work">View all {projects.length} projects →</a></p>
         </section>
 
         <section id="experience">

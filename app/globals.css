@@ -201,6 +201,7 @@ p { margin: 8px 0; }
 .project-field { margin: 1px 0 7px; color: #c8102e; font-size: 13px; }
 .project-list p { margin: 5px 0; }
 .project-links { color: #666; font-size: 13px; }
+.section-link { margin: 10px 0 0; font-size: 14px; text-align: right; }
 
 .experience-list > li {
   display: grid;

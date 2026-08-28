@@ -48,10 +48,10 @@ test("server-renders the complete academic personal homepage", async () => {
   assert.match(html, /Apr 2022 — Jul 2023/i);
   assert.match(html, /85% recommendation accuracy gain/i);
   assert.match(html, /Selected Engineering Work/i);
-  assert.match(html, /Petrol-to-Electric Vehicle Conversion/i);
-  assert.match(html, /Anna University · Chennai, India/i);
   assert.match(html, /3D CAD/i);
-  assert.match(html, /DC\/DC converter/i);
+  assert.match(html, /View all[\s\S]{0,40}4[\s\S]{0,40}projects/i);
+  assert.match(html, /href="\/work"/i);
+  assert.doesNotMatch(html, /Petrol-to-Electric Vehicle Conversion/i);
   assert.match(html, /Leadership &amp; Honors/i);
   assert.match(html, /AI for India/i);
   assert.match(html, /100,000 aspirants/i);
@@ -71,6 +71,20 @@ test("server-renders the complete academic personal homepage", async () => {
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/);
 });
 
+test("server-renders the complete engineering work page", async () => {
+  const response = await render("/work");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /<title>Engineering Work — Dheepak Karan/);
+  assert.match(html, /Engineering Work/i);
+  assert.match(html, /Multilingual LLM Fine-Tuning/i);
+  assert.match(html, /FairShare-WiFi/i);
+  assert.match(html, /PLC Stator Water Cooling/i);
+  assert.match(html, /Petrol-to-Electric Vehicle Conversion/i);
+  assert.match(html, /Anna University · Chennai, India/i);
+  assert.match(html, /DC\/DC converter/i);
+});
+
 test("server-renders the dedicated engineering notes page", async () => {
   const response = await render("/blog");
   assert.equal(response.status, 200);
@@ -85,9 +99,10 @@ test("server-renders the dedicated engineering notes page", async () => {
 });
 
 test("ships the restrained academic layout, metadata and accessibility fallbacks", async () => {
-  const [layout, page, blog, css, packageJson] = await Promise.all([
+  const [layout, page, work, blog, css, packageJson] = await Promise.all([
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/work/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/blog/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
@@ -112,6 +127,7 @@ test("ships the restrained academic layout, metadata and accessibility fallbacks
   assert.match(page, /academic-menu/);
   assert.match(page, /highlight-strip/);
   assert.match(page, /project-list/);
+  assert.match(work, /projects\.map/);
   assert.match(page, /experience-list/);
   assert.match(page, /skills-list/);
   assert.doesNotMatch(page, /"use client"|useState|type="search"|SkillFlowField|CursorTrails|useMotionTemplate|pointermove|prompt-section|project-card|research-shell/);
