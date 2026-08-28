@@ -17,7 +17,6 @@ export default function ProfileHeader({ active }: ProfileHeaderProps) {
         <div className="academic-bio">
           <h1>Dheepak Karan</h1>
           <p className="academic-focus">Machine Learning · Computer Vision · Algorithms</p>
-          <p className="academic-role"><strong>ECE Graduate Student · Software Engineer</strong></p>
 
           <div className="academic-details">
             <p className="affiliation-line">
