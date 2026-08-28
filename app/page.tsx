@@ -49,13 +49,15 @@ export default function Home() {
                   {coursework.filter((course) => course.semester === semester).map((course) => (
                     <li key={course.code}>
                       <span className="course-code">{course.code}</span>
-                      <div>
-                        <strong>{course.title}</strong>
-                        <p>
-                          <a href={course.professorHref} target="_blank" rel="noreferrer">Prof. {course.professor} ↗</a>
-                          {" · "}<span className="course-status">{course.status}</span>
-                          {course.percentage ? <> {" · "}{course.percentage}</> : null}
-                          {course.grade ? <> {" · Grade "}{course.grade}</> : null}
+                      <div className="course-body">
+                        <strong className="course-title">{course.title}</strong>
+                        <a className="course-professor" href={course.professorHref} target="_blank" rel="noreferrer">
+                          Prof. {course.professor} ↗
+                        </a>
+                        <p className="course-facts">
+                          <span className="course-status">{course.status}</span>
+                          {course.percentage ? <span>{course.percentage}</span> : null}
+                          {course.grade ? <span>Grade {course.grade}</span> : null}
                         </p>
                       </div>
                     </li>
