@@ -86,7 +86,7 @@ export const experiences: Experience[] = [
     organization: "Guardian Life (Fortune 250 US insurance company)",
     location: "Chennai, India",
     summary:
-      "Shipped three backend services in Java Spring Boot and Python FastAPI with more than 20 REST endpoints in a nine-engineer team modernizing a 15-year-old monolith serving 2,000 agents. Scoped ambiguous tickets with product and data teams and owned delivery through release. Reduced policy-lookup latency from 1.2 s p95 to 700 ms by tracing requests in Splunk and AWS CloudWatch and replacing an N+1 query pattern with one indexed join, with no schema migration or downtime. Moved document generation and notifications onto Apache Kafka and AWS SQS, storing PDFs in Amazon S3 with bounded retries and a dead-letter queue. Secured services with OAuth 2.0, maintained an 80% line-coverage gate across more than 120 JUnit and pytest tests, and productionized recommendation models behind Dockerized FastAPI endpoints.",
+      "Built three backend services and more than 20 REST APIs with Java Spring Boot and Python FastAPI for an insurance platform used by 2,000 agents. Improved policy lookup from 1.2 s to 700 ms p95, moved background jobs to Kafka and AWS SQS, secured APIs with OAuth 2.0, maintained 80% test coverage across 120+ tests, and deployed ML models with Docker and FastAPI.",
     outcomes: ["3 backend services", "20+ REST endpoints", "42% lower p95 latency", "80% line coverage", "120+ automated tests"],
     stack: ["Java", "Spring Boot", "Python", "FastAPI", "Kafka", "AWS SQS", "Amazon S3", "Splunk", "AWS CloudWatch", "OAuth 2.0", "Docker", "JUnit", "pytest"],
   },
