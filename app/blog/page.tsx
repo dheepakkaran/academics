@@ -7,56 +7,61 @@ export const metadata: Metadata = {
     "Technical notes from Dheepak Karan on machine learning, backend performance and intelligent systems.",
 };
 
+const linkedIn = externalLinks.find((link) => link.label === "LinkedIn");
+const github = externalLinks.find((link) => link.label === "GitHub");
+
 export default function BlogPage() {
   return (
-    <div className="text-document">
+    <div className="academic-page">
       <a className="skip-link" href="#notes">Skip to notes</a>
 
-      <header>
-        <h1>Engineering Notes</h1>
-        <p><strong>Dheepak Karan</strong></p>
-        <p>Machine learning · Backend systems · Networks</p>
-        <nav aria-label="Notebook navigation">
-          <a href="/">Profile</a> · <a href="/#work">Work</a> · <a href="/resume.pdf" download>Résumé</a>
-        </nav>
+      <header className="academic-intro compact-intro">
+        <div className="academic-avatar" aria-hidden="true">DK</div>
+        <div className="academic-bio">
+          <h1>Dheepak Karan</h1>
+          <p><a href="mailto:elumalaisanthakuma.d@northeastern.edu">elumalaisanthakuma.d@northeastern.edu</a></p>
+          <p>Engineering Notes</p>
+          <p>
+            <a href={github?.href} target="_blank" rel="noreferrer">GitHub</a>{" · "}
+            <a href={linkedIn?.href} target="_blank" rel="noreferrer">LinkedIn</a>{" "}
+            <a href="/resume.pdf" download>[Résumé]</a>
+          </p>
+        </div>
       </header>
 
+      <nav className="academic-menu" aria-label="Notebook navigation">
+        <a href="/">Home</a>
+        <a href="/#projects">Projects</a>
+        <a href="/#experience">Experience</a>
+        <a className="active" href="#notes">Notes</a>
+        <a href="/resume.pdf" download>CV</a>
+      </nav>
+
       <main id="notes">
-        <section aria-labelledby="contents-title">
-          <h2 id="contents-title">Contents</h2>
-          <ol>
+        <section>
+          <h2>Engineering Notes</h2>
+          <p>Short technical essays about practical decisions across machine learning, backend performance and networked systems.</p>
+          <ul className="plain-list">
             {blogPosts.map((post, index) => (
-              <li key={post.title}><a href={`#note-${index + 1}`}>{post.title}</a></li>
+              <li key={post.title}><a href={`#note-${index + 1}`}><strong>{post.title}</strong></a></li>
             ))}
-          </ol>
+          </ul>
         </section>
 
         {blogPosts.map((post, index) => (
-          <article id={`note-${index + 1}`} key={post.title}>
+          <article id={`note-${index + 1}`} className="note-article" key={post.title}>
             <h2>{post.title}</h2>
-            <p><strong>{post.category}</strong></p>
+            <p className="note-meta">{post.category}</p>
             <p><strong>Summary:</strong> {post.summary}</p>
             {post.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
             <p><strong>Working principle:</strong> {post.takeaway}</p>
-            <p><a href="#contents-title">Back to contents</a></p>
+            <p><a href="#notes">Back to top</a></p>
           </article>
         ))}
-
-        <section aria-labelledby="contact-title">
-          <h2 id="contact-title">Contact</h2>
-          <p><a href="mailto:elumalaisanthakuma.d@northeastern.edu">Email Dheepak</a></p>
-        </section>
       </main>
 
-      <footer>
-        <p>
-          © 2026 Dheepak Karan · {externalLinks.slice(1).map((link, index) => (
-            <span key={link.label}>
-              {index > 0 && " · "}
-              <a href={link.href} target="_blank" rel="noreferrer">{link.label}</a>
-            </span>
-          ))}
-        </p>
+      <footer className="academic-footer">
+        <small>© 2026 Dheepak Karan · Engineering Notes</small>
       </footer>
     </div>
   );
