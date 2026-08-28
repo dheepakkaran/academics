@@ -35,7 +35,7 @@ test("server-renders the complete academic personal homepage", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>Dheepak Karan — Academic &amp; Engineering Profile/);
-  assert.match(html, /M\.S\. ECE Student · Software Engineer/i);
+  assert.match(html, /Software Engineer · Applied ML · Intelligent Systems/i);
   assert.match(html, />About</i);
   assert.match(html, /Areas of interest:/i);
   assert.match(html, /src="\/dheepak-karan\.jpg"/i);

@@ -58,81 +58,76 @@ a:hover {
 }
 
 .academic-intro {
-  display: grid;
-  grid-template-columns: 138px minmax(0, 1fr);
+  display: flex;
   align-items: center;
-  gap: 30px;
-  padding: 12px 0 24px;
+  justify-content: space-around;
+  gap: 46px;
+  min-height: 200px;
+  margin-bottom: 22px;
 }
 
 .academic-avatar {
   display: block;
-  width: 138px;
-  height: 138px;
+  width: 165px;
+  height: 165px;
+  flex: 0 0 165px;
   border-radius: 50%;
-  border: 1px solid #ddd;
   object-fit: cover;
   object-position: center;
 }
 
 .academic-bio {
-  min-width: 0;
-  text-align: left;
+  min-width: 280px;
+  text-align: center;
 }
 
 .academic-bio h1 {
-  margin: 0 0 4px;
-  font-size: 32px;
-  line-height: 1.15;
+  margin: 0 0 5px;
+  font-size: 35px;
+  line-height: 1.2;
 }
 
-.academic-bio p { margin: 1px 0; }
-.academic-role { font-size: 16px; }
-.academic-focus,
-.academic-meta { color: #555; font-size: 14px; }
-.academic-contact,
-.academic-links { font-size: 14px; }
-.academic-contact a,
-.academic-links a { text-decoration: underline; text-decoration-color: #ccc; text-underline-offset: 2px; }
+.academic-bio p { margin: 0; }
 
 .affiliation-line {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 8px;
-  font-size: 14px;
+  justify-content: center;
+  gap: 9px;
 }
 
 .northeastern-mark {
   display: block;
-  width: 36px;
+  width: 52px;
   height: auto;
   flex: 0 0 auto;
 }
 
 .academic-menu {
   display: flex;
-  align-items: center;
-  gap: 24px;
-  margin: 0 0 32px;
-  padding: 8px 0;
+  width: 100%;
+  margin-bottom: 30px;
   border-top: 1px solid #999;
   border-bottom: 1px solid #999;
 }
 
 .academic-menu a {
-  color: #555;
-  font-size: 14px;
+  flex: 1 1 20%;
+  padding: 6px 4px;
+  color: #333;
+  font-weight: 500;
+  text-align: center;
 }
 
 .academic-menu a:hover {
+  background: #ddd;
   color: #c8102e;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .academic-menu a.active {
+  background: #eee;
   color: #c8102e;
-  font-weight: 700;
 }
 
 main section,
@@ -313,25 +308,16 @@ p { margin: 8px 0; }
 }
 
 @media (max-width: 620px) {
-  .academic-page { padding: 14px 14px 36px; }
-  .academic-intro {
-    grid-template-columns: 92px minmax(0, 1fr);
-    align-items: start;
-    gap: 14px;
-    padding: 8px 0 18px;
-  }
-  .academic-avatar { width: 92px; height: 92px; }
-  .academic-bio h1 { font-size: 25px; }
-  .academic-role { font-size: 14px; }
-  .academic-focus,
-  .academic-meta,
-  .academic-contact,
-  .academic-links { font-size: 12px; }
+  body { font-size: 15px; }
+  .academic-page { padding-inline: 14px; }
+  .academic-intro { flex-direction: column; gap: 16px; padding: 22px 0 8px; }
+  .academic-avatar { width: 140px; height: 140px; flex-basis: 140px; }
+  .academic-bio { min-width: 0; }
+  .academic-bio h1 { font-size: 29px; }
   .affiliation-line { align-items: flex-start; }
-  .affiliation-line span { font-size: 12px; }
-  .northeastern-mark { width: 28px; margin-top: 1px; }
-  .academic-menu { flex-wrap: wrap; gap: 8px 16px; margin-bottom: 26px; }
-  .academic-menu a { font-size: 13px; }
+  .northeastern-mark { width: 52px; margin-top: 1px; }
+  .academic-menu { overflow-x: auto; }
+  .academic-menu a { min-width: 82px; font-size: 13px; }
   h2 { font-size: 19px; }
   .experience-list > li { grid-template-columns: 1fr; gap: 4px; }
   .coursework-term { grid-template-columns: 1fr; }

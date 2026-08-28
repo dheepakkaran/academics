@@ -23,7 +23,7 @@ export default function ProfileHeader({ active }: ProfileHeaderProps) {
         />
         <div className="academic-bio">
           <h1>Dheepak Karan</h1>
-          <p className="academic-role"><strong>M.S. ECE Student · Software Engineer</strong></p>
+          <p><strong>Software Engineer · Applied ML · Intelligent Systems</strong></p>
           <p className="affiliation-line">
             <img
               className="northeastern-mark"
@@ -33,12 +33,11 @@ export default function ProfileHeader({ active }: ProfileHeaderProps) {
               height="1725"
               aria-hidden="true"
             />
-            <span><a href="https://www.northeastern.edu/" target="_blank" rel="noreferrer">Northeastern University</a> · Boston, Massachusetts</span>
+            <span>MS ECE, <a href="https://www.northeastern.edu/" target="_blank" rel="noreferrer">Northeastern University</a> · 3.926 CGPA</span>
           </p>
-          <p className="academic-focus">Machine Learning · Computer Vision · Algorithms</p>
-          <p className="academic-meta">3.926 CGPA · Expected May 2028</p>
-          <p className="academic-contact"><a href={email?.href}>elumalaisanthakuma.d@northeastern.edu</a></p>
-          <p className="academic-links">
+          <p>Boston, Massachusetts · Expected May 2028</p>
+          <p><a href={email?.href}>elumalaisanthakuma.d@northeastern.edu</a></p>
+          <p>
             <a href={github?.href} target="_blank" rel="noreferrer">GitHub</a>{" · "}
             <a href={linkedIn?.href} target="_blank" rel="noreferrer">LinkedIn</a>{" · "}
             <a href={credly?.href} target="_blank" rel="noreferrer">Credly</a>{" "}
