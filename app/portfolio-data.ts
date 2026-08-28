@@ -8,8 +8,10 @@ export type Experience = {
   period: string;
   role: string;
   organization: string;
+  organizationNote?: string;
   location: string;
   summary: string;
+  details?: string[];
   outcomes: string[];
   stack: string[];
 };
@@ -62,7 +64,7 @@ export type ExternalLink = {
 
 export const profileMetrics: Metric[] = [
   { value: "3.926", label: "Graduate CGPA" },
-  { value: "+30%", label: "API performance" },
+  { value: "−42%", label: "Policy lookup p95" },
   { value: "−78%", label: "LLM perplexity" },
   { value: "210 MW", label: "Industrial system" },
 ];
@@ -84,11 +86,18 @@ export const experiences: Experience[] = [
     period: "Apr 2022 — Jul 2023",
     role: "Software Engineer",
     organization: "Guardian Life",
+    organizationNote: "Fortune 250 US insurance company",
     location: "Chennai, India",
     summary:
-      "Built production APIs, asynchronous workflows and secure machine-learning services for policy-processing systems.",
-    outcomes: ["30% API performance gain", "25% lower database latency", "20% faster response time", "85% recommendation accuracy gain"],
-    stack: ["Java", "Spring Boot", "Python", "FastAPI", "PostgreSQL", "Kafka", "AWS", "OAuth 2.0", "Docker"],
+      "Backend engineer in a nine-person team modernizing a 15-year-old monolith serving 2,000 agents.",
+    details: [
+      "Shipped three backend services in Java Spring Boot and Python FastAPI with more than 20 REST endpoints. Scoped ambiguous tickets with product and data teams, then owned delivery from design and code review through release feedback.",
+      "Reduced policy-lookup latency from 1.2 s p95 to 700 ms by tracing requests in Splunk and AWS CloudWatch, replacing an N+1 query pattern with one indexed join on a composite index—42% faster with no schema migration or downtime.",
+      "Moved document generation and notifications out of the request path using Apache Kafka and AWS SQS. Stored PDFs in Amazon S3, bounded retries and routed repeated failures to a dead-letter queue.",
+      "Secured every service with OAuth 2.0 and maintained an 80% line-coverage gate across more than 120 JUnit and pytest tests in CI. Productionized recommendation models behind Dockerized FastAPI endpoints, owning containers, serving and deployment.",
+    ],
+    outcomes: ["3 backend services", "20+ REST endpoints", "42% lower p95 latency", "80% line coverage", "120+ automated tests"],
+    stack: ["Java", "Spring Boot", "Python", "FastAPI", "Kafka", "AWS SQS", "Amazon S3", "Splunk", "AWS CloudWatch", "OAuth 2.0", "Docker", "JUnit", "pytest"],
   },
   {
     kind: "education",

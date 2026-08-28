@@ -104,8 +104,17 @@ export default function Home() {
                 <span className="entry-date">{experience.period}</span>
                 <div>
                   <h3>{experience.role}</h3>
-                  <p className="entry-organization">{experience.organization} · {experience.location}</p>
+                  <p className="entry-organization">
+                    {experience.organization}
+                    {experience.organizationNote ? <span className="entry-organization-note"> ({experience.organizationNote})</span> : null}
+                    {" · "}{experience.location}
+                  </p>
                   <p>{experience.summary}</p>
+                  {experience.details ? (
+                    <ul className="experience-details">
+                      {experience.details.map((detail) => <li key={detail}>{detail}</li>)}
+                    </ul>
+                  ) : null}
                   <p className="entry-results">{experience.outcomes.join(" · ")}</p>
                 </div>
               </li>
@@ -118,8 +127,17 @@ export default function Home() {
                 <span className="entry-date">{experience.period}</span>
                 <div>
                   <h3>{experience.role}</h3>
-                  <p className="entry-organization">{experience.organization} · {experience.location}</p>
+                  <p className="entry-organization">
+                    {experience.organization}
+                    {experience.organizationNote ? <span className="entry-organization-note"> ({experience.organizationNote})</span> : null}
+                    {" · "}{experience.location}
+                  </p>
                   <p>{experience.summary}</p>
+                  {experience.details ? (
+                    <ul className="experience-details">
+                      {experience.details.map((detail) => <li key={detail}>{detail}</li>)}
+                    </ul>
+                  ) : null}
                   <p className="entry-results">{experience.outcomes.join(" · ")}</p>
                 </div>
               </li>
