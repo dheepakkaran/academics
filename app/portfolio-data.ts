@@ -1,3 +1,8 @@
+export type Metric = {
+  value: string;
+  label: string;
+};
+
 export type Experience = {
   kind: "education" | "experience";
   period: string;
@@ -54,6 +59,13 @@ export type ExternalLink = {
   href: string;
   note: string;
 };
+
+export const profileMetrics: Metric[] = [
+  { value: "3.926", label: "Graduate CGPA" },
+  { value: "−42%", label: "Policy lookup p95" },
+  { value: "−78%", label: "LLM perplexity" },
+  { value: "210 MW", label: "Industrial system" },
+];
 
 export const experiences: Experience[] = [
   {

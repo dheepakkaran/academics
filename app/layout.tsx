@@ -10,9 +10,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     metadataBase,
-    title: "Dheepak Karan — Academic & Engineering Profile",
+    title: "Dheepak Karan — Research & Engineering",
     description:
-      "The academic and engineering profile of Dheepak Karan—applied machine learning, software systems and intelligent infrastructure.",
+      "The research profile and engineering notebook of Dheepak Karan—software systems, applied machine learning and intelligent infrastructure.",
     authors: [{ name: "Dheepak Karan" }],
     keywords: [
       "Dheepak Karan",
@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
       "machine learning",
       "electrical engineering",
       "Northeastern University",
-      "engineering portfolio",
+      "engineering research",
     ],
     icons: {
       icon: "/icon.png",
@@ -28,22 +28,22 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     openGraph: {
       type: "website",
-      title: "Dheepak Karan — Academic & Engineering Profile",
+      title: "Dheepak Karan — Research & Engineering",
       description: "Selected work and technical notes across software, machine learning and intelligent infrastructure.",
       images: [
         {
-          url: new URL("/og-academic.png", metadataBase).toString(),
+          url: new URL("/og.png", metadataBase).toString(),
           width: 1200,
           height: 630,
-          alt: "Dheepak Karan — Academic and Engineering Profile",
+          alt: "Dheepak Karan — Software and Machine Learning Engineer",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "Dheepak Karan — Academic & Engineering Profile",
+      title: "Dheepak Karan — Research & Engineering",
       description: "Selected work and technical notes across software, machine learning and intelligent infrastructure.",
-      images: [new URL("/og-academic.png", metadataBase).toString()],
+      images: [new URL("/og.png", metadataBase).toString()],
     },
   };
 }

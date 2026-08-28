@@ -4,6 +4,7 @@ import {
   experiences,
   externalLinks,
   leadership,
+  profileMetrics,
   projects,
   skillGroups,
 } from "./portfolio-data";
@@ -23,11 +24,19 @@ export default function Home() {
 
       <main id="main">
         <section id="home" className="academic-summary">
-          <h2>About</h2>
           <p>
-            I am an M.S. student in Electrical and Computer Engineering at Northeastern University. I build reliable software and machine-learning systems under real compute, latency and safety constraints.
+            I build reliable software and machine-learning systems under real compute, latency and safety constraints.
+            My work connects <strong>production backend engineering</strong>, <strong>resource-efficient AI</strong>, <strong>network scheduling</strong>, <strong>industrial automation</strong> and <strong>electric mobility</strong>.
           </p>
-          <p className="interest-line"><strong>Areas of interest:</strong> resource-efficient machine learning, multilingual language models, computer vision, algorithms, network scheduling and reliable backend systems.</p>
+
+          <dl className="highlight-strip" aria-label="Selected verified results">
+            {profileMetrics.map((metric) => (
+              <div key={metric.label}>
+                <dt>{metric.value}</dt>
+                <dd>{metric.label}</dd>
+              </div>
+            ))}
+          </dl>
         </section>
 
         <section id="courses">
@@ -59,7 +68,7 @@ export default function Home() {
 
         <section id="work">
           <h2>Selected Engineering Work</h2>
-          <ol className="project-list compact-projects">
+          <ol className="project-list">
             {featuredProjects.map((project, index) => (
               <li key={project.title}>
                 <div className="project-heading">
@@ -69,7 +78,9 @@ export default function Home() {
                 <p className="project-field">
                   {project.category}{project.affiliation ? ` · ${project.affiliation}` : ""}
                 </p>
-                <p>{project.method} {project.outcome}</p>
+                <p>{project.premise}</p>
+                <p><strong>Approach:</strong> {project.method}</p>
+                <p><strong>Outcome:</strong> {project.outcome}</p>
                 <p className="project-links">
                   <span className="result">[{project.metric}]</span>{" · "}
                   <span>{project.stack.join(" · ")}</span>{index === 0 && github?.href ? <>{" · "}<a href={github.href} target="_blank" rel="noreferrer">Code profile</a></> : null}
@@ -81,7 +92,7 @@ export default function Home() {
         </section>
 
         <section id="experience">
-          <h2>Education &amp; Experience</h2>
+          <h2>Experience &amp; Education</h2>
           <h3 className="subsection-title">Education</h3>
           <ol className="experience-list">
             {education.map((experience) => (
@@ -96,7 +107,7 @@ export default function Home() {
               </li>
             ))}
           </ol>
-          <h3 className="subsection-title">Industry Experience</h3>
+          <h3 className="subsection-title">Professional Experience</h3>
           <ol className="experience-list">
             {professionalExperience.map((experience) => (
               <li key={`${experience.organization}-${experience.role}`}>
@@ -113,7 +124,7 @@ export default function Home() {
         </section>
 
         <section id="leadership">
-          <h2>Service &amp; Leadership</h2>
+          <h2>Leadership &amp; Honors</h2>
           <ol className="experience-list leadership-list">
             {leadership.map((item) => (
               <li key={`${item.organization}-${item.role}`}>
@@ -132,7 +143,7 @@ export default function Home() {
         </section>
 
         <section id="writing">
-          <h2>Technical Notes</h2>
+          <h2>Engineering Notes</h2>
           <ul className="note-list">
             {blogPosts.map((post, index) => (
               <li key={post.title}>
@@ -147,7 +158,7 @@ export default function Home() {
         </section>
 
         <section id="skills">
-          <h2>Methods &amp; Tools</h2>
+          <h2>Technical Skills</h2>
           <dl className="skills-list">
             {skillGroups.map((group) => (
               <div key={group.label}>
