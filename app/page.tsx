@@ -51,14 +51,16 @@ export default function Home() {
                       <span className="course-code">{course.code}</span>
                       <div className="course-body">
                         <strong className="course-title">{course.title}</strong>
-                        <a className="course-professor" href={course.professorHref} target="_blank" rel="noreferrer">
-                          Prof. {course.professor} ↗
-                        </a>
-                        <p className="course-facts">
-                          <span className="course-status">{course.status}</span>
-                          {course.percentage ? <span>{course.percentage}</span> : null}
-                          {course.grade ? <span>Grade {course.grade}</span> : null}
-                        </p>
+                        <div className="course-meta">
+                          <a className="course-professor" href={course.professorHref} target="_blank" rel="noreferrer">
+                            Prof. {course.professor} ↗
+                          </a>
+                          <p className="course-facts">
+                            <span className="course-status">{course.status}</span>
+                            {course.percentage ? <span>{course.percentage}</span> : null}
+                            {course.grade ? <span>Grade {course.grade}</span> : null}
+                          </p>
+                        </div>
                       </div>
                     </li>
                   ))}
