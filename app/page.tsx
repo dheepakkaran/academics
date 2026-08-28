@@ -56,7 +56,7 @@ export default function Home() {
                             Prof. {course.professor} ↗
                           </a>
                           <p className="course-facts">
-                            <span className="course-status">{course.status}</span>
+                            {course.status === "Registered" ? <span className="course-status">Registered</span> : null}
                             {course.percentage ? <span>{course.percentage}</span> : null}
                             {course.grade ? <span>Grade {course.grade}</span> : null}
                           </p>
