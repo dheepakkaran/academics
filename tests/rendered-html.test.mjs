@@ -35,11 +35,11 @@ test("server-renders the complete academic personal homepage", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>Dheepak Karan — Academic &amp; Engineering Profile/);
-  assert.match(html, /M\.S\. ECE Student · Software Engineer/i);
+  assert.match(html, /ECE Graduate Student · Software Engineer/i);
   assert.match(html, />About</i);
   assert.match(html, /Areas of interest:/i);
   assert.match(html, /src="\/dheepak-karan\.jpg"/i);
-  assert.match(html, /alt="Dheepak Karan"/i);
+  assert.match(html, /alt="Portrait of Dheepak Karan"/i);
   assert.match(html, /Northeastern University/i);
   assert.match(html, /src="\/northeastern-monogram\.png"/i);
   assert.match(html, /Anna University/i);
@@ -161,6 +161,11 @@ test("ships the restrained academic layout, metadata and accessibility fallbacks
   assert.match(profileHeader, /download/);
   assert.match(profileHeader, /academic-intro/);
   assert.match(profileHeader, /academic-avatar/);
+  assert.match(profileHeader, /academic-details/);
+  assert.match(profileHeader, /ECE Graduate Student · Software Engineer/);
+  assert.ok(profileHeader.indexOf("Dheepak Karan") < profileHeader.indexOf("Machine Learning"));
+  assert.ok(profileHeader.indexOf("Machine Learning") < profileHeader.indexOf("ECE Graduate Student"));
+  assert.ok(profileHeader.indexOf("ECE Graduate Student") < profileHeader.indexOf("Northeastern University"));
   assert.match(profileHeader, /academic-menu/);
   assert.match(page, /ProfileHeader active="home"/);
   assert.match(work, /ProfileHeader active="work"/);
