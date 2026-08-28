@@ -11,6 +11,8 @@ const email = externalLinks.find((link) => link.label === "Email");
 const linkedIn = externalLinks.find((link) => link.label === "LinkedIn");
 const github = externalLinks.find((link) => link.label === "GitHub");
 const credly = externalLinks.find((link) => link.label === "Credly");
+const education = experiences.filter((entry) => entry.kind === "education");
+const professionalExperience = experiences.filter((entry) => entry.kind === "experience");
 
 export default function Home() {
   return (
@@ -29,7 +31,17 @@ export default function Home() {
         <div className="academic-bio">
           <h1>Dheepak Karan</h1>
           <p><strong>Software Engineer · Applied ML · Intelligent Systems</strong></p>
-          <p>MS ECE, <a href="https://www.northeastern.edu/" target="_blank" rel="noreferrer">Northeastern University</a> · 3.926 CGPA</p>
+          <p className="affiliation-line">
+            <img
+              className="northeastern-mark"
+              src="/northeastern-monogram.png"
+              alt=""
+              width="2560"
+              height="1725"
+              aria-hidden="true"
+            />
+            <span>MS ECE, <a href="https://www.northeastern.edu/" target="_blank" rel="noreferrer">Northeastern University</a> · 3.926 CGPA</span>
+          </p>
           <p>Boston, Massachusetts · Expected May 2028</p>
           <p><a href={email?.href}>elumalaisanthakuma.d@northeastern.edu</a></p>
           <p>
@@ -90,8 +102,23 @@ export default function Home() {
 
         <section id="experience">
           <h2>Experience &amp; Education</h2>
+          <h3 className="subsection-title">Education</h3>
           <ol className="experience-list">
-            {experiences.map((experience) => (
+            {education.map((experience) => (
+              <li key={`${experience.organization}-${experience.role}`}>
+                <span className="entry-date">{experience.period}</span>
+                <div>
+                  <h3>{experience.role}</h3>
+                  <p className="entry-organization">{experience.organization} · {experience.location}</p>
+                  <p>{experience.summary}</p>
+                  <p className="entry-results">{experience.outcomes.join(" · ")}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <h3 className="subsection-title">Professional Experience</h3>
+          <ol className="experience-list">
+            {professionalExperience.map((experience) => (
               <li key={`${experience.organization}-${experience.role}`}>
                 <span className="entry-date">{experience.period}</span>
                 <div>

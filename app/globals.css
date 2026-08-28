@@ -89,6 +89,20 @@ a:hover {
 
 .academic-bio p { margin: 0; }
 
+.affiliation-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+}
+
+.northeastern-mark {
+  display: block;
+  width: 52px;
+  height: auto;
+  flex: 0 0 auto;
+}
+
 .academic-menu {
   display: flex;
   width: 100%;
@@ -197,6 +211,14 @@ p { margin: 8px 0; }
 }
 
 .experience-list > li:first-child { border-top-color: #999; }
+.subsection-title {
+  margin: 18px 0 7px;
+  color: #555;
+  font-size: 14px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.experience-list + .subsection-title { margin-top: 25px; }
 .entry-date { color: #666; font-size: 13px; }
 .experience-list p { margin: 4px 0; }
 .entry-organization { font-size: 14px; font-weight: 600; }
@@ -250,6 +272,8 @@ p { margin: 8px 0; }
   .academic-avatar { width: 140px; height: 140px; flex-basis: 140px; }
   .academic-bio { min-width: 0; }
   .academic-bio h1 { font-size: 29px; }
+  .affiliation-line { align-items: flex-start; }
+  .northeastern-mark { width: 52px; margin-top: 1px; }
   .academic-menu { overflow-x: auto; }
   .academic-menu a { min-width: 82px; font-size: 13px; }
   h2 { font-size: 21px; }

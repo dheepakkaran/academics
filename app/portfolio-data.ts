@@ -4,6 +4,7 @@ export type Metric = {
 };
 
 export type Experience = {
+  kind: "education" | "experience";
   period: string;
   role: string;
   organization: string;
@@ -47,6 +48,7 @@ export const profileMetrics: Metric[] = [
 
 export const experiences: Experience[] = [
   {
+    kind: "education",
     period: "2026 — 2028",
     role: "MS, Electrical & Computer Engineering",
     organization: "Northeastern University",
@@ -57,6 +59,7 @@ export const experiences: Experience[] = [
     stack: ["Machine learning", "Computer vision", "Algorithms", "Computer architecture"],
   },
   {
+    kind: "experience",
     period: "2022 — 2023",
     role: "Backend Engineer",
     organization: "Guardian Life",
@@ -67,6 +70,25 @@ export const experiences: Experience[] = [
     stack: ["Java", "Spring Boot", "Python", "FastAPI", "PostgreSQL", "Kafka", "AWS", "Docker"],
   },
   {
+    kind: "education",
+    period: "Jul 2022",
+    role: "BE, Electrical & Electronics Engineering",
+    organization: "Anna University",
+    location: "Tamil Nadu, India",
+    summary:
+      "Undergraduate study across electrical systems, electronics, control and embedded computing.",
+    outcomes: ["Bachelor of Engineering", "Completed July 2022"],
+    stack: [
+      "Circuit theory",
+      "Control systems",
+      "Electronic devices",
+      "Electromagnetic fields",
+      "Power electronics",
+      "Microprocessors & microcontrollers",
+    ],
+  },
+  {
+    kind: "experience",
     period: "2022",
     role: "Industrial Automation Project",
     organization: "NLC India Limited",
