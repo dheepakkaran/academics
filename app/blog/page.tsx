@@ -31,7 +31,7 @@ export default function BlogPage() {
 
       <nav className="academic-menu" aria-label="Notebook navigation">
         <a href="/">Home</a>
-        <a href="/#projects">Projects</a>
+        <a href="/#work">Work</a>
         <a href="/#experience">Experience</a>
         <a className="active" href="#notes">Notes</a>
         <a href="/resume.pdf" download>CV</a>

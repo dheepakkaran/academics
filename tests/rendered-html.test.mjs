@@ -35,12 +35,10 @@ test("server-renders the complete academic personal homepage", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>Dheepak Karan — Research &amp; Engineering/);
-  assert.match(html, /Software Engineer &amp; MS ECE Candidate/i);
+  assert.match(html, /Software Engineer · Applied ML · Intelligent Systems/i);
   assert.match(html, /Northeastern University/i);
-  assert.match(html, /Research &amp; Engineering Projects/i);
-  assert.match(html, /Updates/i);
-  assert.match(html, /About Me/i);
-  assert.match(html, /Selected Results/i);
+  assert.match(html, /Selected Engineering Work/i);
+  assert.match(html, /Experience &amp; Education/i);
   assert.match(html, /Technical Skills/i);
   assert.match(html, /Fine-tuning an 8B model when compute is the constraint/i);
   assert.match(html, /3\.926/);
@@ -91,7 +89,10 @@ test("ships the restrained academic layout, metadata and accessibility fallbacks
   assert.match(page, /academic-intro/);
   assert.match(page, /academic-avatar/);
   assert.match(page, /academic-menu/);
-  assert.match(page, /plain-list/);
+  assert.match(page, /highlight-strip/);
+  assert.match(page, /project-list/);
+  assert.match(page, /experience-list/);
+  assert.match(page, /skills-list/);
   assert.doesNotMatch(page, /"use client"|useState|type="search"|SkillFlowField|CursorTrails|useMotionTemplate|pointermove|prompt-section|project-card|research-shell/);
   assert.doesNotMatch(blog, /SkillFlowField|CursorTrails|pointermove/);
   assert.doesNotMatch(page, /AudioContext|Enter silently|Enter with sound/);
