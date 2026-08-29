@@ -154,7 +154,7 @@ test("ships the restrained academic layout, metadata and accessibility fallbacks
     "../public/husky-favicon.png",
     "../public/dheepak-karan.jpg",
     "../public/northeastern-monogram.png",
-    "../public/academic-pencil-cursor.png",
+    "../public/terminal-prompt-cursor.png",
   ]) {
     await access(new URL(asset, import.meta.url));
   }
@@ -188,7 +188,7 @@ test("ships the restrained academic layout, metadata and accessibility fallbacks
   assert.match(css, /\.academic-page/);
   assert.match(css, /#c8102e/i);
   assert.match(css, /\.github-day\.level-4\s*\{[^}]*#c8102e/is);
-  assert.match(css, /academic-pencil-cursor\.png/);
+  assert.match(css, /terminal-prompt-cursor\.png/);
   assert.doesNotMatch(css, /\.github-heatmap-(?:scroll|layout)\s*\{[^}]*overflow-x/is);
   assert.match(css, /pointer:\s*fine/);
   assert.doesNotMatch(css, /skill-flow-field|--blue|violet|glow|box-shadow/i);
