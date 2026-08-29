@@ -243,7 +243,7 @@ p { margin: 8px 0; }
 }
 
 .github-heatmap-layout {
-  width: min(100%, 520px);
+  width: 100%;
   padding-bottom: 7px;
 }
 
