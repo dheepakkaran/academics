@@ -107,7 +107,8 @@ test("server-renders the complete engineering work page", async () => {
   assert.match(html, /<title>Engineering Work — Dheepak Karan/);
   assert.match(html, /Engineering Work/i);
   assert.match(html, /GitHub Activity/i);
-  assert.match(html, /aria-label="145 GitHub contributions by dheepakkaran/i);
+  assert.match(html, /\d+ contributions[\s\S]*in the last 6 months/i);
+  assert.match(html, /aria-label="\d+ GitHub contributions by dheepakkaran in the last 6 months/i);
   assert.match(html, /href="https:\/\/github\.com\/dheepakkaran"/i);
   assert.match(html, /GitHub Activity[\s\S]*<h2>Engineering Work<\/h2>/i);
   assert.match(html, /Northeastern University/i);
@@ -153,7 +154,7 @@ test("ships the restrained academic layout, metadata and accessibility fallbacks
     "../public/icon.png",
     "../public/dheepak-karan.jpg",
     "../public/northeastern-monogram.png",
-    "../public/northeastern-cursor.png",
+    "../public/northeastern-husky-cursor.png",
   ]) {
     await access(new URL(asset, import.meta.url));
   }
@@ -175,6 +176,7 @@ test("ships the restrained academic layout, metadata and accessibility fallbacks
   assert.match(contributions, /github\.com\/users\/\$\{username\}\/contributions/);
   assert.match(contributions, /revalidate:\s*21_600/);
   assert.match(contributions, /snapshotActiveDays/);
+  assert.match(contributions, /latestWeek\s*-\s*25/);
   assert.match(page, /experience-list/);
   assert.match(page, /skills-list/);
   assert.doesNotMatch(page, /"use client"|useState|type="search"|SkillFlowField|CursorTrails|useMotionTemplate|pointermove|prompt-section|project-card|research-shell/);
@@ -186,7 +188,8 @@ test("ships the restrained academic layout, metadata and accessibility fallbacks
   assert.match(css, /\.academic-page/);
   assert.match(css, /#c8102e/i);
   assert.match(css, /\.github-day\.level-4\s*\{[^}]*#c8102e/is);
-  assert.match(css, /northeastern-cursor\.png/);
+  assert.match(css, /northeastern-husky-cursor\.png/);
+  assert.doesNotMatch(css, /\.github-heatmap-(?:scroll|layout)\s*\{[^}]*overflow-x/is);
   assert.match(css, /pointer:\s*fine/);
   assert.doesNotMatch(css, /skill-flow-field|--blue|violet|glow|box-shadow/i);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);

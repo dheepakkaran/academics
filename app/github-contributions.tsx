@@ -137,28 +137,44 @@ function contributionLabel(day: ContributionDay) {
     : `${day.count} contribution${day.count === 1 ? "" : "s"} on ${formattedDate}`;
 }
 
+function getSixMonthWindow(data: ContributionData) {
+  const latestWeek = Math.max(...data.days.map((day) => day.week));
+  const firstWeek = Math.max(0, latestWeek - 25);
+  const days = data.days
+    .filter((day) => day.week >= firstWeek)
+    .map((day) => ({ ...day, week: day.week - firstWeek }));
+
+  return {
+    ...data,
+    days,
+    total: days.reduce((sum, day) => sum + day.count, 0),
+    weekCount: latestWeek - firstWeek + 1,
+  };
+}
+
 export default async function GitHubContributions() {
-  const data = await getContributions();
+  const data = getSixMonthWindow(await getContributions());
   const months = getMonthMarkers(data.days);
+  const gridColumns = `repeat(${data.weekCount}, minmax(0, 1fr))`;
 
   return (
     <section className="github-activity" aria-labelledby="github-activity-title">
       <div className="github-activity-heading">
         <div>
           <h2 id="github-activity-title">GitHub Activity</h2>
-          <p><strong>{data.total} contributions</strong> in the last year</p>
+          <p><strong>{data.total} contributions</strong> in the last 6 months</p>
         </div>
         <a href={githubProfile} target="_blank" rel="noreferrer">@{username} ↗</a>
       </div>
 
       <div className="github-heatmap-frame">
-        <div className="github-heatmap-scroll" role="img" aria-label={`${data.total} GitHub contributions by ${username} in the last year`}>
-          <div className="github-months" aria-hidden="true">
+        <div className="github-heatmap-layout" role="img" aria-label={`${data.total} GitHub contributions by ${username} in the last 6 months`}>
+          <div className="github-months" aria-hidden="true" style={{ gridTemplateColumns: gridColumns }}>
             {months.map((month, index) => (
               <span key={`${month.label}-${index}`} style={{ gridColumnStart: month.week + 1 }}>{month.label}</span>
             ))}
           </div>
-          <div className="github-heatmap" aria-hidden="true">
+          <div className="github-heatmap" aria-hidden="true" style={{ gridTemplateColumns: gridColumns }}>
             {data.days.map((day) => (
               <span
                 key={day.date}
