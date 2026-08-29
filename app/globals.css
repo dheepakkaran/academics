@@ -38,7 +38,7 @@ a:hover {
 @media (hover: hover) and (pointer: fine) {
   html,
   body {
-    cursor: url("/retro-crosshair-cursor.png") 16 16, crosshair;
+    cursor: url("/retro-pixel-cursor.png") 2 1, default;
   }
 
   a,
