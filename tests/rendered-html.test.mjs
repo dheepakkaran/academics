@@ -106,6 +106,10 @@ test("server-renders the complete engineering work page", async () => {
   const html = await response.text();
   assert.match(html, /<title>Engineering Work — Dheepak Karan/);
   assert.match(html, /Engineering Work/i);
+  assert.match(html, /GitHub Activity/i);
+  assert.match(html, /aria-label="145 GitHub contributions by dheepakkaran/i);
+  assert.match(html, /href="https:\/\/github\.com\/dheepakkaran"/i);
+  assert.match(html, /GitHub Activity[\s\S]*<h2>Engineering Work<\/h2>/i);
   assert.match(html, /Northeastern University/i);
   assert.match(html, /3\.926 CGPA/i);
   assert.match(html, /Multilingual LLM Fine-Tuning/i);
@@ -132,9 +136,10 @@ test("server-renders the dedicated engineering notes page", async () => {
 });
 
 test("ships the restrained academic layout, metadata and accessibility fallbacks", async () => {
-  const [layout, profileHeader, page, work, blog, css, packageJson] = await Promise.all([
+  const [layout, profileHeader, contributions, page, work, blog, css, packageJson] = await Promise.all([
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/profile-header.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/github-contributions.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/work/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/blog/page.tsx", import.meta.url), "utf8"),
@@ -166,6 +171,10 @@ test("ships the restrained academic layout, metadata and accessibility fallbacks
   assert.match(page, /highlight-strip/);
   assert.match(page, /project-list/);
   assert.match(work, /projects\.map/);
+  assert.match(work, /GitHubContributions/);
+  assert.match(contributions, /github\.com\/users\/\$\{username\}\/contributions/);
+  assert.match(contributions, /revalidate:\s*21_600/);
+  assert.match(contributions, /snapshotActiveDays/);
   assert.match(page, /experience-list/);
   assert.match(page, /skills-list/);
   assert.doesNotMatch(page, /"use client"|useState|type="search"|SkillFlowField|CursorTrails|useMotionTemplate|pointermove|prompt-section|project-card|research-shell/);
@@ -176,6 +185,7 @@ test("ships the restrained academic layout, metadata and accessibility fallbacks
   assert.match(css, /:focus-visible/);
   assert.match(css, /\.academic-page/);
   assert.match(css, /#c8102e/i);
+  assert.match(css, /\.github-day\.level-4\s*\{[^}]*#c8102e/is);
   assert.match(css, /northeastern-cursor\.png/);
   assert.match(css, /pointer:\s*fine/);
   assert.doesNotMatch(css, /skill-flow-field|--blue|violet|glow|box-shadow/i);
