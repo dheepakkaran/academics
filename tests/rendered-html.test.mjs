@@ -148,6 +148,7 @@ test("ships the restrained academic layout, metadata and accessibility fallbacks
     "../public/icon.png",
     "../public/dheepak-karan.jpg",
     "../public/northeastern-monogram.png",
+    "../public/northeastern-cursor.png",
   ]) {
     await access(new URL(asset, import.meta.url));
   }
@@ -175,6 +176,8 @@ test("ships the restrained academic layout, metadata and accessibility fallbacks
   assert.match(css, /:focus-visible/);
   assert.match(css, /\.academic-page/);
   assert.match(css, /#c8102e/i);
+  assert.match(css, /northeastern-cursor\.png/);
+  assert.match(css, /pointer:\s*fine/);
   assert.doesNotMatch(css, /skill-flow-field|--blue|violet|glow|box-shadow/i);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
 });

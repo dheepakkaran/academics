@@ -35,6 +35,26 @@ a:hover {
   outline-offset: 3px;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  html,
+  body {
+    cursor: url("/northeastern-cursor.png") 2 2, auto;
+  }
+
+  a,
+  button,
+  [role="button"],
+  summary {
+    cursor: url("/northeastern-cursor.png") 2 2, pointer;
+  }
+
+  input,
+  textarea,
+  [contenteditable="true"] {
+    cursor: text;
+  }
+}
+
 .academic-page {
   width: min(900px, 100%);
   margin: 0 auto;
