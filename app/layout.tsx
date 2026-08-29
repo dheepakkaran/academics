@@ -23,8 +23,9 @@ export async function generateMetadata(): Promise<Metadata> {
       "engineering research",
     ],
     icons: {
-      icon: "/icon.png",
-      apple: "/icon.png",
+      icon: "/husky-favicon.png",
+      shortcut: "/husky-favicon.png",
+      apple: "/husky-favicon.png",
     },
     openGraph: {
       type: "website",

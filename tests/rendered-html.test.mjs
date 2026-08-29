@@ -151,16 +151,17 @@ test("ships the restrained academic layout, metadata and accessibility fallbacks
   for (const asset of [
     "../public/resume.pdf",
     "../public/og.png",
-    "../public/icon.png",
+    "../public/husky-favicon.png",
     "../public/dheepak-karan.jpg",
     "../public/northeastern-monogram.png",
-    "../public/northeastern-husky-cursor.png",
+    "../public/retro-crosshair-cursor.png",
   ]) {
     await access(new URL(asset, import.meta.url));
   }
 
   assert.match(layout, /x-forwarded-host/);
   assert.match(layout, /new URL\("\/og\.png", metadataBase\)/);
+  assert.match(layout, /husky-favicon\.png/);
   assert.match(page, /Skip to content/);
   assert.match(profileHeader, /download/);
   assert.match(profileHeader, /academic-intro/);
@@ -187,7 +188,7 @@ test("ships the restrained academic layout, metadata and accessibility fallbacks
   assert.match(css, /\.academic-page/);
   assert.match(css, /#c8102e/i);
   assert.match(css, /\.github-day\.level-4\s*\{[^}]*#c8102e/is);
-  assert.match(css, /northeastern-husky-cursor\.png/);
+  assert.match(css, /retro-crosshair-cursor\.png/);
   assert.doesNotMatch(css, /\.github-heatmap-(?:scroll|layout)\s*\{[^}]*overflow-x/is);
   assert.match(css, /pointer:\s*fine/);
   assert.doesNotMatch(css, /skill-flow-field|--blue|violet|glow|box-shadow/i);
