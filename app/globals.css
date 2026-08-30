@@ -163,6 +163,23 @@ p { margin: 8px 0; }
 
 .academic-summary p { margin-top: 0; }
 
+.academic-area-list {
+  margin: 0;
+  border-top: 1px solid #999;
+}
+
+.academic-area-list > div {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 22px;
+  padding: 11px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.academic-area-list dt { font-weight: 700; }
+.academic-area-list dd { margin: 0; color: #555; }
+.course-overview { margin-top: 13px; }
+
 .highlight-strip {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -306,6 +323,18 @@ p { margin: 8px 0; }
 
 .github-legend .github-day { width: 10px; height: 10px; }
 
+.practice-status {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 20px;
+  padding: 11px 0;
+  border-top: 1px solid #999;
+  border-bottom: 1px solid #ccc;
+  color: #555;
+}
+
+.practice-status strong { color: #222; }
+
 .experience-list > li {
   display: grid;
   grid-template-columns: 120px 1fr;
@@ -434,8 +463,7 @@ p { margin: 8px 0; }
   .academic-bio h1 { font-size: 29px; }
   .affiliation-line { align-items: flex-start; }
   .northeastern-mark { width: 52px; margin-top: 1px; }
-  .academic-menu { overflow-x: auto; }
-  .academic-menu a { min-width: 82px; font-size: 13px; }
+  .academic-menu a { min-width: 0; font-size: 12px; }
   h2 { font-size: 21px; }
   .github-activity-heading { align-items: flex-start; }
   .github-months,
@@ -445,6 +473,8 @@ p { margin: 8px 0; }
   .highlight-strip > div:nth-child(2) { border-right: 0; }
   .highlight-strip > div:nth-child(-n + 2) { border-bottom: 1px solid #ccc; }
   .experience-list > li { grid-template-columns: 1fr; gap: 4px; }
+  .academic-area-list > div,
+  .practice-status { grid-template-columns: 1fr; gap: 4px; }
   .coursework-term { grid-template-columns: 1fr; }
   .coursework-term h3 { padding: 9px 0 5px; }
   .coursework-list { border-left: 0; }

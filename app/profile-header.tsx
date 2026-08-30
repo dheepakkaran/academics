@@ -1,7 +1,7 @@
 import { externalLinks } from "./portfolio-data";
 
 type ProfileHeaderProps = {
-  active: "home" | "work" | "notes";
+  active: "home" | "projects" | "coursework" | "notes";
 };
 
 const email = externalLinks.find((link) => link.label === "Email");
@@ -23,7 +23,7 @@ export default function ProfileHeader({ active }: ProfileHeaderProps) {
         />
         <div className="academic-bio">
           <h1>Dheepak Karan</h1>
-          <p><strong>Software Engineer · Applied ML · Intelligent Systems</strong></p>
+          <p><strong>Machine Learning · Computer Vision · Algorithms</strong></p>
           <p className="affiliation-line">
             <img
               className="northeastern-mark"
@@ -48,10 +48,10 @@ export default function ProfileHeader({ active }: ProfileHeaderProps) {
 
       <nav className="academic-menu" aria-label="Primary navigation">
         <a className={active === "home" ? "active" : undefined} href="/">Home</a>
-        <a className={active === "work" ? "active" : undefined} href="/work">Work</a>
+        <a className={active === "projects" ? "active" : undefined} href="/projects">Projects</a>
+        <a className={active === "coursework" ? "active" : undefined} href="/coursework">Coursework</a>
         <a href="/#experience">Experience</a>
         <a className={active === "notes" ? "active" : undefined} href="/blog">Notes</a>
-        <a href="/resume.pdf" download>CV</a>
       </nav>
     </>
   );

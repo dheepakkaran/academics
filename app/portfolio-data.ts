@@ -60,11 +60,54 @@ export type ExternalLink = {
   note: string;
 };
 
+export type ResearchInterest = {
+  title: string;
+  description: string;
+};
+
+export type TeachingPreparation = {
+  area: string;
+  evidence: string;
+};
+
 export const profileMetrics: Metric[] = [
   { value: "3.926", label: "Graduate CGPA" },
-  { value: "−42%", label: "Policy lookup p95" },
-  { value: "−78%", label: "LLM perplexity" },
-  { value: "210 MW", label: "Industrial system" },
+  { value: "97.14%", label: "Graduate ML" },
+  { value: "95.25%", label: "Computer engineering" },
+  { value: "4,415", label: "LLM training samples" },
+];
+
+export const researchInterests: ResearchInterest[] = [
+  {
+    title: "Resource-efficient machine learning",
+    description:
+      "Fine-tuning and evaluating useful language and vision systems under limited compute and memory budgets.",
+  },
+  {
+    title: "Algorithms for networked systems",
+    description:
+      "Scheduling, fairness and learning-based allocation when shared resources are constrained.",
+  },
+  {
+    title: "Intelligent engineering systems",
+    description:
+      "Software, sensing and control for dependable infrastructure, automation and electric mobility.",
+  },
+];
+
+export const teachingPreparation: TeachingPreparation[] = [
+  {
+    area: "Machine learning fundamentals",
+    evidence: "EECE 5644 · Introduction to Machine Learning and Pattern Recognition · 97.14% · A",
+  },
+  {
+    area: "Computer engineering fundamentals",
+    evidence: "EECE 7205 · Fundamentals of Computer Engineering · 95.25% · A",
+  },
+  {
+    area: "Programming laboratories",
+    evidence: "Volunteer experience supporting programming lab sessions and assisting students during 2024–2025.",
+  },
 ];
 
 export const experiences: Experience[] = [
@@ -86,7 +129,7 @@ export const experiences: Experience[] = [
     organization: "Guardian Life (Fortune 250 US insurance company)",
     location: "Chennai, India",
     summary:
-      "Built three backend services and more than 20 REST APIs with Java Spring Boot and Python FastAPI for an insurance platform used by 2,000 agents. Improved policy lookup from 1.2 s to 700 ms p95, moved background jobs to Kafka and AWS SQS, secured APIs with OAuth 2.0, maintained 80% test coverage across 120+ tests, and deployed ML models with Docker and FastAPI.",
+      "Built Java and Python backend services for an insurance platform, improved a critical policy lookup path, moved background work to reliable queues and deployed ML models behind FastAPI services.",
     outcomes: ["3 backend services", "20+ REST endpoints", "42% lower p95 latency", "80% line coverage", "120+ automated tests"],
     stack: ["Java", "Spring Boot", "Python", "FastAPI", "Kafka", "AWS SQS", "Amazon S3", "Splunk", "AWS CloudWatch", "OAuth 2.0", "Docker", "JUnit", "pytest"],
   },

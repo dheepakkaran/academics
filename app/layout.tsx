@@ -10,13 +10,13 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     metadataBase,
-    title: "Dheepak Karan — Research & Engineering",
+    title: "Dheepak Karan — ECE Academic Portfolio",
     description:
-      "The research profile and engineering notebook of Dheepak Karan—software systems, applied machine learning and intelligent infrastructure.",
+      "The academic portfolio of Dheepak Karan—graduate coursework, teaching preparation and projects across machine learning, computer vision, algorithms and engineering systems.",
     authors: [{ name: "Dheepak Karan" }],
     keywords: [
       "Dheepak Karan",
-      "software engineer",
+      "ECE graduate student",
       "machine learning",
       "electrical engineering",
       "Northeastern University",
@@ -29,8 +29,8 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     openGraph: {
       type: "website",
-      title: "Dheepak Karan — Research & Engineering",
-      description: "Selected work and technical notes across software, machine learning and intelligent infrastructure.",
+      title: "Dheepak Karan — ECE Academic Portfolio",
+      description: "Graduate coursework, teaching preparation and selected projects across machine learning, computer vision, algorithms and engineering systems.",
       images: [
         {
           url: new URL("/og.png", metadataBase).toString(),
@@ -42,8 +42,8 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      title: "Dheepak Karan — Research & Engineering",
-      description: "Selected work and technical notes across software, machine learning and intelligent infrastructure.",
+      title: "Dheepak Karan — ECE Academic Portfolio",
+      description: "Graduate coursework, teaching preparation and selected projects across machine learning, computer vision, algorithms and engineering systems.",
       images: [new URL("/og.png", metadataBase).toString()],
     },
   };

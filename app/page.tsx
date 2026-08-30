@@ -6,6 +6,7 @@ import {
   leadership,
   profileMetrics,
   projects,
+  researchInterests,
   skillGroups,
 } from "./portfolio-data";
 import ProfileHeader from "./profile-header";
@@ -15,6 +16,10 @@ const github = externalLinks.find((link) => link.label === "GitHub");
 const education = experiences.filter((entry) => entry.kind === "education");
 const professionalExperience = experiences.filter((entry) => entry.kind === "experience");
 const featuredProjects = projects.slice(0, 3);
+const completedCourses = coursework.filter((course) => course.status === "Completed");
+const registeredCourses = coursework.filter((course) => course.status === "Registered");
+const teachingAndAcademicService = leadership.filter((item) => item.role !== "Departmental Sports Coordinator");
+const additionalLeadership = leadership.filter((item) => item.role === "Departmental Sports Coordinator");
 
 export default function Home() {
   return (
@@ -25,8 +30,8 @@ export default function Home() {
       <main id="main">
         <section id="home" className="academic-summary">
           <p>
-            I build reliable software and machine-learning systems under real compute, latency and safety constraints.
-            My work connects <strong>production backend engineering</strong>, <strong>resource-efficient AI</strong>, <strong>network scheduling</strong>, <strong>industrial automation</strong> and <strong>electric mobility</strong>.
+            I am an MS ECE student at Northeastern University working across machine learning, computer vision,
+            algorithms and engineering systems. I am interested in upcoming <strong>research and teaching opportunities</strong> where I can contribute careful experimentation, production software experience and hands-on student support.
           </p>
 
           <dl className="highlight-strip" aria-label="Selected verified results">
@@ -39,35 +44,36 @@ export default function Home() {
           </dl>
         </section>
 
-        <section id="courses">
-          <h2>Graduate Coursework</h2>
-          <div className="coursework-groups">
-            {(["Spring 2026", "Fall 2026"] as const).map((semester) => (
-              <div className="coursework-term" key={semester}>
-                <h3>{semester}</h3>
-                <ul className="coursework-list">
-                  {coursework.filter((course) => course.semester === semester).map((course) => (
-                    <li key={course.code}>
-                      <span className="coursework-code">{course.code}</span>
-                      <div className="coursework-entry">
-                        <strong>{course.title}</strong>
-                        <a href={course.professorHref} target="_blank" rel="noreferrer">
-                          {course.professor} ↗
-                        </a>
-                      </div>
-                      <span className={`coursework-result${course.status === "Registered" ? " registered" : ""}`}>
-                        {course.percentage && course.grade ? `${course.percentage} · ${course.grade}` : course.status}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+        <section id="interests">
+          <h2>Research &amp; Teaching Interests</h2>
+          <dl className="academic-area-list">
+            {researchInterests.map((interest) => (
+              <div key={interest.title}>
+                <dt>{interest.title}</dt>
+                <dd>{interest.description}</dd>
               </div>
             ))}
-          </div>
+          </dl>
+        </section>
+
+        <section id="courses">
+          <h2>Academic Preparation</h2>
+          <p>Graduate concentration: <strong>Machine Learning, Computer Vision &amp; Algorithms</strong>.</p>
+          <dl className="academic-area-list course-overview">
+            <div>
+              <dt>Completed</dt>
+              <dd>{completedCourses.map((course) => `${course.code} ${course.title} (${course.grade})`).join(" · ")}</dd>
+            </div>
+            <div>
+              <dt>Fall 2026</dt>
+              <dd>{registeredCourses.map((course) => `${course.code} ${course.title}`).join(" · ")}</dd>
+            </div>
+          </dl>
+          <p className="section-link"><a href="/coursework">Coursework and teaching preparation →</a></p>
         </section>
 
         <section id="work">
-          <h2>Selected Engineering Work</h2>
+          <h2>Selected Projects</h2>
           <ol className="project-list">
             {featuredProjects.map((project, index) => (
               <li key={project.title}>
@@ -79,8 +85,8 @@ export default function Home() {
                   {project.category}{project.affiliation ? ` · ${project.affiliation}` : ""}
                 </p>
                 <p>{project.premise}</p>
-                <p><strong>Approach:</strong> {project.method}</p>
-                <p><strong>Outcome:</strong> {project.outcome}</p>
+                <p><strong>Method:</strong> {project.method}</p>
+                <p><strong>Result:</strong> {project.outcome}</p>
                 <p className="project-links">
                   <span className="result">[{project.metric}]</span>{" · "}
                   <span>{project.stack.join(" · ")}</span>{index === 0 && github?.href ? <>{" · "}<a href={github.href} target="_blank" rel="noreferrer">Code profile</a></> : null}
@@ -88,11 +94,28 @@ export default function Home() {
               </li>
             ))}
           </ol>
-          <p className="section-link"><a href="/work">View all {projects.length} projects →</a></p>
+          <p className="section-link"><a href="/projects">View all {projects.length} projects →</a></p>
+        </section>
+
+        <section id="teaching">
+          <h2>Teaching &amp; Academic Service</h2>
+          <ol className="experience-list leadership-list">
+            {teachingAndAcademicService.map((item) => (
+              <li key={`${item.organization}-${item.role}`}>
+                <span className="entry-date">{item.period}</span>
+                <div>
+                  <h3>{item.role}</h3>
+                  <p className="entry-organization">{item.organization}</p>
+                  <p>{item.summary}</p>
+                  <p className="entry-results">{item.highlights.join(" · ")}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </section>
 
         <section id="experience">
-          <h2>Experience &amp; Education</h2>
+          <h2>Academic &amp; Professional Background</h2>
           <h3 className="subsection-title">Education</h3>
           <ol className="experience-list">
             {education.map((experience) => (
@@ -124,9 +147,9 @@ export default function Home() {
         </section>
 
         <section id="leadership">
-          <h2>Leadership &amp; Honors</h2>
+          <h2>Additional Leadership</h2>
           <ol className="experience-list leadership-list">
-            {leadership.map((item) => (
+            {additionalLeadership.map((item) => (
               <li key={`${item.organization}-${item.role}`}>
                 <span className="entry-date">{item.period}</span>
                 <div>
