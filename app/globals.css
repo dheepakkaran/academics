@@ -65,7 +65,7 @@ a:hover {
 }
 
 .academic-page {
-  width: min(900px, 100%);
+  width: min(900px, calc(100% - 56px));
   margin: 0 auto;
   padding: 18px 10px 36px;
 }
@@ -506,7 +506,7 @@ p { margin: 8px 0; }
 @media (max-width: 620px) {
   body { font-size: 15px; }
   body::before { inset: 5px; border-color: #ddd; }
-  .academic-page { padding-inline: 14px; }
+  .academic-page { width: calc(100% - 24px); padding-inline: 14px; }
   .academic-intro { flex-direction: column; gap: 16px; padding: 22px 0 8px; }
   .academic-avatar { width: 140px; height: 140px; flex-basis: 140px; }
   .academic-bio { min-width: 0; }

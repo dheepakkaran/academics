@@ -240,6 +240,8 @@ test("ships the professor-focused academic layout, metadata and accessibility fa
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(css, /:focus-visible/);
   assert.match(css, /\.academic-page/);
+  assert.match(css, /\.academic-page\s*\{[^}]*width:\s*min\(900px,\s*calc\(100%\s*-\s*56px\)\)/is);
+  assert.match(css, /@media\s*\(max-width:\s*620px\)[\s\S]*?\.academic-page\s*\{[^}]*width:\s*calc\(100%\s*-\s*24px\)/is);
   assert.match(css, /body::before\s*\{[^}]*position:\s*fixed[^}]*inset:\s*14px[^}]*border:\s*1px solid #c8c8c8/is);
   assert.match(css, /body::before\s*\{\s*display:\s*none;\s*\}/i);
   assert.match(css, /#c8102e/i);
