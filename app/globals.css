@@ -38,7 +38,7 @@ a:hover {
 @media (hover: hover) and (pointer: fine) {
   html,
   body {
-    cursor: url("/terminal-prompt-cursor.png") 15 15, default;
+    cursor: url("/signature-arrow-cursor.png") 2 1, auto;
   }
 
   a,
