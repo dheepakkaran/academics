@@ -18,6 +18,15 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+body::before {
+  content: "";
+  position: fixed;
+  inset: 14px;
+  z-index: 10;
+  border: 1px solid #c8c8c8;
+  pointer-events: none;
+}
+
 ::selection { background: #d7e5f7; color: #111; }
 
 a {
@@ -496,6 +505,7 @@ p { margin: 8px 0; }
 
 @media (max-width: 620px) {
   body { font-size: 15px; }
+  body::before { inset: 5px; border-color: #ddd; }
   .academic-page { padding-inline: 14px; }
   .academic-intro { flex-direction: column; gap: 16px; padding: 22px 0 8px; }
   .academic-avatar { width: 140px; height: 140px; flex-basis: 140px; }
@@ -536,6 +546,7 @@ p { margin: 8px 0; }
 
 @media print {
   body { background: #fff; }
+  body::before { display: none; }
   .academic-page { width: 100%; }
   .academic-menu { display: none; }
   a { text-decoration: underline; }

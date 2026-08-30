@@ -240,6 +240,8 @@ test("ships the professor-focused academic layout, metadata and accessibility fa
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(css, /:focus-visible/);
   assert.match(css, /\.academic-page/);
+  assert.match(css, /body::before\s*\{[^}]*position:\s*fixed[^}]*inset:\s*14px[^}]*border:\s*1px solid #c8c8c8/is);
+  assert.match(css, /body::before\s*\{\s*display:\s*none;\s*\}/i);
   assert.match(css, /#c8102e/i);
   assert.match(css, /\.github-day\.level-4\s*\{[^}]*#c8102e/is);
   assert.match(css, /signature-arrow-cursor\.png/);
