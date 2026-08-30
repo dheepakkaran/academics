@@ -2,29 +2,24 @@
 
 html {
   min-width: 320px;
-  background: #fafafa;
+  height: 100%;
+  overflow: hidden;
+  background: #fff;
   color: #222;
   scroll-behavior: smooth;
 }
 
 body {
   min-width: 320px;
+  height: 100%;
   margin: 0;
-  background: #fafafa;
+  overflow: hidden;
+  background: #fff;
   color: #222;
   font-family: "Trebuchet MS", Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 14px;
-  z-index: 10;
-  border: 1px solid #c8c8c8;
-  pointer-events: none;
 }
 
 ::selection { background: #d7e5f7; color: #111; }
@@ -65,9 +60,25 @@ a:hover {
 }
 
 .academic-page {
-  width: min(900px, calc(100% - 56px));
-  margin: 0 auto;
-  padding: 18px 10px 36px;
+  position: relative;
+  width: min(1080px, calc(100% - 28px));
+  height: calc(100dvh - 28px);
+  margin: 14px auto;
+  padding: 18px 28px 36px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable both-edges;
+  scroll-behavior: smooth;
+  background: #fafafa;
+  border: 1px solid #c8c8c8;
+}
+
+.academic-page > .academic-intro,
+.academic-page > .academic-menu,
+.academic-page > main,
+.academic-page > .academic-footer {
+  width: min(900px, 100%);
+  margin-inline: auto;
 }
 
 .skip-link {
@@ -504,9 +515,24 @@ p { margin: 8px 0; }
 }
 
 @media (max-width: 620px) {
+  html,
+  body {
+    height: auto;
+    overflow: visible;
+    background: #fafafa;
+  }
+
   body { font-size: 15px; }
-  body::before { inset: 5px; border-color: #ddd; }
-  .academic-page { width: calc(100% - 24px); padding-inline: 14px; }
+  .academic-page {
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+    margin: 0;
+    padding: 18px 20px 36px;
+    overflow: visible;
+    scrollbar-gutter: auto;
+    border: 0;
+  }
   .academic-intro { flex-direction: column; gap: 16px; padding: 22px 0 8px; }
   .academic-avatar { width: 140px; height: 140px; flex-basis: 140px; }
   .academic-bio { min-width: 0; }
@@ -541,13 +567,21 @@ p { margin: 8px 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+  html,
+  .academic-page { scroll-behavior: auto; }
 }
 
 @media print {
-  body { background: #fff; }
-  body::before { display: none; }
-  .academic-page { width: 100%; }
+  html,
+  body { height: auto; overflow: visible; background: #fff; }
+  .academic-page {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    background: #fff;
+    border: 0;
+  }
   .academic-menu { display: none; }
   a { text-decoration: underline; }
 }
