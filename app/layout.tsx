@@ -30,7 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       type: "website",
       title: "Dheepak Karan — ECE Academic Portfolio",
-      description: "Graduate coursework, teaching preparation and selected projects across machine learning, computer vision, algorithms and engineering systems.",
+      description: "Graduate coursework, teaching preparation, programming practice and selected projects across machine learning, computer vision, algorithms and engineering systems.",
       images: [
         {
           url: new URL("/og.png", metadataBase).toString(),

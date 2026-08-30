@@ -330,6 +330,11 @@ export const externalLinks: ExternalLink[] = [
     note: "Code and projects",
   },
   {
+    label: "LeetCode",
+    href: "https://leetcode.com/u/___ka__ran___/",
+    note: "Programming practice",
+  },
+  {
     label: "Credly",
     href: "https://www.credly.com/users/dheepakkaran",
     note: "Verified credentials",

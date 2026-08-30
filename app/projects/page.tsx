@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { externalLinks, projects } from "../portfolio-data";
 import GitHubContributions from "../github-contributions";
+import LeetCodePractice from "../leetcode-practice";
 import ProfileHeader from "../profile-header";
 
 export const metadata: Metadata = {
@@ -43,16 +44,7 @@ export default function ProjectsPage() {
           </ol>
         </section>
 
-        <section id="practice">
-          <h2>Programming Practice</h2>
-          <p>
-            This space is reserved for a compact, verified learning log: accepted problems, recurring techniques and recent practice rather than rankings or gamified badges.
-          </p>
-          <div className="practice-status" role="status">
-            <strong>Public profile not linked</strong>
-            <span>Verified stats and recent accepted problems will appear after a LeetCode username is connected.</span>
-          </div>
-        </section>
+        <LeetCodePractice />
 
         <GitHubContributions />
       </main>

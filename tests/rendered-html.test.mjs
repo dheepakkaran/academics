@@ -107,8 +107,16 @@ test("server-renders the professor-facing projects page", async () => {
   assert.match(html, /<title>Projects — Dheepak Karan/);
   assert.match(html, /Selected Projects/i);
   assert.match(html, /Programming Practice/i);
-  assert.match(html, /Public profile not linked/i);
-  assert.match(html, /LeetCode username/i);
+  assert.match(html, /aria-label="LeetCode solved problem statistics"/i);
+  assert.match(html, /Solved/i);
+  assert.match(html, /Easy/i);
+  assert.match(html, /Medium/i);
+  assert.match(html, /Hard/i);
+  assert.match(html, /Languages:/i);
+  assert.match(html, /Frequent topics:/i);
+  assert.match(html, /Recent accepted problems/i);
+  assert.match(html, /href="https:\/\/leetcode\.com\/u\/___ka__ran___\/"/i);
+  assert.doesNotMatch(html, /Public profile not linked/i);
   assert.match(html, /GitHub Activity/i);
   assert.match(html, /\d+ contributions[\s\S]*in the last year/i);
   assert.match(html, /aria-label="\d+ GitHub contributions by dheepakkaran in the last year/i);
@@ -167,10 +175,11 @@ test("server-renders the dedicated engineering notes page", async () => {
 });
 
 test("ships the professor-focused academic layout, metadata and accessibility fallbacks", async () => {
-  const [layout, profileHeader, contributions, page, projectsPage, courseworkPage, courseworkTable, blog, css, packageJson] = await Promise.all([
+  const [layout, profileHeader, contributions, practice, page, projectsPage, courseworkPage, courseworkTable, blog, css, packageJson] = await Promise.all([
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/profile-header.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/github-contributions.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/leetcode-practice.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/projects/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/coursework/page.tsx", import.meta.url), "utf8"),
@@ -209,13 +218,19 @@ test("ships the professor-focused academic layout, metadata and accessibility fa
   assert.match(page, /highlight-strip/);
   assert.match(page, /project-list/);
   assert.match(projectsPage, /projects\.map/);
-  assert.match(projectsPage, /Programming Practice/);
+  assert.match(projectsPage, /LeetCodePractice/);
   assert.match(projectsPage, /GitHubContributions/);
   assert.match(courseworkPage, /teachingPreparation/);
   assert.match(courseworkTable, /coursework\.filter/);
   assert.match(contributions, /github\.com\/users\/\$\{username\}\/contributions/);
   assert.match(contributions, /revalidate:\s*21_600/);
   assert.match(contributions, /snapshotActiveDays/);
+  assert.match(practice, /https:\/\/leetcode\.com\/graphql/);
+  assert.match(practice, /___ka__ran___/);
+  assert.match(practice, /solved:\s*67/);
+  assert.match(practice, /easy:\s*37/);
+  assert.match(practice, /medium:\s*30/);
+  assert.match(practice, /revalidate:\s*21_600/);
   assert.match(page, /experience-list/);
   assert.match(page, /skills-list/);
   assert.doesNotMatch(page, /"use client"|useState|type="search"|SkillFlowField|CursorTrails|useMotionTemplate|pointermove|prompt-section|project-card|research-shell/);
