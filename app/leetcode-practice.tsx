@@ -206,7 +206,7 @@ export default async function LeetCodePractice() {
     <section id="practice">
       <div className="practice-heading">
         <div>
-          <h2>Programming Practice</h2>
+          <h2>Algorithm &amp; Problem-Solving Practice</h2>
           <p>A verified learning log focused on techniques and recent accepted problems.</p>
         </div>
         <a href={profileHref} target="_blank" rel="noreferrer">@{username} ↗</a>

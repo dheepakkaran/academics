@@ -106,23 +106,13 @@ test("server-renders the professor-facing projects page", async () => {
   const html = await response.text();
   assert.match(html, /<title>Projects — Dheepak Karan/);
   assert.match(html, /Selected Projects/i);
-  assert.match(html, /Programming Practice/i);
-  assert.match(html, /aria-label="LeetCode solved problem statistics"/i);
-  assert.match(html, /Solved/i);
-  assert.match(html, /Easy/i);
-  assert.match(html, /Medium/i);
-  assert.match(html, /Hard/i);
-  assert.match(html, /Languages:/i);
-  assert.match(html, /Frequent topics:/i);
-  assert.match(html, /Recent accepted problems/i);
-  assert.match(html, /href="https:\/\/leetcode\.com\/u\/___ka__ran___\/"/i);
-  assert.doesNotMatch(html, /Public profile not linked/i);
+  assert.doesNotMatch(html, /Algorithm &amp; Problem-Solving Practice/i);
+  assert.doesNotMatch(html, /LeetCode solved problem statistics/i);
   assert.match(html, /GitHub Activity/i);
   assert.match(html, /\d+ contributions[\s\S]*in the last year/i);
   assert.match(html, /aria-label="\d+ GitHub contributions by dheepakkaran in the last year/i);
   assert.match(html, /href="https:\/\/github\.com\/dheepakkaran"/i);
-  assert.ok(html.indexOf("Selected Projects") < html.indexOf("Programming Practice"));
-  assert.ok(html.indexOf("Programming Practice") < html.indexOf("GitHub Activity"));
+  assert.ok(html.indexOf("Selected Projects") < html.indexOf("GitHub Activity"));
   assert.match(html, /Northeastern University/i);
   assert.match(html, /3\.926 CGPA/i);
   assert.match(html, /Multilingual LLM Fine-Tuning/i);
@@ -139,16 +129,15 @@ test("keeps the previous work URL as a projects alias", async () => {
   assert.match(await response.text(), /<title>Projects — Dheepak Karan/);
 });
 
-test("server-renders the dedicated coursework and teaching page", async () => {
-  const response = await render("/coursework");
+test("server-renders the dedicated academics page", async () => {
+  const response = await render("/academics");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /<title>Coursework &amp; Teaching — Dheepak Karan/);
+  assert.match(html, /<title>Academics — Dheepak Karan/);
   assert.match(html, /Graduate Coursework/i);
-  assert.match(html, /Teaching Preparation/i);
-  assert.match(html, /Machine learning fundamentals/i);
-  assert.match(html, /Computer engineering fundamentals/i);
-  assert.match(html, /Programming laboratories/i);
+  assert.match(html, /Teaching &amp; Academic Service/i);
+  assert.match(html, /Algorithm &amp; Problem-Solving Practice/i);
+  assert.doesNotMatch(html, /Teaching Preparation/i);
   assert.match(html, /97\.14% · A/i);
   assert.match(html, /95\.25% · A/i);
   assert.match(html, /David Brady/i);
@@ -157,6 +146,19 @@ test("server-renders the dedicated coursework and teaching page", async () => {
   assert.match(html, /Ramin Mohammadi/i);
   assert.match(html, /Registered/i);
   assert.match(html, /Community School Volunteer/i);
+  assert.match(html, /aria-label="LeetCode solved problem statistics"/i);
+  assert.match(html, /Languages:/i);
+  assert.match(html, /Frequent topics:/i);
+  assert.match(html, /Recent accepted problems/i);
+  assert.match(html, /href="https:\/\/leetcode\.com\/u\/___ka__ran___\/"/i);
+  assert.ok(html.indexOf("Graduate Coursework") < html.indexOf("Teaching &amp; Academic Service"));
+  assert.ok(html.indexOf("Teaching &amp; Academic Service") < html.indexOf("Algorithm &amp; Problem-Solving Practice"));
+});
+
+test("keeps the previous coursework URL as an academics alias", async () => {
+  const response = await render("/coursework");
+  assert.equal(response.status, 200);
+  assert.match(await response.text(), /<title>Academics — Dheepak Karan/);
 });
 
 test("server-renders the dedicated engineering notes page", async () => {
@@ -175,13 +177,14 @@ test("server-renders the dedicated engineering notes page", async () => {
 });
 
 test("ships the professor-focused academic layout, metadata and accessibility fallbacks", async () => {
-  const [layout, profileHeader, contributions, practice, page, projectsPage, courseworkPage, courseworkTable, blog, css, packageJson] = await Promise.all([
+  const [layout, profileHeader, contributions, practice, page, projectsPage, academicsPage, courseworkAlias, courseworkTable, blog, css, packageJson] = await Promise.all([
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/profile-header.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/github-contributions.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/leetcode-practice.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/projects/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/academics/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/coursework/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/coursework-table.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/blog/page.tsx", import.meta.url), "utf8"),
@@ -209,18 +212,20 @@ test("ships the professor-focused academic layout, metadata and accessibility fa
   assert.match(profileHeader, /academic-avatar/);
   assert.match(profileHeader, /academic-menu/);
   assert.match(profileHeader, />Projects</);
-  assert.match(profileHeader, />Coursework</);
+  assert.match(profileHeader, />Academics</);
   assert.doesNotMatch(profileHeader, />Work<|>CV</);
   assert.match(page, /ProfileHeader active="home"/);
   assert.match(projectsPage, /ProfileHeader active="projects"/);
-  assert.match(courseworkPage, /ProfileHeader active="coursework"/);
+  assert.match(academicsPage, /ProfileHeader active="academics"/);
   assert.match(blog, /ProfileHeader active="notes"/);
   assert.match(page, /highlight-strip/);
   assert.match(page, /project-list/);
   assert.match(projectsPage, /projects\.map/);
-  assert.match(projectsPage, /LeetCodePractice/);
+  assert.doesNotMatch(projectsPage, /LeetCodePractice/);
   assert.match(projectsPage, /GitHubContributions/);
-  assert.match(courseworkPage, /teachingPreparation/);
+  assert.match(academicsPage, /LeetCodePractice/);
+  assert.doesNotMatch(academicsPage, /teachingPreparation|Teaching Preparation/);
+  assert.match(courseworkAlias, /academics\/page/);
   assert.match(courseworkTable, /coursework\.filter/);
   assert.match(contributions, /github\.com\/users\/\$\{username\}\/contributions/);
   assert.match(contributions, /revalidate:\s*21_600/);

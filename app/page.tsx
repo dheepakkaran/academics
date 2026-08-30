@@ -69,7 +69,7 @@ export default function Home() {
               <dd>{registeredCourses.map((course) => `${course.code} ${course.title}`).join(" · ")}</dd>
             </div>
           </dl>
-          <p className="section-link"><a href="/coursework">Coursework and teaching preparation →</a></p>
+          <p className="section-link"><a href="/academics">Academics and teaching service →</a></p>
         </section>
 
         <section id="work">

@@ -65,11 +65,6 @@ export type ResearchInterest = {
   description: string;
 };
 
-export type TeachingPreparation = {
-  area: string;
-  evidence: string;
-};
-
 export const profileMetrics: Metric[] = [
   { value: "3.926", label: "Graduate CGPA" },
   { value: "97.14%", label: "Graduate ML" },
@@ -92,21 +87,6 @@ export const researchInterests: ResearchInterest[] = [
     title: "Intelligent engineering systems",
     description:
       "Software, sensing and control for dependable infrastructure, automation and electric mobility.",
-  },
-];
-
-export const teachingPreparation: TeachingPreparation[] = [
-  {
-    area: "Machine learning fundamentals",
-    evidence: "EECE 5644 · Introduction to Machine Learning and Pattern Recognition · 97.14% · A",
-  },
-  {
-    area: "Computer engineering fundamentals",
-    evidence: "EECE 7205 · Fundamentals of Computer Engineering · 95.25% · A",
-  },
-  {
-    area: "Programming laboratories",
-    evidence: "Volunteer experience supporting programming lab sessions and assisting students during 2024–2025.",
   },
 ];
 

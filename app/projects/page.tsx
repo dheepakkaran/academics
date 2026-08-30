@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { externalLinks, projects } from "../portfolio-data";
 import GitHubContributions from "../github-contributions";
-import LeetCodePractice from "../leetcode-practice";
 import ProfileHeader from "../profile-header";
 
 export const metadata: Metadata = {
@@ -43,8 +42,6 @@ export default function ProjectsPage() {
             ))}
           </ol>
         </section>
-
-        <LeetCodePractice />
 
         <GitHubContributions />
       </main>

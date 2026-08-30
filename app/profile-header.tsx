@@ -1,7 +1,7 @@
 import { externalLinks } from "./portfolio-data";
 
 type ProfileHeaderProps = {
-  active: "home" | "projects" | "coursework" | "notes";
+  active: "home" | "projects" | "academics" | "notes";
 };
 
 const email = externalLinks.find((link) => link.label === "Email");
@@ -49,7 +49,7 @@ export default function ProfileHeader({ active }: ProfileHeaderProps) {
       <nav className="academic-menu" aria-label="Primary navigation">
         <a className={active === "home" ? "active" : undefined} href="/">Home</a>
         <a className={active === "projects" ? "active" : undefined} href="/projects">Projects</a>
-        <a className={active === "coursework" ? "active" : undefined} href="/coursework">Coursework</a>
+        <a className={active === "academics" ? "active" : undefined} href="/academics">Academics</a>
         <a href="/#experience">Experience</a>
         <a className={active === "notes" ? "active" : undefined} href="/blog">Notes</a>
       </nav>
