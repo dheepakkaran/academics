@@ -240,9 +240,11 @@ test("ships the professor-focused academic layout, metadata and accessibility fa
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(css, /:focus-visible/);
   assert.match(css, /body\s*\{[^}]*height:\s*100%[^}]*overflow:\s*hidden[^}]*background:\s*#fff/is);
-  assert.match(css, /\.academic-page\s*\{[^}]*width:\s*min\(1080px,\s*calc\(100%\s*-\s*28px\)\)[^}]*height:\s*calc\(100dvh\s*-\s*28px\)[^}]*overflow-y:\s*auto[^}]*border:\s*1px solid #c8c8c8/is);
-  assert.match(css, /\.academic-page\s*>\s*main[\s\S]*?width:\s*min\(900px,\s*100%\)/is);
+  assert.match(css, /\.academic-page\s*\{[^}]*width:\s*min\(1080px,\s*calc\(100%\s*-\s*28px\)\)[^}]*height:\s*calc\(100dvh\s*-\s*82px\)[^}]*overflow-y:\s*auto[^}]*border:\s*1px solid #c8c8c8/is);
+  assert.match(css, /\.academic-page\s*>\s*main[\s\S]*?width:\s*100%/is);
+  assert.match(css, /\.academic-menu\s*\{[^}]*position:\s*fixed[^}]*top:\s*14px[^}]*left:\s*50%[^}]*width:\s*min\(900px,\s*calc\(100%\s*-\s*28px\)\)[^}]*transform:\s*translateX\(-50%\)/is);
   assert.match(css, /@media\s*\(max-width:\s*620px\)[\s\S]*?\.academic-page\s*\{[^}]*width:\s*100%[^}]*height:\s*auto[^}]*overflow:\s*visible[^}]*border:\s*0/is);
+  assert.match(css, /@media\s*\(max-width:\s*620px\)[\s\S]*?\.academic-menu\s*\{[^}]*position:\s*static[^}]*transform:\s*none/is);
   assert.doesNotMatch(css, /body::before/);
   assert.match(css, /#c8102e/i);
   assert.match(css, /\.github-day\.level-4\s*\{[^}]*#c8102e/is);

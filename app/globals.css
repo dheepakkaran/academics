@@ -62,8 +62,8 @@ a:hover {
 .academic-page {
   position: relative;
   width: min(1080px, calc(100% - 28px));
-  height: calc(100dvh - 28px);
-  margin: 14px auto;
+  height: calc(100dvh - 82px);
+  margin: 68px auto 14px;
   padding: 18px 28px 36px;
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -74,11 +74,9 @@ a:hover {
 }
 
 .academic-page > .academic-intro,
-.academic-page > .academic-menu,
 .academic-page > main,
 .academic-page > .academic-footer {
-  width: min(900px, 100%);
-  margin-inline: auto;
+  width: 100%;
 }
 
 .skip-link {
@@ -144,9 +142,15 @@ a:hover {
 }
 
 .academic-menu {
+  position: fixed;
+  top: 14px;
+  left: 50%;
+  z-index: 20;
   display: flex;
-  width: 100%;
-  margin-bottom: 30px;
+  width: min(900px, calc(100% - 28px));
+  margin: 0;
+  transform: translateX(-50%);
+  background: #fff;
   border-top: 1px solid #999;
   border-bottom: 1px solid #999;
 }
@@ -532,6 +536,13 @@ p { margin: 8px 0; }
     overflow: visible;
     scrollbar-gutter: auto;
     border: 0;
+  }
+  .academic-menu {
+    position: static;
+    width: 100%;
+    margin-bottom: 30px;
+    transform: none;
+    background: transparent;
   }
   .academic-intro { flex-direction: column; gap: 16px; padding: 22px 0 8px; }
   .academic-avatar { width: 140px; height: 140px; flex-basis: 140px; }
