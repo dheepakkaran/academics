@@ -127,6 +127,74 @@ a:hover {
 
 .academic-bio p { margin: 0; }
 
+.name-thought-trigger {
+  position: relative;
+  display: inline-block;
+}
+
+.name-thought-bubble {
+  position: absolute;
+  bottom: calc(100% + 15px);
+  left: 50%;
+  z-index: 40;
+  display: grid;
+  gap: 2px;
+  width: 238px;
+  padding: 9px 14px;
+  visibility: hidden;
+  opacity: 0;
+  color: #222;
+  font-size: 14px;
+  line-height: 1.25;
+  text-align: left;
+  pointer-events: none;
+  transform: translate(-50%, 4px);
+  background: #fff;
+  border: 1px solid #999;
+  border-radius: 18px;
+  transition: opacity 120ms ease, transform 120ms ease, visibility 120ms ease;
+}
+
+.name-thought-bubble::before,
+.name-thought-bubble::after {
+  position: absolute;
+  content: "";
+  background: #fff;
+  border: 1px solid #999;
+  border-radius: 50%;
+}
+
+.name-thought-bubble::before {
+  bottom: -11px;
+  left: 46%;
+  width: 10px;
+  height: 10px;
+}
+
+.name-thought-bubble::after {
+  bottom: -19px;
+  left: 43%;
+  width: 5px;
+  height: 5px;
+}
+
+.name-thought-bubble small {
+  color: #c8102e;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.name-thought-bubble strong { font-size: 13px; }
+
+.name-thought-trigger:hover .name-thought-bubble,
+.name-thought-trigger:focus-within .name-thought-bubble {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
 .profile-preview {
   position: relative;
   display: inline-block;
@@ -737,6 +805,7 @@ p { margin: 8px 0; }
 }
 
 @media (hover: none) {
+  .name-thought-bubble,
   .profile-preview-card,
   .resume-preview-card,
   .certification-hover-preview { display: none; }
@@ -745,6 +814,7 @@ p { margin: 8px 0; }
 @media (prefers-reduced-motion: reduce) {
   html,
   .academic-page { scroll-behavior: auto; }
+  .name-thought-bubble,
   .profile-preview-card,
   .resume-preview-card,
   .certification-hover-preview { transition: none; }

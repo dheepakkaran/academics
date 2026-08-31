@@ -66,7 +66,19 @@ export default function ProfileHeader({ active }: ProfileHeaderProps) {
           fetchPriority="high"
         />
         <div className="academic-bio">
-          <h1>Dheepak Karan</h1>
+          <h1>
+            <span
+              className="name-thought-trigger"
+              tabIndex={0}
+              aria-describedby="full-name-thought"
+            >
+              Dheepak Karan
+              <span className="name-thought-bubble" id="full-name-thought" role="tooltip">
+                <small>My full name is</small>
+                <strong>Dheepak Karan<br />Elumalai Santhakumari</strong>
+              </span>
+            </span>
+          </h1>
           <p><strong>Machine Learning · Computer Vision · Algorithms</strong></p>
           <p className="affiliation-line">
             <img
