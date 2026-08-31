@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Certifications from "../certifications";
 import CourseworkTable from "../coursework-table";
 import LeetCodePractice from "../leetcode-practice";
 import { leadership } from "../portfolio-data";
@@ -24,6 +25,8 @@ export default function AcademicsPage() {
           <p>MS ECE concentration: <strong>Machine Learning, Computer Vision &amp; Algorithms</strong>.</p>
           <CourseworkTable />
         </section>
+
+        <Certifications />
 
         <section>
           <h2>Teaching &amp; Academic Service</h2>

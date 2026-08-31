@@ -97,8 +97,10 @@ test("server-renders the complete academic personal homepage", async () => {
   assert.match(html, /https:\/\/www\.linkedin\.com\/in\/dheepakkaran/);
   assert.match(html, /GitHub profile/i);
   assert.match(html, /LinkedIn profile/i);
-  assert.equal((html.match(/role="tooltip"/g) ?? []).length, 2);
-  assert.doesNotMatch(html, /Credly profile/i);
+  assert.match(html, /Certification preview/i);
+  assert.match(html, /href="\/academics#certifications"/i);
+  assert.equal((html.match(/role="tooltip"/g) ?? []).length, 3);
+  assert.doesNotMatch(html, />Credly</i);
   assert.doesNotMatch(html, /Zero to Signal|cinematic retelling|What have I built|What do I bring to the table/i);
   assert.doesNotMatch(html, /857[^<]{0,10}339[^<]{0,10}6410/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/);
@@ -150,12 +152,21 @@ test("server-renders the dedicated academics page", async () => {
   assert.match(html, /Ramin Mohammadi/i);
   assert.match(html, /Registered/i);
   assert.match(html, /Community School Volunteer/i);
+  assert.match(html, /<h2>Certifications<\/h2>/i);
+  assert.match(html, /IBM AI Engineering/i);
+  assert.match(html, /IBM Data Science/i);
+  assert.match(html, /data-share-badge-id="bd3c360a-3770-4ffd-8a59-e831b1cc8245"/i);
+  assert.match(html, /data-share-badge-id="a2494e8e-f248-4e97-9a4c-b4bcf836f5b8"/i);
+  assert.match(html, /data-share-badge-id="362f2ea3-6477-4a34-b022-84106387ffd7"/i);
+  assert.match(html, /data-share-badge-id="05ecc8a0-69ca-47a9-97c3-d261fa2fa190"/i);
+  assert.match(html, /cdn\.credly\.com\/assets\/utilities\/embed\.js/i);
   assert.match(html, /aria-label="LeetCode solved problem statistics"/i);
   assert.match(html, /Languages:/i);
   assert.match(html, /Frequent topics:/i);
   assert.match(html, /Recent accepted problems/i);
   assert.match(html, /href="https:\/\/leetcode\.com\/u\/___ka__ran___\/"/i);
-  assert.ok(html.indexOf("Graduate Coursework") < html.indexOf("Teaching &amp; Academic Service"));
+  assert.ok(html.indexOf("Graduate Coursework") < html.indexOf("<h2>Certifications</h2>"));
+  assert.ok(html.indexOf("<h2>Certifications</h2>") < html.indexOf("Teaching &amp; Academic Service"));
   assert.ok(html.indexOf("Teaching &amp; Academic Service") < html.indexOf("Algorithm &amp; Problem-Solving Practice"));
 });
 
@@ -172,7 +183,7 @@ test("server-renders the dedicated engineering notes page", async () => {
   assert.match(html, /<title>Engineering Notes — Dheepak Karan/);
   assert.match(html, /Engineering notes/i);
   assert.match(html, /Northeastern University/i);
-  assert.match(html, /Credly/i);
+  assert.match(html, /Certifications/i);
   assert.match(html, /Short technical essays about practical decisions/i);
   assert.match(html, /Working principle/i);
   assert.match(html, /Fine-tuning an 8B model when compute is the constraint/i);
@@ -181,9 +192,10 @@ test("server-renders the dedicated engineering notes page", async () => {
 });
 
 test("ships the professor-focused academic layout, metadata and accessibility fallbacks", async () => {
-  const [layout, profileHeader, contributions, practice, page, projectsPage, academicsPage, courseworkAlias, courseworkTable, blog, css, packageJson] = await Promise.all([
+  const [layout, profileHeader, certificationsComponent, contributions, practice, page, projectsPage, academicsPage, courseworkAlias, courseworkTable, blog, css, packageJson] = await Promise.all([
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/profile-header.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/certifications.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/github-contributions.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/leetcode-practice.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
@@ -218,6 +230,7 @@ test("ships the professor-focused academic layout, metadata and accessibility fa
   assert.match(profileHeader, /academic-menu/);
   assert.match(profileHeader, /github-profile-preview/);
   assert.match(profileHeader, /linkedin-profile-preview/);
+  assert.match(profileHeader, /certification-preview/);
   assert.match(profileHeader, />Projects</);
   assert.match(profileHeader, />Academics</);
   assert.doesNotMatch(profileHeader, />Work<|>CV</);
@@ -231,6 +244,8 @@ test("ships the professor-focused academic layout, metadata and accessibility fa
   assert.doesNotMatch(projectsPage, /LeetCodePractice/);
   assert.match(projectsPage, /GitHubContributions/);
   assert.match(academicsPage, /LeetCodePractice/);
+  assert.match(academicsPage, /Certifications/);
+  assert.match(certificationsComponent, /data-share-badge-id/);
   assert.doesNotMatch(academicsPage, /teachingPreparation|Teaching Preparation/);
   assert.match(courseworkAlias, /academics\/page/);
   assert.match(courseworkTable, /coursework\.filter/);

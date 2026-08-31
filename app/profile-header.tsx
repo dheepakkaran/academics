@@ -7,7 +7,6 @@ type ProfileHeaderProps = {
 const email = externalLinks.find((link) => link.label === "Email");
 const linkedIn = externalLinks.find((link) => link.label === "LinkedIn");
 const github = externalLinks.find((link) => link.label === "GitHub");
-const credly = externalLinks.find((link) => link.label === "Credly");
 
 type ProfilePreviewLinkProps = {
   id: string;
@@ -30,6 +29,23 @@ function ProfilePreviewLink({ id, label, href, handle, detail, address }: Profil
           <span>{handle}</span>
           <small>{detail}</small>
           <small>{address}</small>
+        </span>
+      </span>
+    </span>
+  );
+}
+
+function CertificationPreviewLink() {
+  return (
+    <span className="profile-preview">
+      <a href="/academics#certifications" aria-describedby="certification-preview">Certifications</a>
+      <span className="profile-preview-card" id="certification-preview" role="tooltip">
+        <span className="certification-preview-mark" aria-hidden="true">✓</span>
+        <span>
+          <span className="profile-preview-platform">Certification preview</span>
+          <strong>IBM Professional Certificates</strong>
+          <span>AI Engineering · Data Science</span>
+          <small>View verified badges in Academics</small>
         </span>
       </span>
     </span>
@@ -81,7 +97,7 @@ export default function ProfileHeader({ active }: ProfileHeaderProps) {
               detail="Machine learning, computer vision and algorithms"
               address="linkedin.com/in/dheepakkaran"
             />{" · "}
-            <a href={credly?.href} target="_blank" rel="noreferrer">Credly</a>{" "}
+            <CertificationPreviewLink />{" "}
             <a href="/resume.pdf" download>[Résumé]</a>
           </p>
         </div>

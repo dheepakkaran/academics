@@ -65,6 +65,12 @@ export type ResearchInterest = {
   description: string;
 };
 
+export type Certification = {
+  title: string;
+  issuer: string;
+  badgeId: string;
+};
+
 export const profileMetrics: Metric[] = [
   { value: "3.926", label: "Graduate CGPA" },
   { value: "97.14%", label: "Graduate ML" },
@@ -87,6 +93,29 @@ export const researchInterests: ResearchInterest[] = [
     title: "Intelligent engineering systems",
     description:
       "Software, sensing and control for dependable infrastructure, automation and electric mobility.",
+  },
+];
+
+export const certifications: Certification[] = [
+  {
+    title: "AI Engineering Professional Certificate",
+    issuer: "IBM",
+    badgeId: "bd3c360a-3770-4ffd-8a59-e831b1cc8245",
+  },
+  {
+    title: "Data Science Professional Certificate",
+    issuer: "IBM",
+    badgeId: "a2494e8e-f248-4e97-9a4c-b4bcf836f5b8",
+  },
+  {
+    title: "Machine Learning Foundations",
+    issuer: "AWS Educate",
+    badgeId: "362f2ea3-6477-4a34-b022-84106387ffd7",
+  },
+  {
+    title: "Cybersecurity Foundations",
+    issuer: "Cisco",
+    badgeId: "05ecc8a0-69ca-47a9-97c3-d261fa2fa190",
   },
 ];
 
@@ -313,11 +342,6 @@ export const externalLinks: ExternalLink[] = [
     label: "LeetCode",
     href: "https://leetcode.com/u/___ka__ran___/",
     note: "Programming practice",
-  },
-  {
-    label: "Credly",
-    href: "https://www.credly.com/users/dheepakkaran",
-    note: "Verified credentials",
   },
 ];
 

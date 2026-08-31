@@ -168,10 +168,51 @@ a:hover {
   object-fit: cover;
 }
 
+.certification-preview-mark {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  color: #c8102e;
+  font-size: 24px;
+  font-weight: 700;
+  border: 1px solid #999;
+  border-radius: 50%;
+}
+
 .profile-preview-card > span { display: grid; line-height: 1.25; }
 .profile-preview-card strong { font-size: 14px; }
 .profile-preview-card small { margin-top: 3px; color: #666; font-size: 11px; }
 .profile-preview-platform { color: #c8102e; font-size: 11px; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.certification-badges {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(150px, 1fr));
+  gap: 16px;
+  align-items: start;
+  margin-top: 14px;
+  padding-top: 16px;
+  border-top: 1px solid #999;
+}
+
+.certification-badge {
+  position: relative;
+  display: flex;
+  min-height: 270px;
+  justify-content: center;
+}
 
 .affiliation-line {
   display: flex;
@@ -608,6 +649,11 @@ p { margin: 8px 0; }
   .coursework-result { grid-column: 2; text-align: left; }
   .skills-list { grid-template-columns: 1fr; }
   .project-heading { align-items: flex-start; flex-direction: column; gap: 2px; }
+  .certification-badges { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+}
+
+@media (max-width: 390px) {
+  .certification-badges { grid-template-columns: 1fr; }
 }
 
 @media (hover: none) {
