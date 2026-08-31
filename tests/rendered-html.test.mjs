@@ -101,10 +101,12 @@ test("server-renders the complete academic personal homepage", async () => {
   assert.match(html, /Dheepak Karan<br\/>Elumalai Santhakumari/i);
   assert.match(html, /Let(?:&apos;|')s talk about/i);
   assert.match(html, /RA\/TA opportunities and academic collaboration/i);
-  assert.match(html, /resume-preview\.png/i);
-  assert.match(html, /Résumé · PDF/i);
-  assert.match(html, /Thank you for considering my work\. Click to download the résumé\./i);
-  assert.doesNotMatch(html, /\[Résumé\]/i);
+  assert.doesNotMatch(html, /resume-preview\.png/i);
+  assert.match(html, />Resume<\/a>/i);
+  assert.match(html, /Resume · PDF/i);
+  assert.match(html, /Thank you for considering my work\./i);
+  assert.match(html, /Click to download the resume\./i);
+  assert.doesNotMatch(html, /\[Résumé\]|>Résumé<\/a>/i);
   assert.doesNotMatch(html, /Certification preview|href="\/academics#certifications"/i);
   assert.equal((html.match(/role="tooltip"/g) ?? []).length, 5);
   assert.doesNotMatch(html, />Credly</i);
@@ -221,7 +223,6 @@ test("ships the professor-focused academic layout, metadata and accessibility fa
 
   for (const asset of [
     "../public/resume.pdf",
-    "../public/resume-preview.png",
     "../public/og.png",
     "../public/husky-favicon.png",
     "../public/dheepak-karan.jpg",

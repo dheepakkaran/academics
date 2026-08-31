@@ -38,18 +38,12 @@ function ProfilePreviewLink({ id, label, href, handle, detail, address }: Profil
 function ResumePreviewLink() {
   return (
     <span className="resume-preview">
-      <a href="/resume.pdf" download aria-describedby="resume-document-preview">Résumé</a>
+      <a href="/resume.pdf" download aria-describedby="resume-document-preview">Resume</a>
       <span className="resume-preview-card" id="resume-document-preview" role="tooltip">
-        <img
-          src="/resume-preview.png"
-          alt=""
-          width="480"
-          height="679"
-          aria-hidden="true"
-        />
-        <small>Résumé · PDF</small>
+        <small>Resume · PDF</small>
+        <strong>Thank you for considering my work.</strong>
         <span className="resume-preview-message">
-          Thank you for considering my work. Click to download the résumé.
+          Click to download the resume.
         </span>
       </span>
     </span>
