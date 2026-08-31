@@ -99,8 +99,8 @@ test("server-renders the complete academic personal homepage", async () => {
   assert.match(html, /LinkedIn profile/i);
   assert.match(html, /My full name is/i);
   assert.match(html, /Dheepak Karan<br\/>Elumalai Santhakumari/i);
-  assert.match(html, /Let(?:&apos;|')s talk about/i);
-  assert.match(html, /RA\/TA opportunities and academic collaboration/i);
+  assert.doesNotMatch(html, /Let(?:&apos;|')s talk about|RA\/TA opportunities and academic collaboration/i);
+  assert.match(html, /Have a research or teaching opportunity\? Let(?:&apos;|')s connect\./i);
   assert.doesNotMatch(html, /resume-preview\.png/i);
   assert.match(html, />Resume<\/a>/i);
   assert.doesNotMatch(html, /Resume · PDF/i);

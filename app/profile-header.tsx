@@ -55,9 +55,7 @@ function EmailPreviewLink() {
         elumalaisanthakuma.d@northeastern.edu
       </a>
       <span className="email-context-card" id="email-context-preview" role="tooltip">
-        <small>Let&apos;s talk about</small>
-        <strong>Research · Teaching · Engineering</strong>
-        <span>RA/TA opportunities and academic collaboration.</span>
+        Have a research or teaching opportunity? Let&apos;s connect.
       </span>
     </span>
   );
