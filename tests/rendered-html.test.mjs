@@ -155,11 +155,12 @@ test("server-renders the dedicated academics page", async () => {
   assert.match(html, /<h2>Certifications<\/h2>/i);
   assert.match(html, /IBM AI Engineering/i);
   assert.match(html, /IBM Data Science/i);
-  assert.match(html, /data-share-badge-id="bd3c360a-3770-4ffd-8a59-e831b1cc8245"/i);
-  assert.match(html, /data-share-badge-id="a2494e8e-f248-4e97-9a4c-b4bcf836f5b8"/i);
-  assert.match(html, /data-share-badge-id="362f2ea3-6477-4a34-b022-84106387ffd7"/i);
-  assert.match(html, /data-share-badge-id="05ecc8a0-69ca-47a9-97c3-d261fa2fa190"/i);
-  assert.match(html, /cdn\.credly\.com\/assets\/utilities\/embed\.js/i);
+  assert.match(html, /src="https:\/\/www\.credly\.com\/embedded_badge\/bd3c360a-3770-4ffd-8a59-e831b1cc8245"/i);
+  assert.match(html, /src="https:\/\/www\.credly\.com\/embedded_badge\/a2494e8e-f248-4e97-9a4c-b4bcf836f5b8"/i);
+  assert.match(html, /src="https:\/\/www\.credly\.com\/embedded_badge\/362f2ea3-6477-4a34-b022-84106387ffd7"/i);
+  assert.match(html, /src="https:\/\/www\.credly\.com\/embedded_badge\/05ecc8a0-69ca-47a9-97c3-d261fa2fa190"/i);
+  assert.equal((html.match(/class="credly-badge-frame"/g) ?? []).length, 4);
+  assert.doesNotMatch(html, /cdn\.credly\.com\/assets\/utilities\/embed\.js|data-share-badge-id/i);
   assert.match(html, /aria-label="LeetCode solved problem statistics"/i);
   assert.match(html, /Languages:/i);
   assert.match(html, /Frequent topics:/i);
@@ -245,7 +246,8 @@ test("ships the professor-focused academic layout, metadata and accessibility fa
   assert.match(projectsPage, /GitHubContributions/);
   assert.match(academicsPage, /LeetCodePractice/);
   assert.match(academicsPage, /Certifications/);
-  assert.match(certificationsComponent, /data-share-badge-id/);
+  assert.match(certificationsComponent, /credly-badge-frame/);
+  assert.doesNotMatch(certificationsComponent, /embed\.js|data-share-badge-id/);
   assert.doesNotMatch(academicsPage, /teachingPreparation|Teaching Preparation/);
   assert.match(courseworkAlias, /academics\/page/);
   assert.match(courseworkTable, /coursework\.filter/);

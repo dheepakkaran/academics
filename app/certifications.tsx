@@ -11,16 +11,19 @@ export default function Certifications() {
         {certifications.map((certification) => (
           <div className="certification-badge" key={certification.badgeId}>
             <span className="visually-hidden">{certification.title} · {certification.issuer}</span>
-            <div
-              data-iframe-width="150"
-              data-iframe-height="270"
-              data-share-badge-id={certification.badgeId}
-              data-share-badge-host="https://www.credly.com"
+            <iframe
+              className="credly-badge-frame"
+              title={`${certification.title} · ${certification.issuer} verified credential`}
+              src={`https://www.credly.com/embedded_badge/${certification.badgeId}`}
+              width="150"
+              height="270"
+              frameBorder="0"
+              scrolling="no"
+              loading="lazy"
             />
           </div>
         ))}
       </div>
-      <script type="text/javascript" async src="https://cdn.credly.com/assets/utilities/embed.js" />
     </section>
   );
 }
