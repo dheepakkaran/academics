@@ -9,6 +9,33 @@ const linkedIn = externalLinks.find((link) => link.label === "LinkedIn");
 const github = externalLinks.find((link) => link.label === "GitHub");
 const credly = externalLinks.find((link) => link.label === "Credly");
 
+type ProfilePreviewLinkProps = {
+  id: string;
+  label: string;
+  href?: string;
+  handle: string;
+  detail: string;
+  address: string;
+};
+
+function ProfilePreviewLink({ id, label, href, handle, detail, address }: ProfilePreviewLinkProps) {
+  return (
+    <span className="profile-preview">
+      <a href={href} target="_blank" rel="noreferrer" aria-describedby={id}>{label}</a>
+      <span className="profile-preview-card" id={id} role="tooltip">
+        <img src="/dheepak-karan.jpg" alt="" width="52" height="52" aria-hidden="true" />
+        <span>
+          <span className="profile-preview-platform">{`${label} profile`}</span>
+          <strong>Dheepak Karan</strong>
+          <span>{handle}</span>
+          <small>{detail}</small>
+          <small>{address}</small>
+        </span>
+      </span>
+    </span>
+  );
+}
+
 export default function ProfileHeader({ active }: ProfileHeaderProps) {
   return (
     <>
@@ -38,8 +65,22 @@ export default function ProfileHeader({ active }: ProfileHeaderProps) {
           <p>Boston, Massachusetts · Expected May 2028</p>
           <p><a href={email?.href}>elumalaisanthakuma.d@northeastern.edu</a></p>
           <p>
-            <a href={github?.href} target="_blank" rel="noreferrer">GitHub</a>{" · "}
-            <a href={linkedIn?.href} target="_blank" rel="noreferrer">LinkedIn</a>{" · "}
+            <ProfilePreviewLink
+              id="github-profile-preview"
+              label="GitHub"
+              href={github?.href}
+              handle="@dheepakkaran"
+              detail="Repositories and contribution activity"
+              address="github.com/dheepakkaran"
+            />{" · "}
+            <ProfilePreviewLink
+              id="linkedin-profile-preview"
+              label="LinkedIn"
+              href={linkedIn?.href}
+              handle="MS ECE · Northeastern University"
+              detail="Machine learning, computer vision and algorithms"
+              address="linkedin.com/in/dheepakkaran"
+            />{" · "}
             <a href={credly?.href} target="_blank" rel="noreferrer">Credly</a>{" "}
             <a href="/resume.pdf" download>[Résumé]</a>
           </p>

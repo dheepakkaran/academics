@@ -95,6 +95,10 @@ test("server-renders the complete academic personal homepage", async () => {
   assert.match(html, /href="\/resume\.pdf"/);
   assert.match(html, /https:\/\/github\.com\/dheepakkaran/);
   assert.match(html, /https:\/\/www\.linkedin\.com\/in\/dheepakkaran/);
+  assert.match(html, /GitHub profile/i);
+  assert.match(html, /LinkedIn profile/i);
+  assert.equal((html.match(/role="tooltip"/g) ?? []).length, 2);
+  assert.doesNotMatch(html, /Credly profile/i);
   assert.doesNotMatch(html, /Zero to Signal|cinematic retelling|What have I built|What do I bring to the table/i);
   assert.doesNotMatch(html, /857[^<]{0,10}339[^<]{0,10}6410/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/);
@@ -211,6 +215,8 @@ test("ships the professor-focused academic layout, metadata and accessibility fa
   assert.match(profileHeader, /academic-intro/);
   assert.match(profileHeader, /academic-avatar/);
   assert.match(profileHeader, /academic-menu/);
+  assert.match(profileHeader, /github-profile-preview/);
+  assert.match(profileHeader, /linkedin-profile-preview/);
   assert.match(profileHeader, />Projects</);
   assert.match(profileHeader, />Academics</);
   assert.doesNotMatch(profileHeader, />Work<|>CV</);
@@ -256,6 +262,8 @@ test("ships the professor-focused academic layout, metadata and accessibility fa
   assert.match(css, /#c8102e/i);
   assert.match(css, /\.github-day\.level-4\s*\{[^}]*#c8102e/is);
   assert.match(css, /signature-arrow-cursor\.png/);
+  assert.match(css, /\.profile-preview:hover\s+\.profile-preview-card/);
+  assert.match(css, /\.profile-preview:focus-within\s+\.profile-preview-card/);
   assert.doesNotMatch(css, /\.github-heatmap-(?:scroll|layout)\s*\{[^}]*overflow-x/is);
   assert.match(css, /pointer:\s*fine/);
   assert.doesNotMatch(css, /skill-flow-field|--blue|violet|glow|box-shadow/i);
