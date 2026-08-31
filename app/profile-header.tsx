@@ -35,23 +35,6 @@ function ProfilePreviewLink({ id, label, href, handle, detail, address }: Profil
   );
 }
 
-function CertificationPreviewLink() {
-  return (
-    <span className="profile-preview">
-      <a href="/academics#certifications" aria-describedby="certification-preview">Certifications</a>
-      <span className="profile-preview-card" id="certification-preview" role="tooltip">
-        <span className="certification-preview-mark" aria-hidden="true">✓</span>
-        <span>
-          <span className="profile-preview-platform">Certification preview</span>
-          <strong>IBM Professional Certificates</strong>
-          <span>AI Engineering · Data Science</span>
-          <small>View verified badges in Academics</small>
-        </span>
-      </span>
-    </span>
-  );
-}
-
 export default function ProfileHeader({ active }: ProfileHeaderProps) {
   return (
     <>
@@ -97,7 +80,6 @@ export default function ProfileHeader({ active }: ProfileHeaderProps) {
               detail="Machine learning, computer vision and algorithms"
               address="linkedin.com/in/dheepakkaran"
             />{" · "}
-            <CertificationPreviewLink />{" "}
             <a href="/resume.pdf" download>[Résumé]</a>
           </p>
         </div>

@@ -168,18 +168,6 @@ a:hover {
   object-fit: cover;
 }
 
-.certification-preview-mark {
-  display: grid;
-  width: 52px;
-  height: 52px;
-  place-items: center;
-  color: #c8102e;
-  font-size: 24px;
-  font-weight: 700;
-  border: 1px solid #999;
-  border-radius: 50%;
-}
-
 .profile-preview-card > span { display: grid; line-height: 1.25; }
 .profile-preview-card strong { font-size: 14px; }
 .profile-preview-card small { margin-top: 3px; color: #666; font-size: 11px; }
@@ -197,27 +185,56 @@ a:hover {
   border: 0;
 }
 
-.certification-badges {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(150px, 1fr));
-  gap: 16px;
-  align-items: start;
-  margin-top: 14px;
-  padding-top: 16px;
+.certification-list {
+  margin: 0;
+  padding: 0;
   border-top: 1px solid #999;
+  list-style: none;
 }
 
-.certification-badge {
+.certification-item {
   position: relative;
-  display: flex;
-  min-height: 270px;
-  justify-content: center;
+  padding: 9px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.certification-item > a {
+  display: inline-block;
+  font-weight: 600;
+}
+
+.certification-hover-preview {
+  position: absolute;
+  top: calc(100% + 7px);
+  left: 50%;
+  z-index: 40;
+  width: 130px;
+  height: 224px;
+  padding: 6px;
+  visibility: hidden;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transform: translate(-50%, -4px);
+  background: #fff;
+  border: 1px solid #999;
+  transition: opacity 120ms ease, transform 120ms ease, visibility 120ms ease;
+}
+
+.certification-item:hover .certification-hover-preview,
+.certification-item:focus-within .certification-hover-preview {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 
 .credly-badge-frame {
+  display: block;
   width: 150px;
   height: 270px;
   border: 0;
+  transform: scale(.78);
+  transform-origin: top left;
 }
 
 .affiliation-line {
@@ -655,21 +672,18 @@ p { margin: 8px 0; }
   .coursework-result { grid-column: 2; text-align: left; }
   .skills-list { grid-template-columns: 1fr; }
   .project-heading { align-items: flex-start; flex-direction: column; gap: 2px; }
-  .certification-badges { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-}
-
-@media (max-width: 390px) {
-  .certification-badges { grid-template-columns: 1fr; }
 }
 
 @media (hover: none) {
-  .profile-preview-card { display: none; }
+  .profile-preview-card,
+  .certification-hover-preview { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html,
   .academic-page { scroll-behavior: auto; }
-  .profile-preview-card { transition: none; }
+  .profile-preview-card,
+  .certification-hover-preview { transition: none; }
 }
 
 @media print {

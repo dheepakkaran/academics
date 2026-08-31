@@ -4,26 +4,35 @@ export default function Certifications() {
   return (
     <section id="certifications">
       <h2>Certifications</h2>
-      <p>
-        <strong>Professional certificates:</strong> IBM AI Engineering · IBM Data Science
-      </p>
-      <div className="certification-badges" aria-label="Verified certification badges">
+      <ul className="certification-list" aria-label="Verified certifications">
         {certifications.map((certification) => (
-          <div className="certification-badge" key={certification.badgeId}>
-            <span className="visually-hidden">{certification.title} · {certification.issuer}</span>
-            <iframe
-              className="credly-badge-frame"
-              title={`${certification.title} · ${certification.issuer} verified credential`}
-              src={`https://www.credly.com/embedded_badge/${certification.badgeId}`}
-              width="150"
-              height="270"
-              frameBorder="0"
-              scrolling="no"
-              loading="lazy"
-            />
-          </div>
+          <li className="certification-item" key={certification.badgeId}>
+            <a
+              href={`https://www.credly.com/badges/${certification.badgeId}/public_url`}
+              target="_blank"
+              rel="noreferrer"
+              aria-describedby={`certification-preview-${certification.badgeId}`}
+            >
+              {`${certification.issuer} ${certification.title}`}
+            </a>
+            <span
+              className="certification-hover-preview"
+              id={`certification-preview-${certification.badgeId}`}
+              role="tooltip"
+            >
+              <iframe
+                className="credly-badge-frame"
+                title={`${certification.title} · ${certification.issuer} verified credential`}
+                src={`https://www.credly.com/embedded_badge/${certification.badgeId}`}
+                width="150"
+                height="270"
+                frameBorder="0"
+                scrolling="no"
+              />
+            </span>
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   );
 }

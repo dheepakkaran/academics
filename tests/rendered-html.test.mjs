@@ -97,9 +97,8 @@ test("server-renders the complete academic personal homepage", async () => {
   assert.match(html, /https:\/\/www\.linkedin\.com\/in\/dheepakkaran/);
   assert.match(html, /GitHub profile/i);
   assert.match(html, /LinkedIn profile/i);
-  assert.match(html, /Certification preview/i);
-  assert.match(html, /href="\/academics#certifications"/i);
-  assert.equal((html.match(/role="tooltip"/g) ?? []).length, 3);
+  assert.doesNotMatch(html, /Certification preview|href="\/academics#certifications"/i);
+  assert.equal((html.match(/role="tooltip"/g) ?? []).length, 2);
   assert.doesNotMatch(html, />Credly</i);
   assert.doesNotMatch(html, /Zero to Signal|cinematic retelling|What have I built|What do I bring to the table/i);
   assert.doesNotMatch(html, /857[^<]{0,10}339[^<]{0,10}6410/);
@@ -153,8 +152,11 @@ test("server-renders the dedicated academics page", async () => {
   assert.match(html, /Registered/i);
   assert.match(html, /Community School Volunteer/i);
   assert.match(html, /<h2>Certifications<\/h2>/i);
-  assert.match(html, /IBM AI Engineering/i);
-  assert.match(html, /IBM Data Science/i);
+  assert.match(html, /IBM AI Engineering Professional Certificate/i);
+  assert.match(html, /IBM Data Science Professional Certificate/i);
+  assert.match(html, /AWS Educate Machine Learning Foundations/i);
+  assert.match(html, /Cisco Cybersecurity Foundations/i);
+  assert.equal((html.match(/role="tooltip"/g) ?? []).length, 6);
   assert.match(html, /src="https:\/\/www\.credly\.com\/embedded_badge\/bd3c360a-3770-4ffd-8a59-e831b1cc8245"/i);
   assert.match(html, /src="https:\/\/www\.credly\.com\/embedded_badge\/a2494e8e-f248-4e97-9a4c-b4bcf836f5b8"/i);
   assert.match(html, /src="https:\/\/www\.credly\.com\/embedded_badge\/362f2ea3-6477-4a34-b022-84106387ffd7"/i);
@@ -184,7 +186,7 @@ test("server-renders the dedicated engineering notes page", async () => {
   assert.match(html, /<title>Engineering Notes — Dheepak Karan/);
   assert.match(html, /Engineering notes/i);
   assert.match(html, /Northeastern University/i);
-  assert.match(html, /Certifications/i);
+  assert.doesNotMatch(html, /Certifications/i);
   assert.match(html, /Short technical essays about practical decisions/i);
   assert.match(html, /Working principle/i);
   assert.match(html, /Fine-tuning an 8B model when compute is the constraint/i);
@@ -231,7 +233,7 @@ test("ships the professor-focused academic layout, metadata and accessibility fa
   assert.match(profileHeader, /academic-menu/);
   assert.match(profileHeader, /github-profile-preview/);
   assert.match(profileHeader, /linkedin-profile-preview/);
-  assert.match(profileHeader, /certification-preview/);
+  assert.doesNotMatch(profileHeader, /CertificationPreviewLink|certification-preview/);
   assert.match(profileHeader, />Projects</);
   assert.match(profileHeader, />Academics</);
   assert.doesNotMatch(profileHeader, />Work<|>CV</);
@@ -246,6 +248,8 @@ test("ships the professor-focused academic layout, metadata and accessibility fa
   assert.match(projectsPage, /GitHubContributions/);
   assert.match(academicsPage, /LeetCodePractice/);
   assert.match(academicsPage, /Certifications/);
+  assert.match(certificationsComponent, /certification-list/);
+  assert.match(certificationsComponent, /certification-hover-preview/);
   assert.match(certificationsComponent, /credly-badge-frame/);
   assert.doesNotMatch(certificationsComponent, /embed\.js|data-share-badge-id/);
   assert.doesNotMatch(academicsPage, /teachingPreparation|Teaching Preparation/);
