@@ -40,10 +40,8 @@ function ResumePreviewLink() {
     <span className="resume-preview">
       <a href="/resume.pdf" download aria-describedby="resume-document-preview">Resume</a>
       <span className="resume-preview-card" id="resume-document-preview" role="tooltip">
-        <small>Resume · PDF</small>
-        <strong>Thank you for considering my work.</strong>
         <span className="resume-preview-message">
-          Click to download the resume.
+          Thanks for considering my work. Click to download.
         </span>
       </span>
     </span>

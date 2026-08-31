@@ -103,9 +103,8 @@ test("server-renders the complete academic personal homepage", async () => {
   assert.match(html, /RA\/TA opportunities and academic collaboration/i);
   assert.doesNotMatch(html, /resume-preview\.png/i);
   assert.match(html, />Resume<\/a>/i);
-  assert.match(html, /Resume · PDF/i);
-  assert.match(html, /Thank you for considering my work\./i);
-  assert.match(html, /Click to download the resume\./i);
+  assert.doesNotMatch(html, /Resume · PDF/i);
+  assert.match(html, /Thanks for considering my work\. Click to download\./i);
   assert.doesNotMatch(html, /\[Résumé\]|>Résumé<\/a>/i);
   assert.doesNotMatch(html, /Certification preview|href="\/academics#certifications"/i);
   assert.equal((html.match(/role="tooltip"/g) ?? []).length, 5);
