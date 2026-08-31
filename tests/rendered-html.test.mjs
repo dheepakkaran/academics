@@ -203,6 +203,7 @@ test("ships the professor-focused academic layout, metadata and accessibility fa
     "../public/dheepak-karan.jpg",
     "../public/northeastern-monogram.png",
     "../public/signature-arrow-cursor.png",
+    "../public/signature-arrow-cursor-small.png",
   ]) {
     await access(new URL(asset, import.meta.url));
   }
@@ -261,7 +262,8 @@ test("ships the professor-focused academic layout, metadata and accessibility fa
   assert.doesNotMatch(css, /body::before/);
   assert.match(css, /#c8102e/i);
   assert.match(css, /\.github-day\.level-4\s*\{[^}]*#c8102e/is);
-  assert.match(css, /signature-arrow-cursor\.png/);
+  assert.match(css, /signature-arrow-cursor-small\.png/);
+  assert.doesNotMatch(css, /cursor:\s*pointer/);
   assert.match(css, /\.profile-preview:hover\s+\.profile-preview-card/);
   assert.match(css, /\.profile-preview:focus-within\s+\.profile-preview-card/);
   assert.doesNotMatch(css, /\.github-heatmap-(?:scroll|layout)\s*\{[^}]*overflow-x/is);

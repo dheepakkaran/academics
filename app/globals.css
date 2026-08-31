@@ -41,15 +41,12 @@ a:hover {
 
 @media (hover: hover) and (pointer: fine) {
   html,
-  body {
-    cursor: url("/signature-arrow-cursor.png") 2 1, auto;
-  }
-
+  body,
   a,
   button,
   [role="button"],
   summary {
-    cursor: pointer;
+    cursor: url("/signature-arrow-cursor-small.png") 2 1, auto;
   }
 
   input,
