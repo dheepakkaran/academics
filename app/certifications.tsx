@@ -20,15 +20,19 @@ export default function Certifications() {
               id={`certification-preview-${certification.badgeId}`}
               role="tooltip"
             >
-              <iframe
-                className="credly-badge-frame"
-                title={`${certification.title} · ${certification.issuer} verified credential`}
-                src={`https://www.credly.com/embedded_badge/${certification.badgeId}`}
-                width="150"
-                height="270"
-                frameBorder="0"
-                scrolling="no"
-              />
+              <span className="certification-badge-image">
+                <iframe
+                  className="credly-badge-frame"
+                  title={`${certification.title} · ${certification.issuer} badge image`}
+                  src={`https://www.credly.com/embedded_badge/${certification.badgeId}`}
+                  width="150"
+                  height="270"
+                  frameBorder="0"
+                  scrolling="no"
+                  tabIndex={-1}
+                />
+              </span>
+              <small className="credly-provider">Provided by Credly</small>
             </span>
           </li>
         ))}

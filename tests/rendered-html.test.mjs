@@ -250,6 +250,8 @@ test("ships the professor-focused academic layout, metadata and accessibility fa
   assert.match(academicsPage, /Certifications/);
   assert.match(certificationsComponent, /certification-list/);
   assert.match(certificationsComponent, /certification-hover-preview/);
+  assert.match(certificationsComponent, /certification-badge-image/);
+  assert.match(certificationsComponent, /Provided by Credly/);
   assert.match(certificationsComponent, /credly-badge-frame/);
   assert.doesNotMatch(certificationsComponent, /embed\.js|data-share-badge-id/);
   assert.doesNotMatch(academicsPage, /teachingPreparation|Teaching Preparation/);

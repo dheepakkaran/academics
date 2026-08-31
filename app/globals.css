@@ -209,7 +209,7 @@ a:hover {
   left: 50%;
   z-index: 40;
   width: 130px;
-  height: 224px;
+  height: 148px;
   padding: 6px;
   visibility: hidden;
   opacity: 0;
@@ -235,6 +235,23 @@ a:hover {
   border: 0;
   transform: scale(.78);
   transform-origin: top left;
+}
+
+.certification-badge-image {
+  display: block;
+  width: 117px;
+  height: 117px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.credly-provider {
+  display: block;
+  margin-top: 5px;
+  color: #666;
+  font-size: 9px;
+  line-height: 1;
+  text-align: center;
 }
 
 .affiliation-line {
