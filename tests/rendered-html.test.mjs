@@ -99,11 +99,13 @@ test("server-renders the complete academic personal homepage", async () => {
   assert.match(html, /LinkedIn profile/i);
   assert.match(html, /My full name is/i);
   assert.match(html, /Dheepak Karan<br\/>Elumalai Santhakumari/i);
+  assert.match(html, /Let(?:&apos;|')s talk about/i);
+  assert.match(html, /RA\/TA opportunities and academic collaboration/i);
   assert.match(html, /resume-preview\.png/i);
   assert.match(html, /Résumé · PDF/i);
   assert.doesNotMatch(html, /\[Résumé\]/i);
   assert.doesNotMatch(html, /Certification preview|href="\/academics#certifications"/i);
-  assert.equal((html.match(/role="tooltip"/g) ?? []).length, 4);
+  assert.equal((html.match(/role="tooltip"/g) ?? []).length, 5);
   assert.doesNotMatch(html, />Credly</i);
   assert.doesNotMatch(html, /Zero to Signal|cinematic retelling|What have I built|What do I bring to the table/i);
   assert.doesNotMatch(html, /857[^<]{0,10}339[^<]{0,10}6410/);
@@ -161,7 +163,7 @@ test("server-renders the dedicated academics page", async () => {
   assert.match(html, /IBM Data Science Professional Certificate/i);
   assert.match(html, /AWS Educate Machine Learning Foundations/i);
   assert.match(html, /Cisco Cybersecurity Foundations/i);
-  assert.equal((html.match(/role="tooltip"/g) ?? []).length, 8);
+  assert.equal((html.match(/role="tooltip"/g) ?? []).length, 9);
   assert.match(html, /src="https:\/\/www\.credly\.com\/embedded_badge\/bd3c360a-3770-4ffd-8a59-e831b1cc8245"/i);
   assert.match(html, /src="https:\/\/www\.credly\.com\/embedded_badge\/a2494e8e-f248-4e97-9a4c-b4bcf836f5b8"/i);
   assert.match(html, /src="https:\/\/www\.credly\.com\/embedded_badge\/362f2ea3-6477-4a34-b022-84106387ffd7"/i);
@@ -239,6 +241,7 @@ test("ships the professor-focused academic layout, metadata and accessibility fa
   assert.match(profileHeader, /academic-menu/);
   assert.match(profileHeader, /name-thought-trigger/);
   assert.match(profileHeader, /full-name-thought/);
+  assert.match(profileHeader, /email-context-preview/);
   assert.match(profileHeader, /github-profile-preview/);
   assert.match(profileHeader, /linkedin-profile-preview/);
   assert.match(profileHeader, /resume-document-preview/);

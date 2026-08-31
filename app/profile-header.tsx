@@ -53,6 +53,21 @@ function ResumePreviewLink() {
   );
 }
 
+function EmailPreviewLink() {
+  return (
+    <span className="email-preview">
+      <a href={email?.href} aria-describedby="email-context-preview">
+        elumalaisanthakuma.d@northeastern.edu
+      </a>
+      <span className="email-context-card" id="email-context-preview" role="tooltip">
+        <small>Let&apos;s talk about</small>
+        <strong>Research · Teaching · Engineering</strong>
+        <span>RA/TA opportunities and academic collaboration.</span>
+      </span>
+    </span>
+  );
+}
+
 export default function ProfileHeader({ active }: ProfileHeaderProps) {
   return (
     <>
@@ -92,7 +107,7 @@ export default function ProfileHeader({ active }: ProfileHeaderProps) {
             <span>MS ECE, <a href="https://www.northeastern.edu/" target="_blank" rel="noreferrer">Northeastern University</a> · 3.926 CGPA</span>
           </p>
           <p>Boston, Massachusetts · Expected May 2028</p>
-          <p><a href={email?.href}>elumalaisanthakuma.d@northeastern.edu</a></p>
+          <p><EmailPreviewLink /></p>
           <p>
             <ProfilePreviewLink
               id="github-profile-preview"
