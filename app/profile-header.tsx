@@ -65,14 +65,27 @@ export default function ProfileHeader({ active }: ProfileHeaderProps) {
   return (
     <>
       <header className="academic-intro">
-        <img
-          className="academic-avatar"
-          src="/dheepak-karan.jpg"
-          alt="Dheepak Karan"
-          width="512"
-          height="512"
-          fetchPriority="high"
-        />
+        <span
+          className="academic-avatar-flip"
+          role="img"
+          tabIndex={0}
+          aria-label="Dheepak Karan portrait; hover or focus to reveal a Northeastern Husky"
+        >
+          <span className="academic-avatar-flip-inner">
+            <img
+              className="academic-avatar academic-avatar-front"
+              src="/dheepak-karan.jpg"
+              alt=""
+              width="512"
+              height="512"
+              fetchPriority="high"
+              aria-hidden="true"
+            />
+            <span className="academic-avatar-back" aria-hidden="true">
+              <img src="/husky-favicon.png" alt="" width="512" height="512" />
+            </span>
+          </span>
+        </span>
         <div className="academic-bio">
           <h1>
             <span

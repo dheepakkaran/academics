@@ -38,7 +38,7 @@ test("server-renders the complete academic personal homepage", async () => {
   assert.match(html, /Machine Learning · Computer Vision · Algorithms/i);
   assert.match(html, /research and teaching opportunities/i);
   assert.match(html, /src="\/dheepak-karan\.jpg"/i);
-  assert.match(html, /alt="Dheepak Karan"/i);
+  assert.match(html, /role="img"[^>]*aria-label="Dheepak Karan portrait; hover or focus to reveal a Northeastern Husky"/i);
   assert.match(html, /Northeastern University/i);
   assert.match(html, /src="\/northeastern-monogram\.png"/i);
   assert.match(html, /Anna University/i);
@@ -99,6 +99,8 @@ test("server-renders the complete academic personal homepage", async () => {
   assert.match(html, /LinkedIn profile/i);
   assert.match(html, /My full name is/i);
   assert.match(html, /Dheepak Karan<br\/>Elumalai Santhakumari/i);
+  assert.match(html, /hover or focus to reveal a Northeastern Husky/i);
+  assert.match(html, /src="\/husky-favicon\.png"/i);
   assert.doesNotMatch(html, /Let(?:&apos;|')s talk about|RA\/TA opportunities and academic collaboration/i);
   assert.match(html, /Have a research or teaching opportunity\? Let(?:&apos;|')s connect\./i);
   assert.doesNotMatch(html, /resume-preview\.png/i);
@@ -239,6 +241,8 @@ test("ships the professor-focused academic layout, metadata and accessibility fa
   assert.match(profileHeader, /download/);
   assert.match(profileHeader, /academic-intro/);
   assert.match(profileHeader, /academic-avatar/);
+  assert.match(profileHeader, /academic-avatar-flip/);
+  assert.match(profileHeader, /academic-avatar-back/);
   assert.match(profileHeader, /academic-menu/);
   assert.match(profileHeader, /name-thought-trigger/);
   assert.match(profileHeader, /full-name-thought/);
@@ -288,6 +292,7 @@ test("ships the professor-focused academic layout, metadata and accessibility fa
   assert.doesNotMatch(page, /neyveli|chennai|cinematic/i);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(css, /:focus-visible/);
+  assert.match(css, /\.academic-avatar-flip:hover[\s\S]*?rotateY\(180deg\)/i);
   assert.match(css, /\.name-thought-bubble\s*\{[^}]*right:\s*calc\(100% \+ 24px\)[^}]*transform:\s*translate\(4px, -50%\)/is);
   assert.match(css, /body\s*\{[^}]*height:\s*100%[^}]*overflow:\s*hidden[^}]*background:\s*#fff/is);
   assert.match(css, /\.academic-page\s*\{[^}]*width:\s*min\(1080px,\s*calc\(100%\s*-\s*28px\)\)[^}]*height:\s*calc\(100dvh\s*-\s*28px\)[^}]*overflow-y:\s*auto[^}]*scrollbar-width:\s*none[^}]*border:\s*1px solid #c8c8c8/is);

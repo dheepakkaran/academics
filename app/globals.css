@@ -104,14 +104,57 @@ a:hover {
   margin-bottom: 22px;
 }
 
-.academic-avatar {
+.academic-avatar-flip {
   display: block;
   width: 165px;
   height: 165px;
   flex: 0 0 165px;
   border-radius: 50%;
+  perspective: 900px;
+}
+
+.academic-avatar-flip-inner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 360ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.academic-avatar,
+.academic-avatar-back {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 50%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.academic-avatar {
   object-fit: cover;
   object-position: center;
+}
+
+.academic-avatar-back {
+  transform: rotateY(180deg);
+  background: #c8102e;
+}
+
+.academic-avatar-back img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.academic-avatar-flip:hover .academic-avatar-flip-inner,
+.academic-avatar-flip:focus .academic-avatar-flip-inner {
+  transform: rotateY(180deg);
 }
 
 .academic-bio {
@@ -802,7 +845,7 @@ p { margin: 8px 0; }
     border: 0;
   }
   .academic-intro { flex-direction: column; gap: 16px; padding: 22px 0 8px; }
-  .academic-avatar { width: 140px; height: 140px; flex-basis: 140px; }
+  .academic-avatar-flip { width: 140px; height: 140px; flex-basis: 140px; }
   .academic-bio { min-width: 0; }
   .academic-bio h1 { font-size: 29px; }
   .affiliation-line { align-items: flex-start; }
@@ -861,11 +904,24 @@ p { margin: 8px 0; }
 }
 
 @media (hover: none) {
+  .academic-avatar-flip-inner { transform: none !important; transition: none; }
+  .academic-avatar-back { display: none; }
   .name-thought-bubble,
   .email-context-card,
   .profile-preview-card,
   .resume-preview-card,
   .certification-hover-preview { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) and (hover: hover) {
+  .academic-avatar-flip-inner { transform: none !important; transition: none; }
+  .academic-avatar,
+  .academic-avatar-back { transition: opacity 120ms ease; }
+  .academic-avatar-back { transform: none; opacity: 0; }
+  .academic-avatar-flip:hover .academic-avatar-front,
+  .academic-avatar-flip:focus .academic-avatar-front { opacity: 0; }
+  .academic-avatar-flip:hover .academic-avatar-back,
+  .academic-avatar-flip:focus .academic-avatar-back { opacity: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {
