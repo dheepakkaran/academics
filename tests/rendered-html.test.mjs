@@ -103,6 +103,7 @@ test("server-renders the complete academic personal homepage", async () => {
   assert.match(html, /RA\/TA opportunities and academic collaboration/i);
   assert.match(html, /resume-preview\.png/i);
   assert.match(html, /Résumé · PDF/i);
+  assert.match(html, /Thank you for considering my work\. Click to download the résumé\./i);
   assert.doesNotMatch(html, /\[Résumé\]/i);
   assert.doesNotMatch(html, /Certification preview|href="\/academics#certifications"/i);
   assert.equal((html.match(/role="tooltip"/g) ?? []).length, 5);
@@ -245,6 +246,7 @@ test("ships the professor-focused academic layout, metadata and accessibility fa
   assert.match(profileHeader, /github-profile-preview/);
   assert.match(profileHeader, /linkedin-profile-preview/);
   assert.match(profileHeader, /resume-document-preview/);
+  assert.match(profileHeader, /resume-preview-message/);
   assert.doesNotMatch(profileHeader, /CertificationPreviewLink|certification-preview/);
   assert.match(profileHeader, />Projects</);
   assert.match(profileHeader, />Academics</);

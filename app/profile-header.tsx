@@ -48,6 +48,9 @@ function ResumePreviewLink() {
           aria-hidden="true"
         />
         <small>Résumé · PDF</small>
+        <span className="resume-preview-message">
+          Thank you for considering my work. Click to download the résumé.
+        </span>
       </span>
     </span>
   );
