@@ -173,6 +173,51 @@ a:hover {
 .profile-preview-card small { margin-top: 3px; color: #666; font-size: 11px; }
 .profile-preview-platform { color: #c8102e; font-size: 11px; }
 
+.resume-preview {
+  position: relative;
+  display: inline-block;
+}
+
+.resume-preview-card {
+  position: absolute;
+  top: calc(100% + 9px);
+  left: 50%;
+  z-index: 30;
+  width: 162px;
+  padding: 6px;
+  visibility: hidden;
+  opacity: 0;
+  color: #222;
+  pointer-events: none;
+  transform: translate(-50%, -4px);
+  background: #fff;
+  border: 1px solid #999;
+  transition: opacity 120ms ease, transform 120ms ease, visibility 120ms ease;
+}
+
+.resume-preview:hover .resume-preview-card,
+.resume-preview:focus-within .resume-preview-card {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.resume-preview-card img {
+  display: block;
+  width: 148px;
+  height: auto;
+  border: 1px solid #ddd;
+}
+
+.resume-preview-card small {
+  display: block;
+  margin-top: 5px;
+  color: #666;
+  font-size: 9px;
+  line-height: 1;
+  text-align: center;
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -693,6 +738,7 @@ p { margin: 8px 0; }
 
 @media (hover: none) {
   .profile-preview-card,
+  .resume-preview-card,
   .certification-hover-preview { display: none; }
 }
 
@@ -700,6 +746,7 @@ p { margin: 8px 0; }
   html,
   .academic-page { scroll-behavior: auto; }
   .profile-preview-card,
+  .resume-preview-card,
   .certification-hover-preview { transition: none; }
 }
 

@@ -35,6 +35,24 @@ function ProfilePreviewLink({ id, label, href, handle, detail, address }: Profil
   );
 }
 
+function ResumePreviewLink() {
+  return (
+    <span className="resume-preview">
+      <a href="/resume.pdf" download aria-describedby="resume-document-preview">Résumé</a>
+      <span className="resume-preview-card" id="resume-document-preview" role="tooltip">
+        <img
+          src="/resume-preview.png"
+          alt=""
+          width="480"
+          height="679"
+          aria-hidden="true"
+        />
+        <small>Résumé · PDF</small>
+      </span>
+    </span>
+  );
+}
+
 export default function ProfileHeader({ active }: ProfileHeaderProps) {
   return (
     <>
@@ -80,7 +98,7 @@ export default function ProfileHeader({ active }: ProfileHeaderProps) {
               detail="Machine learning, computer vision and algorithms"
               address="linkedin.com/in/dheepakkaran"
             />{" · "}
-            <a href="/resume.pdf" download>[Résumé]</a>
+            <ResumePreviewLink />
           </p>
         </div>
       </header>
