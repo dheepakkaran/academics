@@ -283,6 +283,7 @@ test("ships the professor-focused academic layout, metadata and accessibility fa
   assert.doesNotMatch(page, /neyveli|chennai|cinematic/i);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(css, /:focus-visible/);
+  assert.match(css, /\.name-thought-bubble\s*\{[^}]*right:\s*calc\(100% \+ 24px\)[^}]*transform:\s*translate\(4px, -50%\)/is);
   assert.match(css, /body\s*\{[^}]*height:\s*100%[^}]*overflow:\s*hidden[^}]*background:\s*#fff/is);
   assert.match(css, /\.academic-page\s*\{[^}]*width:\s*min\(1080px,\s*calc\(100%\s*-\s*28px\)\)[^}]*height:\s*calc\(100dvh\s*-\s*28px\)[^}]*overflow-y:\s*auto[^}]*scrollbar-width:\s*none[^}]*border:\s*1px solid #c8c8c8/is);
   assert.match(css, /\.academic-page::\-webkit-scrollbar\s*\{\s*display:\s*none;\s*\}/i);

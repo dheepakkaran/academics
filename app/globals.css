@@ -134,8 +134,10 @@ a:hover {
 
 .name-thought-bubble {
   position: absolute;
-  bottom: calc(100% + 15px);
-  left: 50%;
+  top: 50%;
+  right: calc(100% + 24px);
+  bottom: auto;
+  left: auto;
   z-index: 40;
   display: grid;
   gap: 2px;
@@ -148,7 +150,7 @@ a:hover {
   line-height: 1.25;
   text-align: left;
   pointer-events: none;
-  transform: translate(-50%, 4px);
+  transform: translate(4px, -50%);
   background: #fff;
   border: 1px solid #999;
   border-radius: 18px;
@@ -165,15 +167,19 @@ a:hover {
 }
 
 .name-thought-bubble::before {
-  bottom: -11px;
-  left: 46%;
+  top: 44%;
+  right: -11px;
+  bottom: auto;
+  left: auto;
   width: 10px;
   height: 10px;
 }
 
 .name-thought-bubble::after {
-  bottom: -19px;
-  left: 43%;
+  top: 61%;
+  right: -19px;
+  bottom: auto;
+  left: auto;
   width: 5px;
   height: 5px;
 }
@@ -192,7 +198,7 @@ a:hover {
 .name-thought-trigger:focus-within .name-thought-bubble {
   visibility: visible;
   opacity: 1;
-  transform: translate(-50%, 0);
+  transform: translate(0, -50%);
 }
 
 .profile-preview {
@@ -802,6 +808,32 @@ p { margin: 8px 0; }
   .coursework-result { grid-column: 2; text-align: left; }
   .skills-list { grid-template-columns: 1fr; }
   .project-heading { align-items: flex-start; flex-direction: column; gap: 2px; }
+}
+
+@media (min-width: 621px) and (max-width: 900px) and (hover: hover) {
+  .name-thought-bubble {
+    top: calc(100% + 15px);
+    right: auto;
+    left: 50%;
+    transform: translate(-50%, -4px);
+  }
+
+  .name-thought-bubble::before {
+    top: -11px;
+    right: auto;
+    left: 46%;
+  }
+
+  .name-thought-bubble::after {
+    top: -19px;
+    right: auto;
+    left: 43%;
+  }
+
+  .name-thought-trigger:hover .name-thought-bubble,
+  .name-thought-trigger:focus-within .name-thought-bubble {
+    transform: translate(-50%, 0);
+  }
 }
 
 @media (hover: none) {
