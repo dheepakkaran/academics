@@ -33,7 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description: "Graduate coursework, academic service, algorithm practice and selected projects across machine learning, computer vision, algorithms and engineering systems.",
       images: [
         {
-          url: new URL("/og.png", metadataBase).toString(),
+          url: new URL("/og.png?v=20260901", metadataBase).toString(),
           width: 1200,
           height: 630,
           alt: "Dheepak Karan — ECE academic portfolio",
@@ -44,7 +44,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: "Dheepak Karan — ECE Academic Portfolio",
       description: "Graduate coursework, academic service and selected projects across machine learning, computer vision, algorithms and engineering systems.",
-      images: [new URL("/og.png", metadataBase).toString()],
+      images: [new URL("/og.png?v=20260901", metadataBase).toString()],
     },
   };
 }
