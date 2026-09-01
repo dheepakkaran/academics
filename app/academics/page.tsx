@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import Certifications from "../certifications";
 import CourseworkTable from "../coursework-table";
 import LeetCodePractice from "../leetcode-practice";
-import { leadership } from "../portfolio-data";
+import { leadership, undergraduateCourseGroups } from "../portfolio-data";
 import ProfileHeader from "../profile-header";
 
 export const metadata: Metadata = {
   title: "Academics — Dheepak Karan",
   description:
-    "Graduate coursework, academic service and algorithm practice for Dheepak Karan at Northeastern University.",
+    "Graduate and relevant undergraduate coursework, academic service and algorithm practice for Dheepak Karan.",
 };
 
 const academicService = leadership.filter((item) => item.role !== "Departmental Sports Coordinator");
@@ -26,7 +26,29 @@ export default function AcademicsPage() {
           <CourseworkTable />
         </section>
 
-        <Certifications />
+        <section id="undergraduate-coursework">
+          <h2>Relevant Undergraduate Coursework</h2>
+          <p>
+            Selected B.E. Electrical and Electronics Engineering courses relevant to computing,
+            electronics, control and intelligent systems. Course codes follow the undergraduate
+            transcript; <strong>O</strong> denotes Outstanding (10/10).
+          </p>
+          <dl className="academic-area-list undergraduate-coursework-list">
+            {undergraduateCourseGroups.map((group) => (
+              <div key={group.area}>
+                <dt>{group.area}</dt>
+                <dd>
+                  {group.courses.map((course) => (
+                    <span className="undergraduate-course" key={course.code}>
+                      <span className="undergraduate-course-code">{course.code}</span>{" "}
+                      <span>{`${course.title} (${course.grade})`}</span>
+                    </span>
+                  ))}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </section>
 
         <section>
           <h2>Teaching &amp; Academic Service</h2>
@@ -44,6 +66,8 @@ export default function AcademicsPage() {
             ))}
           </ol>
         </section>
+
+        <Certifications />
 
         <LeetCodePractice />
       </main>

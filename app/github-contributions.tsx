@@ -137,8 +137,28 @@ function contributionLabel(day: ContributionDay) {
     : `${day.count} contribution${day.count === 1 ? "" : "s"} on ${formattedDate}`;
 }
 
+function getLatestActivity(days: ContributionDay[]) {
+  let latest: ContributionDay | null = null;
+
+  for (const day of days) {
+    if (day.count > 0 && (!latest || day.date > latest.date)) latest = day;
+  }
+
+  return latest;
+}
+
+function formatActivityDate(date: string) {
+  return dateFromIso(date).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+}
+
 export default async function GitHubContributions() {
   const data = await getContributions();
+  const latestActivity = getLatestActivity(data.days);
   const months = getMonthMarkers(data.days);
   const weekCount = Math.max(...data.days.map((day) => day.week)) + 1;
   const gridColumns = `repeat(${weekCount}, minmax(0, 1fr))`;
@@ -173,7 +193,12 @@ export default async function GitHubContributions() {
         </div>
 
         <div className="github-activity-meta">
-          <span>{data.isLive ? "Live public GitHub data" : "GitHub data snapshot · Aug 28, 2026"}</span>
+          <span>
+            {latestActivity ? (
+              <>Latest activity · <time dateTime={latestActivity.date}>{formatActivityDate(latestActivity.date)}</time> · </>
+            ) : null}
+            {data.isLive ? "Live GitHub data" : "Snapshot · Aug 28, 2026"}
+          </span>
           <span className="github-legend" aria-label="Contribution intensity from less to more">
             Less
             {[0, 1, 2, 3, 4].map((level) => <i key={level} className={`github-day level-${level}`} />)}

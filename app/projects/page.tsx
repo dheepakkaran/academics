@@ -36,7 +36,8 @@ export default function ProjectsPage() {
                 <p><strong>Result:</strong> {project.outcome}</p>
                 <p className="project-links">
                   <span className="result">[{project.metric}]</span>{" · "}
-                  <span>{project.stack.join(" · ")}</span>{index === 0 && github?.href ? <>{" · "}<a href={github.href} target="_blank" rel="noreferrer">Code profile</a></> : null}
+                  <span>{project.stack.join(" · ")}</span>
+                  {project.href ? <>{" · "}<a href={project.href} target="_blank" rel="noreferrer">Repository ↗</a></> : index === 0 && github?.href ? <>{" · "}<a href={github.href} target="_blank" rel="noreferrer">Code profile</a></> : null}
                 </p>
               </li>
             ))}

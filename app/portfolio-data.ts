@@ -19,6 +19,7 @@ export type Project = {
   date: string;
   category: string;
   affiliation?: string;
+  href?: string;
   premise: string;
   method: string;
   outcome: string;
@@ -44,6 +45,15 @@ export type Course = {
   status: "Completed" | "Registered";
   percentage?: string;
   grade?: string;
+};
+
+export type UndergraduateCourseGroup = {
+  area: string;
+  courses: Array<{
+    code: string;
+    title: string;
+    grade: string;
+  }>;
 };
 
 export type BlogPost = {
@@ -201,7 +211,79 @@ export const coursework: Course[] = [
   },
 ];
 
+export const undergraduateCourseGroups: UndergraduateCourseGroup[] = [
+  {
+    area: "Computing & embedded systems",
+    courses: [
+      { code: "GE8151", title: "Problem Solving and Python Programming", grade: "B+" },
+      { code: "CS8392", title: "Object Oriented Programming", grade: "A+" },
+      { code: "OCS752", title: "Introduction to C Programming", grade: "O" },
+      { code: "EE8551", title: "Microprocessors and Microcontrollers", grade: "A+" },
+      { code: "EE8691", title: "Embedded Systems", grade: "O" },
+      { code: "OIT552", title: "Cloud Computing", grade: "A+" },
+    ],
+  },
+  {
+    area: "Electronics & circuits",
+    courses: [
+      { code: "EE8251", title: "Circuit Theory", grade: "B" },
+      { code: "EC8353", title: "Electron Devices and Circuits", grade: "B" },
+      { code: "EE8351", title: "Digital Logic Circuits", grade: "B" },
+      { code: "EE8451", title: "Linear Integrated Circuit and Applications", grade: "B+" },
+      { code: "EE8461", title: "Linear and Digital Integrated Circuits Laboratory", grade: "O" },
+    ],
+  },
+  {
+    area: "Signals, control & computation",
+    courses: [
+      { code: "EE8591", title: "Digital Signal Processing", grade: "A+" },
+      { code: "IC8451", title: "Control Systems", grade: "B+" },
+      { code: "EE8403", title: "Measurements and Instrumentation", grade: "B+" },
+      { code: "MA8491", title: "Numerical Methods", grade: "B+" },
+    ],
+  },
+  {
+    area: "Electrical energy & automation",
+    courses: [
+      { code: "EE8552", title: "Power Electronics", grade: "A+" },
+      { code: "EE8601", title: "Solid State Drives", grade: "A+" },
+      { code: "EE8602", title: "Protection and Switchgear", grade: "A+" },
+      { code: "EE8702", title: "Power System Operation and Control", grade: "O" },
+      { code: "EE8703", title: "Renewable Energy Systems", grade: "A+" },
+      { code: "EE8016", title: "Energy Management and Auditing", grade: "A" },
+    ],
+  },
+];
+
 export const projects: Project[] = [
+  {
+    title: "Multi-Camera BEV Perception",
+    date: "August 2026",
+    category: "Computer vision & model deployment",
+    href: "https://github.com/dheepakkaran/multi-camera-bev",
+    premise:
+      "Can six synchronized cameras produce a useful 3D bird’s-eye-view map for autonomous driving without LiDAR or radar?",
+    method:
+      "Built a 5.48M-parameter camera-only pipeline with EfficientNet-B0, 64-bin Lift-Splat-Shoot depth estimation, a ResNet-18 FPN BEV encoder and a CenterPoint detection head; exported it through ONNX and benchmarked TensorRT deployment on a Tesla T4.",
+    outcome:
+      "TensorRT FP32 reached 24.34 ms per six-camera frame (41.1 FPS), a 1.34× speedup over PyTorch FP32 without the detection loss observed under aggressive INT8 quantization; the model is also served through NVIDIA Triton.",
+    metric: "41.1 FPS TensorRT FP32",
+    stack: ["Python", "PyTorch", "nuScenes", "ONNX Runtime", "TensorRT", "NVIDIA Triton", "Gradio"],
+  },
+  {
+    title: "xG from Words",
+    date: "August 2026",
+    category: "Applied ML & sports analytics",
+    href: "https://github.com/dheepakkaran/xg-from-words",
+    premise:
+      "Can free football commentary estimate shot quality and travel across leagues when commercial coordinate data is unavailable?",
+    method:
+      "Built a leakage-audited expected-goals model from 18 commentary-derived fields, aligned 8,825 ESPN and StatsBomb shots for held-out evaluation, and tested one Premier League model across five additional competitions without retraining.",
+    outcome:
+      "Reached 0.7826 AUC against StatsBomb’s 0.8118, recovering 90.6% of the coordinate model’s discrimination above chance; cross-league evaluation covered 87,980 shots with AUC between 0.7702 and 0.7871.",
+    metric: "0.7826 AUC from commentary",
+    stack: ["Python", "pandas", "scikit-learn", "Qdrant", "pytest", "GitHub Actions"],
+  },
   {
     title: "Multilingual LLM Fine-Tuning",
     date: "May 2026",

@@ -11,7 +11,6 @@ import {
 } from "./portfolio-data";
 import ProfileHeader from "./profile-header";
 
-const email = externalLinks.find((link) => link.label === "Email");
 const github = externalLinks.find((link) => link.label === "GitHub");
 const education = experiences.filter((entry) => entry.kind === "education");
 const professionalExperience = experiences.filter((entry) => entry.kind === "experience");
@@ -89,7 +88,8 @@ export default function Home() {
                 <p><strong>Result:</strong> {project.outcome}</p>
                 <p className="project-links">
                   <span className="result">[{project.metric}]</span>{" · "}
-                  <span>{project.stack.join(" · ")}</span>{index === 0 && github?.href ? <>{" · "}<a href={github.href} target="_blank" rel="noreferrer">Code profile</a></> : null}
+                  <span>{project.stack.join(" · ")}</span>
+                  {project.href ? <>{" · "}<a href={project.href} target="_blank" rel="noreferrer">Repository ↗</a></> : index === 0 && github?.href ? <>{" · "}<a href={github.href} target="_blank" rel="noreferrer">Code profile</a></> : null}
                 </p>
               </li>
             ))}
@@ -194,7 +194,12 @@ export default function Home() {
       </main>
 
       <footer className="academic-footer">
-        <small>© 2026 Dheepak Karan · Last updated August 2026 · <a href={email?.href}>Contact</a></small>
+        <small>
+          © 2026 Dheepak Karan · Last updated August 2026 · Interface inspired by{" "}
+          <a href="https://wyshi.github.io/index.html" target="_blank" rel="noreferrer">
+            Prof. Weiyan Shi&apos;s portfolio
+          </a>
+        </small>
       </footer>
     </div>
   );
