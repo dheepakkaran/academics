@@ -36,7 +36,7 @@ export async function generateMetadata(): Promise<Metadata> {
           url: new URL("/og.png", metadataBase).toString(),
           width: 1200,
           height: 630,
-          alt: "Dheepak Karan — Software and Machine Learning Engineer",
+          alt: "Dheepak Karan — ECE academic portfolio",
         },
       ],
     },
